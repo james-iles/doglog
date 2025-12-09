@@ -9,4 +9,22 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :households, only: [:show, :new, :create, :delete, :update] do
+    # devise_for :users, only: [:new, :create]
+    resources :dogs, only: [:index, :new, :create]
+  end
+
+  resources :dogs, only: [:show, :edit, :update, :destroy] do
+    resources :appointments, only: [:index, :new, :create]
+    resources :documents, only: [:index, :new, :create]
+    resources :chats, only: [:create]
+  end
+
+  resources :appointments, only: [:show, :edit, :update, :destroy]
+  resources :documents, only: [:show, :edit, :update, :destroy]
+
+  resources :chats, only: [:show] do
+    resources :messages, only: [:create]
+  end
 end
