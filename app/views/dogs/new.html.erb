@@ -1,2 +1,24 @@
-<h1>Dogs#new</h1>
-<p>Find me in app/views/dogs/new.html.erb</p>
+<h1>Add a New Dog</h1>
+
+<%= form_with model: @dog, url: household_dogs_path(@household), local: true do |f| %>
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed %>
+  </div>
+
+  <div>
+    <%= f.label :dob, "Date of Birth" %><br>
+    <%= f.date_select :dob, start_year: 2000, end_year: Date.today.year %>
+  </div>
+
+  <div>
+    <%= f.submit "Create Dog" %>
+  </div>
+<% end %>
+
+<%= link_to "Back to Dogs List", household_dogs_path(@household) %>

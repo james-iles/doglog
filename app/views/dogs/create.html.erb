@@ -1,2 +1,22 @@
 <h1>Dogs#create</h1>
 <p>Find me in app/views/dogs/create.html.erb</p>
+
+<div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed %>
+  </div>
+
+  <div>
+    <%= f.label :dob, "Date of Birth" %><br>
+    <%= f.date_select :dob, start_year: 2000, end_year: Date.today.year %>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
