@@ -1,0 +1,12 @@
+<div class="container">
+  <div>
+    <% if user_signed_in? %>
+    <%= simple_form_for @household do |f| %>
+    <%= f.input :name, label: "Please give a name for the household", placeholder: "e.g. Happy Family of huskies" %>
+    <%= f.submit "Create a user!", class: "btn btn-warning btn-lg my-5" %>
+    <% end %>
+<% else %>
+  <div class="alert alert-info my-5" role="alert">
+    You need to <a href="<%= new_user_session_path %>">log in</a> or <a href="<%= new_user_registration_path %>">sign up</a> to create a household.
+  </div >
+<% end %>
