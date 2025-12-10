@@ -1,2 +1,16 @@
-<h1>Dogs#show</h1>
-<p>Find me in app/views/dogs/show.html.erb</p>
+<h1><%= @dog.name%></h1>
+
+<p>
+  <strong>Breed:</strong>
+  <%= @dog.breed %>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @dog.date %>
+</p>
+
+<%= link_to "Edit Dog", edit_dog_path(@dog) %> |
+<%= link_to "Back to Household", household_path(@dog.household) %> |
+<%= link_to "Delete Dog", dog_path(@dog),
+      data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
