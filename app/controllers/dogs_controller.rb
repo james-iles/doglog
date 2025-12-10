@@ -6,6 +6,8 @@ end
 
   def show
     @dog = Dog.find(params[:id])
+    @household = @dog.household
+
   end
 
   def new

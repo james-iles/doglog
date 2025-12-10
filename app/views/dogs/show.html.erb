@@ -17,10 +17,10 @@
 
 <p>
   <strong>Date of birth:</strong>
-   <%= @dog.dob.strftime("%d %b %Y") %>
+  <%= @dog.dob.strftime("%d %b %Y") %>
 </p>
 
 <%= link_to "Edit Dog", edit_dog_path(@dog) %> |
-<%= link_to "Back to Household", household_path(@dog.household) %> |
+<%= link_to "Back to Dogs List", household_dogs_path(@household) %> |
 <%= link_to "Delete Dog", dog_path(@dog),
       data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
