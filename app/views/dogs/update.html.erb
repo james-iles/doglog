@@ -1,2 +1,36 @@
-<h1>Dogs#update</h1>
-<p>Find me in app/views/dogs/update.html.erb</p>
+<h1>Edit <%= @dog.name%></h1>
+
+<%= form_with model: @dog, local: true do |f| %>
+
+  <div>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed %>
+  </div>
+
+  <div>
+    <%= f.label :gender %><br>
+    <%= f.select :gender, ["Male", "Female"], include_blank: "Select gender" %>
+  </div>
+
+  <div>
+    <%= f.label :weight, "Weight (kg)" %><br>
+    <%= f.number_field :weight, step: 0.1 %>
+  </div>
+
+  <div>
+    <%= f.label :dob, "Date of Birth" %><br>
+    <%= f.date_select :dob, start_year: 2000, end_year: Date.today.year %>
+  </div>
+
+  <div>
+    <%= f.submit "Update Dog" %>
+  </div>
+
+<% end %>
+
+<%= link_to "Back to Dog", dog_path(@dog) %>
