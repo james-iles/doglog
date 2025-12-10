@@ -1,37 +1,31 @@
-<div style="max-width: 480px; margin: 40px auto; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background-color: #fff;">
-  <div style="position: relative;">
-  <%= link_to household_dogs_path(@dog.household), style: "position: absolute; top: 15px; left: 0px; text-decoration: none; color: inherit;" do %>
-    <i class="fa-solid fa-chevron-left"></i>
-  <% end %>
-</div>
-  <h1 style="text-align: center; margin-bottom: 20px; color: #333;"><%= @dog.name %></h1>
-
-  <div>
-    <%= f.input :photo, as: :file %>
+<div class="dog-profile-card">
+  <div class="back-link">
+    <%= link_to household_dogs_path(@dog.household) do %>
+      <i class="fa-solid fa-chevron-left"></i>
+    <% end %>
   </div>
 
-  <div style="line-height: 1.6; color: #555;">
+  <h1 class="dog-name"><%= @dog.name %></h1>
+
+  <div class="dog-photo">
+    <% if @dog.photo.attached? %>
+      <%= image_tag @dog.photo, alt: @dog.name %>
+    <% else %>
+      <p>No photo available</p>
+    <% end %>
+  </div>
+
+  <div class="dog-info">
     <p><strong>Breed:</strong> <%= @dog.breed %></p>
     <p><strong>Gender:</strong> <%= @dog.gender %></p>
     <p><strong>Weight:</strong> <%= @dog.weight %></p>
     <p><strong>Date of birth:</strong> <%= @dog.dob.strftime("%d %b %Y") if @dog.dob %></p>
   </div>
 
-<div class="centered", style="text-align: center;>
-  <%= link_to "#" do %>
-    Share Profile <i class="fa-solid fa-share-from-square"></i>
-  <% end %>
-</div>
-
-
-  <div style="margin-top: 25px; text-align: center;">
-    <%= link_to edit_dog_path(@dog), style: "color: #1976d2; text-decoration: none;" do %>
-      Edit Dog
-    <% end %> |
-    <%= link_to dog_path(@dog),
+  <div class="dog-actions">
+    <%= link_to "Edit Dog", edit_dog_path(@dog), class: "edit-btn" %> |
+    <%= link_to "Delete Dog", dog_path(@dog),
         data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-        style: "color: #d32f2f; text-decoration: none;" do %>
-      Delete Dog
-    <% end %>
+        class: "delete-btn" %>
   </div>
 </div>
