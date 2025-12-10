@@ -1,17 +1,73 @@
 <div class="container text-center">
+  <!-- Banner Section -->
   <div class="row align-items-center">
-    <div class="col-12 border">
-      <div class="banner my-5">
-        <h1>Welcome!</h1>
-        <p>Smart care for modern dog owners!</p>
+    <div class="col-12">
+      <div class="banner my-5 py-5">
+        <% if user_signed_in? %>
+          <h1 class="display-6 fw-bold">Hi <%= @user.email %></h1>
+          <p class="lead text-muted">Welcome back!</p>
+        <% else %>
+          <h1 class="display-4 fw-bold">Welcome!</h1>
+          <p class="lead text-muted">Smart care for modern dog owners.</p>
+        <% end %>
         <%= image_tag "dogoutline.png", class: "img-fluid banner-image my-5", alt: "Outline of a playful Puppy" %>
         <div class="cta">
           <% if user_signed_in? %>
-            <%= link_to "My Dogs", root_path, class: "btn btn-primary" %>
+            <%= link_to "My Dogs", household_dogs_path(@household), class: "btn btn-primary btn-lg" %>
           <% else %>
-            <%= link_to "Start your journey", new_household_path, class: "btn btn-success" %>
+            <%= link_to "Start your journey", new_household_path, class: "btn btn-success btn-lg" %>
           <% end %>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Feature Cards Section -->
+  <div class="row g-4 my-5">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Simple Care Management</h5>
+          <p class="card-text text-muted">Keep track of your dog's appointments, notes and reminders, and quickly share any of your dog's information with anyone that needs it.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Easy Navigation</h5>
+          <p class="card-text text-muted">A simple interface designed for busy pet owners on the go. Search documents, add notes, share details and chat with an AI assistant in seconds. </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">On-Demand AI Support</h5>
+          <p class="card-text text-muted">From quick training advice to guidance on a something not quite right, get instant answers to your pet care questions with our AI assistant. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Call to Action -->
+  <div class="row my-5">
+    <div class="col-12">
+      <div class="py-5">
+        <h2 class="mb-4">Ready to give your dog the best care?</h2>
+        <% if user_signed_in? %>
+          <%= link_to "Go to Dashboard", root_path, class: "btn btn-primary btn-lg" %>
+        <% else %>
+          <%= link_to "Get Started", new_household_path, class: "btn btn-success btn-lg px-5" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- Footer -->
+<footer class="bg-light py-4 mt-5">
+  <div class="container text-center">
+    <p class="text-muted mb-0">&copy; <%= Date.current.year %> DogLog. All rights reserved.</p>
+  </div>
+</footer>
