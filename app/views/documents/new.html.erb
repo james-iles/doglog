@@ -1,2 +1,21 @@
-<h1>Documents#new</h1>
-<p>Find me in app/views/documents/new.html.erb</p>
+<div class="container">
+  <h1>Create notes or upload an existing document</h1>
+  <%= simple_form_for [@dog, @document] do |f| %>
+    <%= f.input :title,
+                label: "Title",
+                placeholder: "e.g. Vaccination Record" %>
+
+    <%= f.input :content,
+                as: :text,
+                label: "Content/Notes",
+                placeholder: "Add your notes here..." %>
+
+    <%= f.input :category,
+            collection: Document::CATEGORIES,
+            prompt: "Select a category" %>
+
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+
+    <%= f.submit "Create Document", class: "btn btn-warning btn-lg my-5" %>
+   <% end %>
+</div>

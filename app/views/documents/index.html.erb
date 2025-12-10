@@ -1,2 +1,19 @@
-<h1>Documents#index</h1>
-<p>Find me in app/views/documents/index.html.erb</p>
+<div class="container my-4">
+  <%= link_to "Create new document", new_dog_document_path, class: "btn btn-warning" %>
+  <h1>All Documents</h1>
+    <% @documents.each do |document| %>
+      <div class="col-md-5 mb-3">
+            <div class= "d-flex align-items-center justify-content-between">
+            <h5 ><%= document.title %></h5>
+            <div>
+             <%= link_to "View", document_path(document), class: "btn btn-warning" %>
+            <%= link_to "Edit", edit_document_path(document), class: "btn btn-warning" %>
+            <%= link_to "Delete", document_path(document), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            </div>
+            </div>
+            <p>
+              <span class="badge bg-primary"><%= document.category %></span>
+            </p>
+            </div>
+    <% end %>
+</div>
