@@ -12,6 +12,16 @@
   </div>
 
   <div>
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </div>
+
+  <div>
+    <%= f.label :weight, "Weight (kg)" %><br>
+   <%= f.text_field :weight %>
+  </div>
+
+  <div>
     <%= f.label :dob, "Date of Birth" %><br>
     <%= f.date_select :dob, start_year: 2000, end_year: Date.today.year %>
   </div>
