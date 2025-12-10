@@ -1,6 +1,6 @@
 class Chat < ApplicationRecord
   belongs_to :dog
-  has_many :messages, dependant: :destroy
+  has_many :messages, dependent: :destroy
 
   DEFAULT_TITLE = "New Chat"
   TITLE_PROMPT = <<~PROMPT
