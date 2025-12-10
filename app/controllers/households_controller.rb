@@ -11,7 +11,8 @@ class HouseholdsController < ApplicationController
 
     if @household.save
       session[:household_id] = @household.id
-      redirect_to new_user_registration_path
+      #added route
+      redirect_to "/users/sign_up", notice: "Great! Now create your account."
     else
       render :new
     end
@@ -29,11 +30,16 @@ class HouseholdsController < ApplicationController
     @household.update(params[household_params])
     redirect_to root_path
   end
-end
 
 private
 
   def household_params
     params.require(:household).permit(:name)
+  end
+
+  def redirect_if_signed_in
+    if user_signed_in?
+      redirect_to user_path(current_user), alert: "You already have an account!"
+    end
   end
 end
