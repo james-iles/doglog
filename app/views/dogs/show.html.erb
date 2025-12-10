@@ -20,6 +20,7 @@
   <%= @dog.dob.strftime("%d %b %Y") if @dog.dob %>
 </p>
 
+
 <%= link_to "Edit Dog", edit_dog_path(@dog) %> |
 <%= link_to "Back to Dogs List", household_dogs_path(@dog.household) %> |
 <%= link_to "Delete Dog", dog_path(@dog),
