@@ -17,7 +17,7 @@ class DogsController < ApplicationController
     @dog.household = current_user.household
 
     if @dog.save
-      redirect_to dog_path(@dog), notice: "Dog created successfully."
+      redirect_to dog_path(@dog), notice: "Dog created successfully"
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class DogsController < ApplicationController
   def update
     @dog = Dog.find(params[:id])
     if @dog.update(dog_params)
-      redirect_to dog_path(@dog), notice: "Dog updated successfully."
+      redirect_to dog_path(@dog), notice: "Dog updated successfully"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,7 +39,7 @@ class DogsController < ApplicationController
   def destroy
     @dog = Dog.find(params[:id])
     @dog.destroy
-    redirect_to dogs_path, notice: "Dog deleted."
+    redirect_to dogs_path, notice: "Dog deleted"
   end
 
   private
