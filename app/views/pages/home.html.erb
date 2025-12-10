@@ -5,6 +5,11 @@
         <h1>Welcome!</h1>
         <p>Smart care for modern dog owners!</p>
         <%= image_tag "dogoutline.png", class: "img-fluid banner-image", alt: "Outline of a playful Puppy" %>
+        <% if user_signed_in? %>
+          <%= link_to "My Dogs", root_path, class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "Start your journey", new_household_path, class: "btn btn-success" %>
+        <% end %>
       </div>
   </div>
 </div>
