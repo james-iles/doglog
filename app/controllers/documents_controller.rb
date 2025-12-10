@@ -33,11 +33,11 @@ class DocumentsController < ApplicationController
     redirect_to document_path(@document)
   end
 
-  def delete
+  def destroy
     @document = Document.find(params[:id])
     @document.destroy
+    redirect_to dog_documents_path(@document.dog), notice: "Document deleted"
   end
-
 
 def document_params
   params.require(:document).permit(:title, :content, :category, photos:[])

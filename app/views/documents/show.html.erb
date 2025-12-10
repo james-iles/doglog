@@ -1,19 +1,59 @@
 <div class="container">
-<h1><strong>Title:</strong>
-  <%= @document.title %></h1>
-<p>
-  <strong>Content:</strong>
-  <%= @document.content %>
-</p>
-<p>
-  <strong>Category:</strong>
-  <%= @document.category %>
-</p>
-  <% if @document.photos.attached? %>
-    <% @document.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-    <% end %>
-  <%= link_to "Edit", edit_document_path(@document), class: "btn btn-warning" %>
-  <%= link_to "Delete", document_path(@document), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+
+      <!-- Document Header -->
+      <div class="mb-4">
+        <h1 class="mb-3"><%= @document.title %></h1>
+      </div>
+
+      <!-- Document Details -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="mb-3">
+            <h5 class="text-muted">Content</h5>
+            <p><%= @document.content %></p>
+          </div>
+
+          <div class="mb-3">
+            <h5 class="text-muted">Category</h5>
+            <p><%= @document.category %></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Photos -->
+      <% if @document.photos.attached? %>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Photos</h5>
+            <div class="row g-3">
+              <% @document.photos.each do |photo| %>
+                <div class="col-md-6">
+                  <%= cl_image_tag photo.key,
+                                   height: 300,
+                                   width: 400,
+                                   crop: :fill,
+                                   class: "img-fluid rounded" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Action Buttons -->
+      <div class="d-flex gap-2">
+        <%= link_to "Edit",
+                    edit_document_path(@document),
+                    class: "btn btn-warning" %>
+        <%= link_to "Delete",
+                    document_path(@document),
+                    class: "btn btn-danger",
+                    data: { turbo_method: :delete,
+                            turbo_confirm: "Are you sure?" } %>
+      </div>
+
+    </div>
+  </div>
 </div>

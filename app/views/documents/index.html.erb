@@ -1,20 +1,19 @@
 <div class="container my-4">
   <h1>All Documents</h1>
 
-  <div class="row">
     <% @documents.each do |document| %>
-      <div class="col-md-4 mb-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><%= document.title %></h5>
-            <p class="card-text">
+      <div class="col-md-5 mb-3">
+            <div class= "d-flex align-items-center justify-content-between">
+            <h5 ><%= document.title %></h5>
+            <div>
+             <%= link_to "View", document_path(document), class: "btn btn-warning" %>
+            <%= link_to "Edit", edit_document_path(document), class: "btn btn-warning" %>
+            <%= link_to "Delete", document_path(document), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+            </div>
+            </div>
+            <p>
               <span class="badge bg-primary"><%= document.category %></span>
             </p>
-            <%= link_to "View", document_path(document), class: "btn btn-warning" %>
-            <%= link_to "Edit", edit_document_path(document), class: "btn btn-warning" %>
-          </div>
-        </div>
-      </div>
+            </div>
     <% end %>
-  </div>
 </div>
