@@ -17,7 +17,7 @@
 
 <p>
   <strong>Date of birth:</strong>
-  <%= @dog.date %>
+   <%= @dog.dob.strftime("%d %b %Y") %>
 </p>
 
 <%= link_to "Edit Dog", edit_dog_path(@dog) %> |

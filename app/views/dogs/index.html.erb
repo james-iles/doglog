@@ -1,2 +1,35 @@
-<h1>Dogs#index</h1>
-<p>Find me in app/views/dogs/index.html.erb</p>
+<h1>Dogs</h1>
+
+<%= link_to "Add New Dog", new_household_dog_path(@household) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Breed</th>
+      <th>Date of Birth</th>
+      <th>Gender</th>
+      <th>Weight (kg)</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dogs.each do |dog| %>
+      <tr>
+        <td><%= dog.name %></td>
+        <td><%= dog.breed %></td>
+        <td><%= dog.dob.strftime("%B %d, %Y") if dog.dob %></td>
+        <td><%= dog.gender %></td>
+        <td><%= dog.weight %></td>
+        <td>
+          <%= link_to "Show", dog_path(dog) %> |
+          <%= link_to "Edit", edit_dog_path(dog) %> |
+          <%= link_to "Delete", dog_path(dog),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back to Household", household_path(@household) %>
