@@ -1,37 +1,46 @@
 class DocumentsController < ApplicationController
   def index
+    @documents = Document.all
   end
 
   def show
+    @document = Document.find(params[:id])
   end
 
   def new
-    @document = Document.new
+  @dog = Dog.find(params[:dog_id])
+  @document = @dog.documents.new
   end
 
   def create
-    @dog_id = dog.dog_id
-    @document = Document.new(document_params)
+    @dog = Dog.find(params[:dog_id])
+    @document = @dog.documents.new(document_params)
 
     if @document.save
-      redirect_to document_path(@document)
+      redirect_to @document, notice: 'Document created successfully'
     else
       render :new
     end
   end
 
   def edit
+    @document = Document.find(params[:id])
   end
 
   def update
+    @document = Document.find(params[:id])
+    @document.update(document_params)
+    redirect_to document_path(@document)
   end
 
   def delete
+    @document = Document.find(params[:id])
+    @document.destroy
   end
 
 
 def document_params
-  params.require(:document).permit(:title, :content, :category, :photo)
+  params.require(:document).permit(:title, :content, :category, photos:[])
 end
 
 

@@ -1,9 +1,19 @@
-<h1>Documents#show</h1>
-<p>Find me in app/views/documents/show.html.erb</p>
-if @document.photo.attached?
-  <h2>Photo:</h2>
-<% @article.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-  <%= image_tag @document.photo %>
-<% end %>
+<div class="container">
+<h1><strong>Title:</strong>
+  <%= @document.title %></h1>
+<p>
+  <strong>Content:</strong>
+  <%= @document.content %>
+</p>
+<p>
+  <strong>Category:</strong>
+  <%= @document.category %>
+</p>
+  <% if @document.photos.attached? %>
+    <% @document.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
+  <%= link_to "Edit", edit_document_path(@document), class: "btn btn-warning" %>
+  <%= link_to "Delete", document_path(@document), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-danger" %>
+  <% end %>
+</div>
