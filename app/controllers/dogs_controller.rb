@@ -1,10 +1,13 @@
 class DogsController < ApplicationController
   def index
-    @dogs = Dog.all
-  end
+  @household = Household.find(params[:household_id])
+  @dogs = @household.dogs
+end
 
   def show
     @dog = Dog.find(params[:id])
+    @household = @dog.household
+
   end
 
   def new
@@ -45,6 +48,6 @@ class DogsController < ApplicationController
   private
 
   def dog_params
-    params.require(:dog).permit(:name, :breed, :dob)
+    params.require(:dog).permit(:name, :breed, :dob, :weight, :gender)
   end
 end
