@@ -1,6 +1,6 @@
 <h1>Add a New Dog</h1>
 
-<%= form_with model: @dog, url: household_dogs_path(@household), local: true do |f| %>
+<%= form_with model: [@household, @dog], local: true do |f| %>
   <div>
     <%= f.label :name %><br>
     <%= f.text_field :name %>

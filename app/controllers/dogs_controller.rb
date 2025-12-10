@@ -1,7 +1,6 @@
 class DogsController < ApplicationController
   def index
-    @household = Household.find(params[:household_id])
-    @dogs = @household.dogs
+    @dogs = Dog.all
   end
 
   def show
@@ -10,12 +9,13 @@ class DogsController < ApplicationController
 
   def new
     @household = Household.find(params[:household_id])
-    @dog = @household.dogs.new
+    @dog = Dog.new
   end
 
   def create
-    @household = Household.find(params[:household_id])
-    @dog = @household.dogs.new(dog_params)
+    @dog = Dog.new(dog_params)
+    @dog.household = current_user.household
+
     if @dog.save
       redirect_to dog_path(@dog), notice: "Dog created successfully."
     else
@@ -38,9 +38,8 @@ class DogsController < ApplicationController
 
   def destroy
     @dog = Dog.find(params[:id])
-    @household = @dog.household
     @dog.destroy
-    redirect_to household_path(@household), notice: "Dog deleted."
+    redirect_to dogs_path, notice: "Dog deleted."
   end
 
   private
