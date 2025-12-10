@@ -1,13 +1,12 @@
 class DogsController < ApplicationController
   def index
-  @household = Household.find(params[:household_id])
-  @dogs = @household.dogs
-end
+    @household = Household.find(params[:household_id])
+    @dogs = @household.dogs
+  end
 
   def show
     @dog = Dog.find(params[:id])
     @household = @dog.household
-
   end
 
   def new
@@ -41,8 +40,9 @@ end
 
   def destroy
     @dog = Dog.find(params[:id])
+    household = @dog.household
     @dog.destroy
-    redirect_to dogs_path, notice: "Dog deleted"
+    redirect_to household_dogs_path(household), notice: "Dog deleted"
   end
 
   private

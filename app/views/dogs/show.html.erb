@@ -1,4 +1,4 @@
-<h1><%= @dog.name%></h1>
+<h1><%= @dog.name %></h1>
 
 <p>
   <strong>Breed:</strong>
@@ -6,21 +6,21 @@
 </p>
 
 <p>
-<strong>Gender:</strong>
-<%= @dog.gender%>
+  <strong>Gender:</strong>
+  <%= @dog.gender %>
 </p>
 
 <p>
-<strong>Weight:</strong>
-<%= @dog.weight%>
+  <strong>Weight:</strong>
+  <%= @dog.weight %>
 </p>
 
 <p>
   <strong>Date of birth:</strong>
-  <%= @dog.dob.strftime("%d %b %Y") %>
+  <%= @dog.dob.strftime("%d %b %Y") if @dog.dob %>
 </p>
 
 <%= link_to "Edit Dog", edit_dog_path(@dog) %> |
-<%= link_to "Back to Dogs List", household_dogs_path(@household) %> |
+<%= link_to "Back to Dogs List", household_dogs_path(@dog.household) %> |
 <%= link_to "Delete Dog", dog_path(@dog),
       data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
