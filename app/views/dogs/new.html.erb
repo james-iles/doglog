@@ -2,6 +2,10 @@
 
 <%= form_with model: [@household, @dog], local: true do |f| %>
   <div>
+    <%= f.input :photo, as: :file %>
+  </div>
+
+  <div>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>

@@ -5,6 +5,8 @@ class Dog < ApplicationRecord
   has_many :appointments, dependent: :destroy
   has_many :chats, dependent: :destroy
 
+  has_one_attached :photo
+
   validates :name, presence: true,  length: { minimum: 2, maximum: 10 }
   validates :breed, presence: true
   validates :dob, presence: true
