@@ -1,2 +1,9 @@
 <h1>Documents#show</h1>
 <p>Find me in app/views/documents/show.html.erb</p>
+if @document.photo.attached?
+  <h2>Photo:</h2>
+<% @article.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+  <%= image_tag @document.photo %>
+<% end %>
