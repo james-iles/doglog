@@ -1,0 +1,6 @@
+<div class="container">
+  <%= simple_form_for @household do |f| %>
+    <%= f.input :name, label: "Please give a name for the household", placeholder: "e.g. Happy Family of huskies" %>
+    <%= f.submit "Create Household & Continue", class: "btn btn-warning btn-lg my-5" %>
+  <% end %>
+</div>
