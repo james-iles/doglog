@@ -1,0 +1,52 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center"
+     style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5 col-lg-4">
+        <div class="card shadow-lg">
+          <div class="card-body p-5 text-center">
+            <!-- Icon -->
+            <div class="mb-4">
+              <i class="bi bi-shield-lock display-1 text-primary"></i>
+            </div>
+
+            <!-- Title -->
+            <h2 class="mb-3">Protected Profile</h2>
+            <p class="text-muted mb-4">
+              This profile is PIN protected. Please enter the PIN to continue.
+            </p>
+
+            <!-- PIN Form -->
+            <%= form_with url: verify_pin_shared_dog_profile_path(token: params[:token]),
+                          method: :post,
+                          local: true do |f| %>
+
+              <div class="mb-3">
+                <%= f.password_field :pin,
+                                    placeholder: "Enter PIN",
+                                    autofocus: true,
+                                    pattern: "[0-9]{4,6}",
+                                    maxlength: 6,
+                                    inputmode: "numeric",
+                                    class: "form-control form-control-lg text-center",
+                                    style: "letter-spacing: 0.5rem; font-size: 1.5rem;" %>
+              </div>
+
+              <div class="d-grid">
+                <%= f.submit "Verify PIN", class: "btn btn-primary btn-lg" %>
+              </div>
+            <% end %>
+
+            <!-- Help Text -->
+            <div class="mt-4">
+              <p class="text-muted small mb-0">
+                <i class="bi bi-info-circle"></i>
+                Contact the profile owner if you don't have the PIN
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

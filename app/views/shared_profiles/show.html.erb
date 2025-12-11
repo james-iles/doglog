@@ -1,0 +1,315 @@
+<!-- app/views/shared_profiles/show.html.erb -->
+<div class="min-vh-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-lg">
+
+          <!-- Header -->
+          <div class="card-header text-white text-center py-4"
+               style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="mb-3">
+              <i class="bi bi-heart-fill display-1"></i>
+            </div>
+            <h1 class="display-4 mb-2"><%= @dog.name %></h1>
+            <p class="lead mb-1"><%= @dog.breed %></p>
+            <p class="mb-0">
+              <i class="bi bi-calendar3"></i>
+              <%= @dog.age_in_years %> years old
+              <span class="small">(Born <%= @dog.dob.strftime("%b %d, %Y") %>)</span>
+            </p>
+          </div>
+
+          <div class="card-body p-0">
+
+            <!-- Owner Details Section -->
+            <% if @profile_data[:owner] %>
+              <div class="p-4 border-bottom">
+                <h4 class="mb-3">
+                  <i class="bi bi-person-circle text-primary"></i>
+                  Owner Details
+                </h4>
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <div class="card bg-light h-100">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-person"></i> Name
+                        </h6>
+                        <p class="card-text fw-bold mb-0">
+                          <%= @profile_data[:owner][:name] %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="card bg-light h-100">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-envelope"></i> Email
+                        </h6>
+                        <p class="card-text mb-0">
+                          <%= mail_to @profile_data[:owner][:email],
+                                      class: "text-decoration-none" do %>
+                            <%= @profile_data[:owner][:email] %>
+                          <% end %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="card bg-light h-100">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-telephone"></i> Phone
+                        </h6>
+                        <p class="card-text mb-0">
+                          <%= link_to @profile_data[:owner][:phone],
+                                     "tel:#{@profile_data[:owner][:phone]}",
+                                     class: "text-decoration-none" %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <!-- Vet Details Section -->
+            <% if @profile_data[:vet] %>
+              <div class="p-4 border-bottom bg-light">
+                <h4 class="mb-3">
+                  <i class="bi bi-hospital text-danger"></i>
+                  Veterinarian Details
+                </h4>
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-person-badge"></i> Veterinarian
+                        </h6>
+                        <p class="card-text fw-bold mb-0">
+                          <%= @profile_data[:vet][:name] %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-building"></i> Clinic
+                        </h6>
+                        <p class="card-text fw-bold mb-0">
+                          <%= @profile_data[:vet][:clinic] %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-telephone"></i> Phone
+                        </h6>
+                        <%= link_to "tel:#{@profile_data[:vet][:phone]}",
+                                    class: "btn btn-sm btn-outline-primary" do %>
+                          <i class="bi bi-telephone"></i> <%= @profile_data[:vet][:phone] %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="card h-100">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-geo-alt"></i> Address
+                        </h6>
+                        <p class="card-text small mb-0">
+                          <%= @profile_data[:vet][:address] %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <!-- Medical Information Section -->
+            <% if @profile_data[:medical] %>
+              <div class="p-4 border-bottom">
+                <h4 class="mb-3">
+                  <i class="bi bi-heart-pulse text-danger"></i>
+                  Medical Information
+                </h4>
+
+                <div class="row g-3 mb-3">
+                  <% if @profile_data[:medical][:microchip].present? %>
+                    <div class="col-md-4">
+                      <div class="alert alert-info mb-0">
+                        <h6 class="alert-heading">
+                          <i class="bi bi-cpu"></i> Microchip
+                        </h6>
+                        <p class="mb-0 font-monospace">
+                          <%= @profile_data[:medical][:microchip] %>
+                        </p>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if @profile_data[:medical][:allergies].present? %>
+                    <div class="col-md-8">
+                      <div class="alert alert-warning mb-0">
+                        <h6 class="alert-heading">
+                          <i class="bi bi-exclamation-triangle"></i> Allergies
+                        </h6>
+                        <p class="mb-0">
+                          <%= @profile_data[:medical][:allergies] %>
+                        </p>
+                      </div>
+                    </div>
+                  <% end %>
+
+                  <% if @profile_data[:medical][:medications].present? %>
+                    <div class="col-12">
+                      <div class="alert alert-primary mb-0">
+                        <h6 class="alert-heading">
+                          <i class="bi bi-capsule"></i> Current Medications
+                        </h6>
+                        <p class="mb-0">
+                          <%= @profile_data[:medical][:medications] %>
+                        </p>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+
+                <!-- Medical Records -->
+                <% if @profile_data[:medical][:documents].any? %>
+                  <h5 class="mb-3">
+                    <i class="bi bi-file-medical"></i> Medical Records
+                  </h5>
+                  <div class="accordion" id="medicalAccordion">
+                    <% @profile_data[:medical][:documents].each_with_index do |(title, content), index| %>
+                      <div class="accordion-item">
+                        <h2 class="accordion-header">
+                          <button class="accordion-button <%= 'collapsed' unless index == 0 %>"
+                                  type="button"
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#medical<%= index %>">
+                            <%= title %>
+                          </button>
+                        </h2>
+                        <div id="medical<%= index %>"
+                             class="accordion-collapse collapse <%= 'show' if index == 0 %>"
+                             data-bs-parent="#medicalAccordion">
+                          <div class="accordion-body">
+                            <%= simple_format(content) %>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+
+            <!-- Training Commands Section -->
+            <% if @profile_data[:training] %>
+              <div class="p-4 border-bottom bg-light">
+                <h4 class="mb-3">
+                  <i class="bi bi-award text-success"></i>
+                  Training Commands
+                </h4>
+
+                <div class="accordion" id="trainingAccordion">
+                  <% @profile_data[:training][:documents].each_with_index do |(title, content), index| %>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button <%= 'collapsed' unless index == 0 %>"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#training<%= index %>">
+                          <i class="bi bi-check-circle me-2"></i>
+                          <%= title %>
+                        </button>
+                      </h2>
+                      <div id="training<%= index %>"
+                           class="accordion-collapse collapse <%= 'show' if index == 0 %>"
+                           data-bs-parent="#trainingAccordion">
+                        <div class="accordion-body">
+                          <%= simple_format(content) %>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+
+            <!-- Insurance Section -->
+            <% if @profile_data[:insurance] %>
+              <div class="p-4 border-bottom">
+                <h4 class="mb-3">
+                  <i class="bi bi-shield-check text-info"></i>
+                  Insurance Information
+                </h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="card bg-info bg-opacity-10">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-building"></i> Provider
+                        </h6>
+                        <p class="card-text fw-bold mb-0">
+                          <%= @profile_data[:insurance][:provider] %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card bg-info bg-opacity-10">
+                      <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">
+                          <i class="bi bi-file-text"></i> Policy Number
+                        </h6>
+                        <p class="card-text font-monospace fw-bold mb-0">
+                          <%= @profile_data[:insurance][:policy_number] %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <!-- Footer -->
+          <div class="card-footer text-center text-muted bg-light">
+            <p class="mb-1 small">
+              <i class="bi bi-calendar-check"></i>
+              Shared on <%= @shareable_profile.created_at.strftime("%B %d, %Y") %>
+            </p>
+            <% if @shareable_profile.expires_at %>
+              <p class="mb-0 small">
+                <i class="bi bi-clock"></i>
+                <span class="text-danger">
+                  Expires on <%= @shareable_profile.expires_at.strftime("%B %d, %Y at %I:%M %p") %>
+                </span>
+              </p>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

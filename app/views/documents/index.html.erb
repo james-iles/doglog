@@ -1,5 +1,4 @@
 <div class="container my-4">
-  <%= link_to "Create new document", new_dog_document_path, class: "btn btn-warning" %>
   <h1>All Documents</h1>
     <% @documents.each do |document| %>
       <div class="col-md-5 mb-3">
@@ -16,4 +15,8 @@
             </p>
             </div>
     <% end %>
+    <div class="d-flex justify-content-between my-4">
+    <%= link_to "New", new_dog_document_path, class: "btn btn-warning" %>
+    <%= link_to "Back", root_path, class: "btn btn-warning" %>
+</div>
 </div>

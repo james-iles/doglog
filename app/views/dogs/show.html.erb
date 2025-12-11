@@ -15,6 +15,7 @@
 </div>
 
 
+<<<<<<< HEAD
   <h1 class="dog-name mt-3"><%= @dog.name %></h1>
 
   <div class="dog-photo">
@@ -47,3 +48,19 @@
   <% end %>
 </div>
 </div>
+=======
+
+<!-- Add this Share Profile button -->
+  <div class="mt-3">
+    <%= link_to new_dog_shareable_profile_path(@dog), class: "btn btn-primary" do %>
+      <i class="bi bi-share"></i> Share Profile
+    <% end %>
+
+    <!-- If there's an active share link, show it -->
+    <% if @dog.current_share_profile %>
+      <%= link_to dog_shareable_profile_path(@dog, @dog.current_share_profile),
+                  class: "btn btn-success" do %>
+        <i class="bi bi-link"></i> View Active Share Link
+      <% end %>
+    <% end %>
+  </div>
