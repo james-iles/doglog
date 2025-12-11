@@ -1,0 +1,59 @@
+<h1>Edit <%= @dog.name%></h1>
+
+<%= form_with model: @dog, local: true do |f| %>
+  <div>
+    <div>
+      <%= f.label :vet_name %><br>
+      <%= f.text_field :vet_name %>
+    </div>
+    <div>
+      <%= f.label :vet_clinic %><br>
+      <%= f.text_field :vet_clinic %>
+    </div>
+      <div>
+      <%= f.label :vet_phone %><br>
+      <%= f.text_field :vet_phone %>
+    </div>
+    <div>
+      <%= f.label :vet_address %><br>
+      <%= f.text_field :vet_address %>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <%= f.label :insurance_provider %><br>
+      <%= f.text_field :insurance_provider %>
+    </div>
+    <div>
+      <%= f.label :insurance_policy_number %><br>
+      <%= f.text_field :insurance_policy_number %>
+    </div>
+      <div>
+      <%= f.label :microchip_number %><br>
+      <%= f.text_field :microchip_number %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.label :allergies %><br>
+    <%= f.text_field :allergies %>
+  </div>
+
+  <div>
+    <%= f.label :medications %><br>
+    <%= f.text_field :medications %>
+  </div>
+
+  <div>
+    <%= f.label :special_notes %><br>
+    <%= f.text_field :special_notes %>
+  </div>
+
+  <div>
+    <%= f.submit "Update Dog" %>
+  </div>
+
+<% end %>
+
+<%= link_to "Back to Dog", dog_path(@dog) %>

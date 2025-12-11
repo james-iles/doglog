@@ -29,7 +29,10 @@ class DogsController < ApplicationController
     @dog = Dog.find(params[:id])
   end
 
-  
+  def edit_medical_info
+    @dog = Dog.find(params[:id])
+  end
+
   def update
     @dog = Dog.find(params[:id])
     if @dog.update(dog_params)
