@@ -5,6 +5,10 @@ class Dog < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :shareable_profiles, dependent: :destroy
 
+  GENDERS = [
+    'Male', 'Female'
+    ].freeze
+
   BREEDS = [
     'Labrador Retriever', 'Golden Retriever', 'English Springer Spaniel',
     'Cocker Spaniel', 'German Shorthaired Pointer', 'Brittany',

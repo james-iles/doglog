@@ -28,6 +28,8 @@ gem "jbuilder"
 
 gem 'ostruct'
 
+gem 'flatpickr', '~> 2.3', '>= 2.3.5.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -54,9 +56,10 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "dotenv-rails"
 gem "cloudinary"
-
 gem 'rqrcode', '~> 2.2'
 gem 'bcrypt', '~> 3.1.7'
+
+
 
 group :development, :test do
   gem "dotenv-rails"

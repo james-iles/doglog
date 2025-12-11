@@ -1,2 +1,44 @@
-<h1>Appointments#index</h1>
-<p>Find me in app/views/appointments/index.html.erb</p>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Appointments Calendar</h1>
+    <%= link_to "New Appointment", new_dog_appointment_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div id='calendar'></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      events: <%= raw @appointments.map { |appointment| {
+        id: appointment.id,
+        title: "#{appointment.host} - #{appointment.dog.name}",
+        start: appointment.start_time.iso8601,
+        end: appointment.end_time.iso8601,
+        url: appointment_path(appointment)
+      }}.to_json %>,
+      eventClick: function(info) {
+        info.jsEvent.preventDefault();
+        if (info.event.url) {
+          window.location.href = info.event.url;
+        }
+      },
+      height: 'auto',
+      eventColor: '#4A90E2'
+    });
+
+    calendar.render();
+  });
+</script>
