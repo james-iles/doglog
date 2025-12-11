@@ -39,6 +39,7 @@ class AppointmentsController < ApplicationController
   end
 
   def delete
+    @dog = Dog.find(params[:dog_id])
     @appointment = Appointment.find(params[:id])
     @appointment.destroy
     redirect_to dog_appointments_path(appointment.dog), notice: "Appointment deleted"
