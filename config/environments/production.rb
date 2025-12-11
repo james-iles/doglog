@@ -2,6 +2,12 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
+
+  #this is added for updating the domain for email links. still what needs to be done is setting environment variables "heroku config:set MAILER_HOST=doglog.app"
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch('MAILER_HOST', 'doglog.app'),
+    protocol: 'https'
+  }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.

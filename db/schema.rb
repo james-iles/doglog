@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_12_10_110914) do
+ActiveRecord::Schema[7.1].define(version: 2025_12_10_222705) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_10_110914) do
     t.datetime "updated_at", null: false
     t.string "gender"
     t.decimal "weight"
+    t.string "vet_name"
+    t.string "vet_clinic"
+    t.string "vet_phone"
+    t.text "vet_address"
+    t.string "insurance_provider"
+    t.string "insurance_policy_number"
+    t.string "microchip_number"
+    t.text "allergies"
+    t.text "medications"
+    t.text "special_notes"
     t.index ["household_id"], name: "index_dogs_on_household_id"
   end
 
@@ -88,6 +98,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_10_110914) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "owner_name"
+    t.string "email"
+    t.string "phone"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -97,6 +110,30 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_10_110914) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["chat_id"], name: "index_messages_on_chat_id"
+  end
+
+  create_table "share_profile_view_logs", force: :cascade do |t|
+    t.bigint "shareable_profile_id", null: false
+    t.datetime "viewed_at", null: false
+    t.string "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shareable_profile_id"], name: "index_share_profile_view_logs_on_shareable_profile_id"
+    t.index ["viewed_at"], name: "index_share_profile_view_logs_on_viewed_at"
+  end
+
+  create_table "shareable_profiles", force: :cascade do |t|
+    t.bigint "dog_id", null: false
+    t.string "token", null: false
+    t.string "access_pin_digest"
+    t.datetime "expires_at"
+    t.integer "max_views"
+    t.integer "view_count", default: 0, null: false
+    t.text "shared_categories"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_shareable_profiles_on_dog_id"
+    t.index ["token"], name: "unique_token_on_shareable_profiles", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -120,5 +157,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_10_110914) do
   add_foreign_key "documents", "dogs"
   add_foreign_key "dogs", "households"
   add_foreign_key "messages", "chats"
+  add_foreign_key "share_profile_view_logs", "shareable_profiles"
+  add_foreign_key "shareable_profiles", "dogs"
   add_foreign_key "users", "households"
 end

@@ -20,6 +20,11 @@ devise_for :users, controllers: {
     resources :appointments, only: [:index, :new, :create]
     resources :documents, only: [:index, :new, :create]
     resources :chats, only: [:create]
+    resources :shareable_profiles, only: [:new, :create, :show, :destroy] do
+      member do
+        get :analytics
+      end
+    end
   end
 
   resources :appointments, only: [:show, :edit, :update, :destroy]
@@ -28,4 +33,8 @@ devise_for :users, controllers: {
   resources :chats, only: [:show] do
     resources :messages, only: [:create]
   end
+
+  # Public routes (no authentication required)
+  get '/shared/:token', to: 'shared_profiles#show', as: :shared_dog_profile
+  post '/shared/:token/verify', to: 'shared_profiles#verify_pin', as: :verify_pin_shared_dog_profile
 end
