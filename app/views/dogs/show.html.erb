@@ -1,17 +1,27 @@
 <div class="dog-profile-card">
+
+  <div class="first-links">
   <div class="back-link">
     <%= link_to household_dogs_path(@dog.household) do %>
       <i class="fa-solid fa-chevron-left"></i>
     <% end %>
   </div>
 
-  <h1 class="dog-name"><%= @dog.name %></h1>
+  <div class="edit-link">
+    <%= link_to edit_dog_path(@dog), class: "edit-btn" do %>
+      <i class="fa-regular fa-pen-to-square"></i>
+    <% end %>
+  </div>
+</div>
+
+
+  <h1 class="dog-name mt-3"><%= @dog.name %></h1>
 
   <div class="dog-photo">
     <% if @dog.photo.attached? %>
       <%= image_tag @dog.photo, alt: @dog.name %>
     <% else %>
-      <p>No photo available</p>
+      <%= image_tag "pawprint.jpg", alt: "No photo available" %>
     <% end %>
   </div>
 
@@ -22,10 +32,18 @@
     <p><strong>Date of birth:</strong> <%= @dog.dob.strftime("%d %b %Y") if @dog.dob %></p>
   </div>
 
-  <div class="dog-actions">
-    <%= link_to "Edit Dog", edit_dog_path(@dog), class: "edit-btn" %> |
-    <%= link_to "Delete Dog", dog_path(@dog),
-        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-        class: "delete-btn" %>
+  <div class="share-btn mt-5">
+  <%= link_to "#" do %>
+    Share Profile <i class="fa-solid fa-share-from-square"></i>
+  <% end %>
   </div>
+
+  <div class="delete-link mt-5">
+  <%= link_to dog_path(@dog),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+              class: "delete-btn",
+              title: "Delete Dog" do %>
+    <i class="fa-regular fa-trash-can"></i>
+  <% end %>
+</div>
 </div>

@@ -8,14 +8,23 @@
   text-align: center;
   color: #333;
 }
-
-.back-link {
-  position: relative;
-  text-align: left;
-  font-size: 1.5rem;
-  color: #333;
+//---------------FISRST LINKS
+.first-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
 }
 
+.back-link a,
+.edit-link a {
+  font-size: 1.5rem;
+  color: #333;
+  text-decoration: none;
+}
+
+//-----------------------
 .dog-name {
   margin-bottom: 20px;
   font-size: 2rem;
@@ -52,4 +61,21 @@
 .dog-actions .delete-btn {
   color: #d32f2f;
   text-decoration: none;
+}
+
+
+.share-btn a {
+  text-decoration: none;
+  color: #333;
+  border: 1px solid;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 5px;
+  background-color: $orange;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.delete-link a {
+  font-size: 1.2rem;
 }
