@@ -9,7 +9,7 @@ class ChatsController < ApplicationController
     end
     @chat = Chat.new(title: Chat::DEFAULT_TITLE)
     @chat.dog = @dog
-    
+
     if @chat.save
       redirect_to chat_path(@chat), notice: "Chat created successfully"
     else
@@ -19,6 +19,9 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id])
+    @message = Message.new
+    # Do we need to be checking user/household_id at this point to show only relevant chats?
+    # I think not as we don't have a history of hats to show...
   end
 
   private
