@@ -1,0 +1,105 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">
+            <i class="bi bi-share"></i>
+            Share <%= @dog.name %>'s Profile
+          </h2>
+        </div>
+
+        <div class="card-body">
+          <%= form_with model: [@dog, @shareable_profile], local: true do |f| %>
+
+            <!-- Categories Section -->
+            <div class="mb-4">
+              <h4 class="mb-3">
+                <i class="bi bi-card-checklist"></i>
+                Select Information to Share
+              </h4>
+
+              <div class="list-group">
+                <% ShareableProfile::SHAREABLE_CATEGORIES.each do |key, label| %>
+                  <label class="list-group-item list-group-item-action d-flex align-items-center">
+                    <div class="form-check me-3">
+                      <%= check_box_tag 'shareable_profile[shared_categories][]', key, false, class: "form-check-input", id: "category_#{key}" %>
+                    </div>
+                    <div class="flex-grow-1">
+                      <i class="bi bi-<%= icon_for_category(key) %> me-2"></i>
+                      <strong><%= label %></strong>
+                    </div>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+
+            <!-- Security Section -->
+            <div class="border-top pt-4">
+              <h4 class="mb-3">
+                <i class="bi bi-shield-check"></i>
+                Security Options
+              </h4>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <%= f.label :access_pin, class: "form-label" do %>
+                    <i class="bi bi-lock"></i>
+                    PIN Protection (Optional)
+                  <% end %>
+                  <%= f.password_field :access_pin,
+                                      placeholder: "4-6 digits",
+                                      pattern: "[0-9]{4,6}",
+                                      class: "form-control" %>
+                  <div class="form-text">Require a PIN to view the profile</div>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <%= f.label :max_views, class: "form-label" do %>
+                    <i class="bi bi-eye"></i>
+                    Maximum Views
+                  <% end %>
+                  <%= f.number_field :max_views,
+                                    placeholder: "Unlimited",
+                                    min: 1,
+                                    class: "form-control" %>
+                  <div class="form-text">Expire after this many views</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :expires_at, class: "form-label" do %>
+                  <i class="bi bi-calendar-event"></i>
+                  Link Expires On
+                <% end %>
+                <%= f.datetime_local_field :expires_at, class: "form-control" %>
+                <div class="form-text">Profile will automatically expire after this date</div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex gap-2 justify-content-end mt-4">
+              <%= link_to "Cancel", dog_path(@dog), class: "btn btn-outline-secondary" %>
+              <%= f.submit "Generate Share Link", class: "btn btn-primary px-4" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+.list-group-item:has(.form-check-input:checked) {
+  background-color: #e7f3ff;
+  border-color: #0d6efd;
+}
+.form-check-input:checked ~ .flex-grow-1 {
+  color: #0d6efd;
+  font-weight: 600;
+}
+</style>

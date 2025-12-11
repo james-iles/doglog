@@ -1,0 +1,102 @@
+<!-- app/views/shareable_profiles/analytics.html.erb -->
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>
+          <i class="bi bi-graph-up"></i>
+          Share Analytics
+        </h2>
+        <%= link_to dog_shareable_profile_path(@dog, @shareable_profile),
+                    class: "btn btn-outline-secondary" do %>
+          <i class="bi bi-arrow-left"></i> Back
+        <% end %>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <div class="card bg-primary text-white">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 opacity-75">Total Views</h6>
+              <h2 class="mb-0"><%= @shareable_profile.view_count %></h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card bg-success text-white">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 opacity-75">Status</h6>
+              <h4 class="mb-0">
+                <%= @shareable_profile.active? ? 'Active' : 'Expired' %>
+              </h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card bg-info text-white">
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2 opacity-75">Expires</h6>
+              <p class="mb-0">
+                <%= @shareable_profile.expires_at.strftime("%b %d, %Y") %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View Logs Table -->
+      <div class="card shadow">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">
+            <i class="bi bi-clock-history"></i>
+            View History
+          </h5>
+        </div>
+        <div class="card-body p-0">
+          <% if @view_logs.any? %>
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th><i class="bi bi-calendar"></i> Date & Time</th>
+                    <th><i class="bi bi-geo-alt"></i> IP Address</th>
+                    <th><i class="bi bi-hash"></i> View #</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @view_logs.each_with_index do |log, index| %>
+                    <tr>
+                      <td>
+                        <i class="bi bi-clock text-muted me-2"></i>
+                        <%= log.viewed_at.strftime("%B %d, %Y at %I:%M %p") %>
+                      </td>
+                      <td>
+                        <code><%= log.ip_address %></code>
+                      </td>
+                      <td>
+                        <span class="badge bg-secondary">
+                          #<%= @view_logs.count - index %>
+                        </span>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          <% else %>
+            <div class="text-center py-5">
+              <i class="bi bi-inbox display-1 text-muted"></i>
+              <p class="text-muted mt-3">No views yet</p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
