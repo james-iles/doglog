@@ -12,11 +12,27 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "#", class: "nav-link" do %>
+              <i class="fa-solid fa-house"></i> Home
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+            <%= link_to "#", class: "nav-link" do %>
+            <i class="fa-regular fa-file"></i>  Documents
+            <% end %>
           </li>
+          <li class="nav-item">
+            <%= link_to "#", class: "nav-link" do %>
+            <i class="fa-regular fa-calendar"></i> Appointments
+            <% end %>
+          </li>
+          <% current_user.household.dogs.each do |dog| %>
+          <li class="nav-item">
+            <%= button_to dog_chats_path(dog), method: :post, class: "nav-link" do %>
+            <i class="fa-regular fa-comment"></i> Start chatting about <%= dog.name %>
+            <% end %>
+          </li>
+          <% end %>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag "user_icon.png", class: "avatar", alt: "dropdown menu" %>
