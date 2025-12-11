@@ -7,8 +7,9 @@ class ChatsController < ApplicationController
       redirect_to root_path, alert: "Not authorized."
       return
     end
-    @dog.chats.new(chat_params)
-
+    @chat = Chat.new(title: Chat::DEFAULT_TITLE)
+    @chat.dog = @dog
+    
     if @chat.save
       redirect_to chat_path(@chat), notice: "Chat created successfully"
     else
