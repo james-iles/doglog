@@ -3,6 +3,11 @@
 <%= form_with model: @dog, local: true do |f| %>
 
   <div>
+    <%= f.label :photo %><br>
+    <%= f.file_field :photo %>
+  </div>
+
+  <div>
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>

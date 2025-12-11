@@ -56,6 +56,8 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "dotenv-rails"
 gem "cloudinary"
+gem "ruby_llm", "~> 1.2.0"
+
 gem 'rqrcode', '~> 2.2'
 gem 'bcrypt', '~> 3.1.7'
 
