@@ -7,7 +7,7 @@ class Dog < ApplicationRecord
 
   has_one_attached :photo
   validates :name, presence: true, length: { minimum: 2, maximum: 10 }
-  validates :breed, presence: true, inclusion: { in: BREEDS, message: "%{value} is not a valid breed" }
+  #validates :breed, presence: true, inclusion: { in: BREEDS, message: "%{value} is not a valid breed" }
 
   validates :dob, presence: true
   validates :household_id, presence: true
