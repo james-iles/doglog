@@ -56,6 +56,11 @@ class Dog < ApplicationRecord
     ((Time.current - dob.to_time) / 1.year.seconds).floor
   end
 
+    def age_in_months
+      return nil unless dob
+      months_between(Date.today, dob)
+    end
+
   def current_share_profile
     shareable_profiles.active.order(created_at: :desc).first
   end
@@ -100,4 +105,11 @@ class Dog < ApplicationRecord
 
     data
   end
+
+  private
+
+  def months_between(date1, date2)
+    (date1.year * 12 + date1.month) - (date2.year * 12 + date2.month)
+  end
+
 end
