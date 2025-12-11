@@ -55,6 +55,8 @@ gem "sassc-rails"
 gem "dotenv-rails"
 gem "cloudinary"
 
+gem 'rqrcode', '~> 2.2'
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem "dotenv-rails"
