@@ -12,24 +12,18 @@
   </div>
 
   <div>
-  <%= f.label :breed %><br>
-  <%= f.select :breed,
-               Dog::BREEDS,
-               { prompt: "Choose a breed" },
-               { class: "form-control" } %>
+    <%= f.label :breed %><br>
+    <%= f.text_field :breed %>
   </div>
-  
+
   <div>
     <%= f.label :gender %><br>
-    <%= f.select :gender,
-                Dog::GENDERS,
-                { prompt: "Choose a gender" },
-                { class: "form-control" } %>
+    <%= f.text_field :gender %>
   </div>
 
   <div>
     <%= f.label :weight, "Weight (kg)" %><br>
-    <%= f.text_field :weight %>
+   <%= f.text_field :weight %>
   </div>
 
   <div>
