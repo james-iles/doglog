@@ -1,41 +1,127 @@
-<h1>Edit <%= @dog.name%></h1>
+<div class="edit-page-wrapper">
 
-<%= form_with model: @dog, local: true do |f| %>
+  <div class="dog-edit-card">
 
-  <div>
-    <%= f.label :photo %><br>
-    <%= f.file_field :photo %>
+    <!-- Back button -->
+    <div class="edit-back-link">
+      <%= link_to dog_path(@dog) do %>
+        <i class="fa-solid fa-chevron-left"></i>
+      <% end %>
+    </div>
+
+    <h1 class="text-center dog-edit-title">Edit <%= @dog.name %></h1>
+
+    <!-- Dog photo preview -->
+    <div class="dog-edit-photo">
+      <% if @dog.photo.attached? %>
+        <%= image_tag @dog.photo, alt: @dog.name %>
+      <% else %>
+        <%= image_tag "pawprint.jpg" %>
+      <% end %>
+    </div>
+
+    <!-- Form -->
+    <div class="dog-edit-form">
+      <%= form_with model: @dog, local: true do |f| %>
+
+        <!-- Upload Photo -->
+        <div class="form-group upload-photo mb-3">
+          <%= f.file_field :photo, id: "dog_photo", class: "form-input-file" %>
+          <label for="dog_photo" class="upload-btn btn btn-outline-primary">Upload Photo</label>
+        </div>
+
+        <!-- Basic Info -->
+        <div class="form-group">
+          <%= f.label :name, "Name:" %>
+          <%= f.text_field :name, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :breed, "Breed:" %>
+          <%= f.select :breed,
+                       (Dog::BREEDS).sort,
+                       { include_blank: "Select breed" },
+                       class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :gender, "Gender:" %>
+          <%= f.select :gender,
+                       ["Male", "Female"],
+                       { include_blank: "Select gender" },
+                       class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :weight, "Weight:" %>
+          <%= f.number_field :weight, class: "form-input" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.label :dob, "Date of Birth:" %>
+          <%= f.date_field :dob, class: "form-input" %>
+        </div>
+
+        <!-- Vet Info -->
+        <div class="form-group">
+          <%= f.label :vet_name, "Vet Name:" %>
+          <%= f.text_field :vet_name, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :vet_clinic, "Vet Clinic:" %>
+          <%= f.text_field :vet_clinic, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :vet_phone, "Vet Phone:" %>
+          <%= f.text_field :vet_phone, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :vet_address, "Vet Address:" %>
+          <%= f.text_field :vet_address, class: "form-input" %>
+        </div>
+
+        <!-- Insurance & Microchip -->
+        <div class="form-group">
+          <%= f.label :insurance_provider, "Insurance Provider:" %>
+          <%= f.text_field :insurance_provider, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :insurance_policy_number, "Insurance Policy #:" %>
+          <%= f.text_field :insurance_policy_number, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :microchip_number, "Microchip #:" %>
+          <%= f.text_field :microchip_number, class: "form-input" %>
+        </div>
+
+        <!-- Health Info -->
+        <div class="form-group">
+          <%= f.label :allergies, "Allergies:" %>
+          <%= f.text_field :allergies, class: "form-input" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :medications, "Medications:" %>
+          <%= f.text_field :medications, class: "form-input" %>
+        </div>
+
+        <div class="form-group mb-3">
+          <%= f.label :special_notes, "Special Notes:" %>
+          <%= f.text_field :special_notes, class: "form-input" %>
+        </div>
+
+        <!-- Submit -->
+        <div class="form-group" style="justify-content: center;">
+          <%= f.submit "Save Changes", class: "btn btn-primary save-btn" %>
+        </div>
+
+      <% end %>
+    </div>
+
   </div>
-
-  <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-
-  <div>
-    <%= f.label :breed %><br>
-    <%= f.text_field :breed %>
-  </div>
-
-  <div>
-    <%= f.label :gender %><br>
-    <%= f.select :gender, ["Male", "Female"], include_blank: "Select gender" %>
-  </div>
-
-  <div>
-    <%= f.label :weight, "Weight (kg)" %><br>
-    <%= f.number_field :weight, step: 0.1 %>
-  </div>
-
-  <div>
-    <%= f.label :dob, "Date of Birth" %><br>
-    <%= f.date_select :dob, start_year: 2000, end_year: Date.today.year %>
-  </div>
-
-  <div>
-    <%= f.submit "Update Dog" %>
-  </div>
-
-<% end %>
-
-<%= link_to "Back to Dog", dog_path(@dog) %>
+</div>
