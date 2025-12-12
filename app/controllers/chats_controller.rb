@@ -24,6 +24,43 @@ class ChatsController < ApplicationController
     # I think not as we don't have a history of hats to show...
   end
 
+  def save_summary
+    @chat = Chat.joins(dog: :household)
+                .where(households: { id: current_user.household_id })
+                .find(params[:id])
+
+    conversation = @chat.messages.order(:created_at).map do |msg|
+      "#{msg.role.capitalize}: #{msg.content}"
+    end.join("\n\n")
+
+    summary_prompt = "Save a summary of the key points of this chat, capturing the main advice, tips and actions for the user to remember. The summary should be no more than 300 words."
+
+    ruby_llm_chat = RubyLLM.chat
+    response = ruby_llm_chat.with_instructions(summary_prompt).ask(conversation)
+
+    dog = @chat.dog
+    dog.documents.create!(
+      title: "Chat Summary: #{@chat.title}",
+      content: response.content,
+      category: "Chat"
+    )
+
+    @chat.destroy
+
+    redirect_to dog_documents_path(dog), notice: "Chat summary saved successfully."
+  end
+
+  def destroy
+    @chat = Chat.joins(dog: :household)
+                .where(households: { id: current_user.household_id })
+                .find(params[:id])
+
+    dog = @chat.dog
+    @chat.destroy
+
+    redirect_to dog_path(dog), notice: "Chat ended."
+  end
+
   private
 
   def chat_params

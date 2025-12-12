@@ -1,0 +1,84 @@
+<div class="container py-4">
+  <!-- Household Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h1 class="card-title mb-1"><%= @household.name %></h1>
+          <p class="text-muted mb-0">
+            <i class="fa-solid fa-paw me-1"></i>
+            <%= pluralize(@dogs.count, "dog") %> in your household
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dogs Section -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="h5 mb-3"><i class="fa-solid fa-dog me-2"></i>Your Dogs</h2>
+    </div>
+    <% @dogs.each do |dog| %>
+      <div class="col-md-6 col-lg-4 mb-3">
+        <%= link_to dog_path(dog), class: "text-decoration-none" do %>
+          <div class="card shadow-sm h-100">
+            <div class="card-body d-flex align-items-center">
+              <div class="me-3">
+                <% if dog.photo.attached? %>
+                  <%= image_tag dog.photo, class: "rounded-circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
+                <% else %>
+                  <%= image_tag "pawprint.jpg", class: "rounded-circle", style: "width: 64px; height: 64px; object-fit: cover;" %>
+                <% end %>
+              </div>
+              <div>
+                <h5 class="card-title mb-1 text-dark"><%= dog.name %></h5>
+                <p class="text-muted mb-0 small"><%= dog.breed %></p>
+                <p class="text-muted mb-0 small">
+                  <% if dog.age_in_years %>
+                    <%= pluralize(dog.age_in_years, "year") %> old
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <!-- Chat Summaries Section -->
+  <div class="row">
+    <div class="col-12">
+      <h2 class="h5 mb-3"><i class="fa-solid fa-comments me-2"></i>Chat Summaries</h2>
+      <% if @chat_summaries.any? %>
+        <div class="card shadow-sm">
+          <ul class="list-group list-group-flush">
+            <% @chat_summaries.each do |summary| %>
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold"><%= summary.title %></div>
+                  <small class="text-muted">
+                    <i class="fa-solid fa-paw me-1"></i><%= summary.dog.name %>
+                    <span class="mx-2">|</span>
+                    <i class="fa-regular fa-calendar me-1"></i><%= summary.created_at.strftime("%d %b %Y") %>
+                  </small>
+                </div>
+                <%= link_to document_path(summary), class: "btn btn-sm btn-outline-primary" do %>
+                  <i class="fa-solid fa-eye"></i> View
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% else %>
+        <div class="card shadow-sm">
+          <div class="card-body text-center text-muted py-4">
+            <i class="fa-regular fa-comment-dots fa-2x mb-2"></i>
+            <p class="mb-0">No chat summaries yet. Start a chat with your dog to get AI-powered advice!</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

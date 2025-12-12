@@ -7,4 +7,10 @@ class PagesController < ApplicationController
       @user = current_user
     end
   end
+
+  def dashboard
+    @household = current_user.household
+    @dogs = @household.dogs.with_attached_photo
+    @chat_summaries = Document.where(dog: @dogs, category: "Chat").order(created_at: :desc)
+  end
 end

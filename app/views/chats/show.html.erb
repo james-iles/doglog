@@ -29,9 +29,13 @@
       <%= f.button :submit, "Ask", class: 'btn btn-primary' %>
     <% end %>
   </div>
-  <div>
-    <%= button_to "#", method: :post, class: "btn btn-outline-primary my-3" do %>
+  <div class="d-flex gap-2">
+    <%= button_to save_summary_chat_path(@chat), method: :post, class: "btn btn-outline-primary my-3" do %>
       <i class="fa-solid fa-file-arrow-down"></i> End and save summary
+    <% end %>
+    <%= button_to chat_path(@chat), method: :delete, class: "btn btn-outline-secondary my-3",
+        data: { turbo_confirm: "End chat without saving?" } do %>
+      <i class="fa-solid fa-xmark"></i> End without saving
     <% end %>
   </div>
 </div>

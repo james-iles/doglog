@@ -3,6 +3,7 @@ devise_for :users, controllers: {
   registrations: 'users/registrations'
 }
   root to: "pages#home"
+  get "dashboard", to: "pages#dashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -30,8 +31,9 @@ devise_for :users, controllers: {
   resources :appointments, only: [:show, :edit, :update, :destroy]
   resources :documents, only: [:show, :edit, :update, :destroy]
 
-  resources :chats, only: [:show] do
+  resources :chats, only: [:show, :destroy] do
     resources :messages, only: [:create]
+    post :save_summary, on: :member
   end
 
   # Public routes (no authentication required)
