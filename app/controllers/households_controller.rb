@@ -6,6 +6,11 @@ class HouseholdsController < ApplicationController
     @household = Household.new
   end
 
+  def edit
+    @household = current_user.household
+    @dogs = @household.dogs.with_attached_photo
+  end
+
   def create
     @household = Household.new(household_params)
 
@@ -26,9 +31,13 @@ class HouseholdsController < ApplicationController
   end
 
   def update
-    @household = Household.find(params[:id])
-    @household.update(params[household_params])
-    redirect_to root_path
+    @household = current_user.household
+    if @household.update(household_params)
+      redirect_to edit_household_path(@household), notice: "Household updated successfully"
+    else
+      @dogs = @household.dogs.with_attached_photo
+      render :edit, status: :unprocessable_entity
+    end
   end
 
 private

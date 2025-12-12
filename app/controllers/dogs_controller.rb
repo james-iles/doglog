@@ -42,7 +42,7 @@ class DogsController < ApplicationController
     @dog = Dog.find(params[:id])
     household = @dog.household
     @dog.destroy
-    redirect_to household_dogs_path(household), notice: "Dog deleted"
+    redirect_to edit_household_path(household), notice: "#{@dog.name} has been removed from the household"
   end
 
   private

@@ -13,7 +13,7 @@ devise_for :users, controllers: {
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :households, only: [:show, :new, :create, :destroy, :update] do
+  resources :households, only: [:show, :new, :create, :destroy, :update, :edit] do
     resources :dogs, only: [:index, :new, :create]
   end
 
