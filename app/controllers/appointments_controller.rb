@@ -1,11 +1,12 @@
 class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.includes(:dog).all
+
   end
 
   def show
-
     @appointment = Appointment.find(params[:id])
+    @dog = @appointment.dog
   end
 
   def new
@@ -28,12 +29,14 @@ class AppointmentsController < ApplicationController
 
   def edit
     @appointment = Appointment.find(params[:id])
+    @dog = @appointment.dog
   end
 
   def update
     @appointment = Appointment.find(params[:id])
+    @dog = @appointment.dog
     if @appointment.update(appointment_params)
-    redirect_to appointment_path(@appointment)
+      redirect_to appointment_path(@appointment)
     else
       render :edit, status: :unprocessable_entity
     end

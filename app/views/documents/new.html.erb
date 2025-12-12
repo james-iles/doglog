@@ -17,6 +17,6 @@
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
     <%= f.submit "Save", class: "btn btn-warning btn-lg my-5" %>
-    <%= f.submit "Cancel", class: "btn btn-warning btn-lg my-5" %>
+    <%= link_to "Cancel", dog_documents_path(@dog), class: "btn btn-warning btn-lg my-5" %>
    <% end %>
 </div>

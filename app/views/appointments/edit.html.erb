@@ -1,6 +1,6 @@
   <div class="container">
   <h1>Edit an appointment</h1>
-  <%= simple_form_for [@dog, @appointment] do |f| %>
+  <%= simple_form_for @appointment do |f| %>
     <div>
     <%= f.input :title,
                 label: "Title",
