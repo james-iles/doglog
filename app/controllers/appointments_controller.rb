@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   def index
-    @appointments = Appointment.includes(:dog).all
-
+    @dog = Dog.find(params[:dog_id])
+    @appointments = @dog.appointments
   end
 
   def show
