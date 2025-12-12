@@ -1,4 +1,8 @@
 <div class="container py-4">
+  <%= link_to dog_path(@dog), class: "text-decoration-none mb-3 d-inline-block" do %>
+    <i class="fa-solid fa-arrow-left me-1"></i> Back to <%= @dog.name %>
+  <% end %>
+
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
       <h1 class="mb-1">Appointments</h1>
