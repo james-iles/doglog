@@ -41,10 +41,8 @@ class DocumentsController < ApplicationController
     @document.destroy
     redirect_to dog_documents_path(@document.dog), notice: "Document deleted"
   end
-
-def document_params
-  params.require(:document).permit(:title, :content, :category, photos:[])
-end
-
-
+private
+  def document_params
+    params.require(:document).permit(:title, :content, :category, photos:[])
+  end
 end

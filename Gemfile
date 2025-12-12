@@ -28,6 +28,8 @@ gem "jbuilder"
 
 gem 'ostruct'
 
+gem 'flatpickr', '~> 2.3', '>= 2.3.5.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -58,6 +60,8 @@ gem "ruby_llm", "~> 1.2.0"
 
 gem 'rqrcode', '~> 2.2'
 gem 'bcrypt', '~> 3.1.7'
+
+
 
 group :development, :test do
   gem "dotenv-rails"
