@@ -1,39 +1,74 @@
-<h1>Add a New Dog</h1>
+<div class="dog-edit-card">
 
-<%= form_with model: [@household, @dog], local: true do |f| %>
-  <div>
-    <%= f.label :photo %><br>
-    <%= f.file_field :photo %>
+  <!-- Back button -->
+  <div class="edit-back-link">
+    <%= link_to household_dogs_path(@household) do %>
+      <i class="fa-solid fa-chevron-left"></i>
+    <% end %>
   </div>
 
-  <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <h1 class="text-center dog-edit-title">Add a New Dog</h1>
+
+  <!-- Dog photo preview -->
+  <div class="dog-edit-photo">
+    <% if @dog.photo.attached? %>
+      <%= image_tag @dog.photo, alt: @dog.name %>
+    <% else %>
+      <%= image_tag "pawprint.jpg", alt: "No photo available" %>
+    <% end %>
   </div>
 
-  <div>
-    <%= f.label :breed %><br>
-    <%= f.text_field :breed %>
-  </div>
+  <!-- Form -->
+  <div class="dog-edit-form">
+    <%= form_with model: [@household, @dog], local: true do |f| %>
 
-  <div>
-    <%= f.label :gender %><br>
-    <%= f.text_field :gender %>
-  </div>
+      <!-- Photo upload button -->
+      <div class="form-group upload-photo" style="flex-direction: column; align-items: center;">
+        <%= f.file_field :photo, id: "dog_photo", class: "form-input-file" %>
+        <label for="dog_photo" class="upload-btn">Upload Photo</label>
+      </div>
 
-  <div>
-    <%= f.label :weight, "Weight (kg)" %><br>
-   <%= f.text_field :weight %>
-  </div>
+      <!-- Name -->
+      <div class="form-group">
+        <%= f.label :name, "Name:" %>
+        <%= f.text_field :name, class: "form-input" %>
+      </div>
 
-  <div>
-    <%= f.label :dob, "Date of Birth" %><br>
-    <%= f.date_select :dob, start_year: 2000, end_year: Date.today.year %>
-  </div>
+      <!-- Breed -->
+      <div class="form-group">
+        <%= f.label :breed, "Breed:" %>
+        <%= f.select :breed,
+                     (Dog::BREEDS).sort,
+                     { include_blank: "Select breed" },
+                     class: "form-input" %>
+      </div>
 
-  <div>
-    <%= f.submit "Create Dog" %>
-  </div>
-<% end %>
+      <!-- Gender -->
+      <div class="form-group">
+        <%= f.label :gender, "Gender:" %>
+        <%= f.select :gender,
+                     ["Male", "Female"],
+                     { include_blank: "Select gender" },
+                     class: "form-input" %>
+      </div>
 
-<%= link_to "Back to Dogs List", household_dogs_path(@household) %>
+      <!-- Weight -->
+      <div class="form-group">
+        <%= f.label :weight, "Weight (kg):" %>
+        <%= f.number_field :weight, class: "form-input" %>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="form-group">
+        <%= f.label :dob, "Date of Birth:" %>
+        <%= f.date_field :dob, class: "form-input", min: "2000-01-01", max: Date.today.to_s %>
+      </div>
+
+      <!-- Submit button -->
+      <div class="form-group" style="justify-content: center;">
+        <%= f.submit "Create Dog", class: "btn btn-primary save-btn" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
