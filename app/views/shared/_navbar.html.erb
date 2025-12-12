@@ -12,24 +12,24 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "#", class: "nav-link" do %>
+            <%= link_to root_path, class: "nav-link" do %>
               <i class="fa-solid fa-house"></i> Home
             <% end %>
           </li>
+          <% if @dog&.persisted? %>
           <li class="nav-item">
-            <%= link_to "#", class: "nav-link" do %>
-            <i class="fa-regular fa-file"></i>  Documents
+            <%= link_to dog_documents_path(@dog), class: "nav-link" do %>
+            <i class="fa-regular fa-file"></i> Documents
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "#", class: "nav-link" do %>
+            <%= link_to dog_appointments_path(@dog), class: "nav-link" do %>
             <i class="fa-regular fa-calendar"></i> Appointments
             <% end %>
           </li>
-          <% current_user.household.dogs.each do |dog| %>
           <li class="nav-item">
-            <%= button_to dog_chats_path(dog), method: :post, class: "nav-link" do %>
-            <i class="fa-regular fa-comment"></i> Start chatting about <%= dog.name %>
+            <%= button_to dog_chats_path(@dog), method: :post, class: "nav-link" do %>
+            <i class="fa-regular fa-comment"></i> Chat about <%= @dog.name %>
             <% end %>
           </li>
           <% end %>
@@ -38,9 +38,15 @@
             <%= image_tag "user_icon.png", class: "avatar", alt: "dropdown menu" %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                <i class="fa-solid fa-user-pen"></i> Edit account
+              <% end %>
+              <%= link_to edit_household_path(current_user.household), class: "dropdown-item" do %>
+                <i class="fa-solid fa-house-user"></i> Edit Household
+              <% end %>
+              <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
+                <i class="fa-solid fa-right-from-bracket"></i> Log out
+              <% end %>
             </div>
           </li>
         <% else %>

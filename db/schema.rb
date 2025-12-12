@@ -51,8 +51,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_12_11_140951) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
-    t.datetime "start_time", null: false
-    t.datetime "end_time", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["dog_id"], name: "index_appointments_on_dog_id"
   end
 

@@ -1,10 +1,12 @@
 class DocumentsController < ApplicationController
   def index
-    @documents = Document.all
+    @dog = Dog.find(params[:dog_id])
+    @documents = @dog.documents.order(created_at: :desc)
   end
 
   def show
     @document = Document.find(params[:id])
+    @dog = @document.dog
   end
 
   def new
@@ -25,6 +27,7 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
+    @dog = @document.dog
   end
 
   def update
