@@ -15,7 +15,9 @@
       <div class="d-flex align-items-center justify-content-between">
         <h5><%= document.title %></h5>
         <div class="d-flex gap-3 align-items-center">
-          <%= link_to "View", document_path(document), class: "btn btn-warning" %>
+          <%= link_to document_path(document), title: "View document" do %>
+            <i class="fa-regular fa-eye"></i>
+          <% end %>
           <%= link_to edit_document_path(document) do %>
             <i class="fa-regular fa-pen-to-square"></i>
           <% end %>
