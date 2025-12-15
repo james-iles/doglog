@@ -16,7 +16,11 @@
         <div class="card-body">
           <div class="mb-3">
             <h5 class="text-muted">Content</h5>
-            <p><%= @document.content %></p>
+            <% if @document.category == "Chat" %>
+              <%= raw(render_markdown(@document.content)) %>
+            <% else %>
+              <p><%= @document.content %></p>
+            <% end %>
           </div>
 
           <div class="mb-3">

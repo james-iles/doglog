@@ -12,24 +12,24 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to root_path, class: "nav-link" do %>
-              <i class="fa-solid fa-house"></i> Home
+            <%= link_to household_dogs_path(current_user.household), class: "nav-link" do %>
+              <i class="fa-solid fa-paw"></i> Home
             <% end %>
           </li>
           <% if @dog&.persisted? %>
           <li class="nav-item">
             <%= link_to dog_documents_path(@dog), class: "nav-link" do %>
-            <i class="fa-regular fa-file"></i> Documents
+            <i class="fa-regular fa-file"></i> Doguments
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to dog_appointments_path(@dog), class: "nav-link" do %>
-            <i class="fa-regular fa-calendar"></i> Appointments
+            <i class="fa-regular fa-calendar"></i> Puppointments
             <% end %>
           </li>
           <li class="nav-item">
             <%= button_to dog_chats_path(@dog), method: :post, class: "nav-link" do %>
-            <i class="fa-regular fa-comment"></i> Chat about <%= @dog.name %>
+            <i class="fa-regular fa-comment"></i> Chat
             <% end %>
           </li>
           <% end %>
