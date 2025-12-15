@@ -2,6 +2,7 @@ class DogsController < ApplicationController
   def index
     @household = Household.find(params[:household_id])
     @dogs = @household.dogs
+    @hide_navbar = true
   end
 
   def show

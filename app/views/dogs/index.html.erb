@@ -1,3 +1,9 @@
+<div class="d-flex p-3 justify-content-end">
+  <%= link_to dashboard_path, class: "text-dark fs-4" do %>
+    <i class="fa-solid fa-gear"></i>
+  <% end %>
+</div>
+
 <div class="text-center">
   <%= image_tag "doglog-text.png", class: "dogs-index-logo" %>
 </div>
@@ -26,9 +32,3 @@
       <i class="fa-solid fa-plus"></i>
     <% end %>
   </div>
-
-<div class="dashboard-button">
-  <%= link_to dashboard_path, class: "btn btn-primary btn-lg" do %>
-    <i class="fa-solid fa-house-user"></i> Dashboard
-  <% end %>
-</div>

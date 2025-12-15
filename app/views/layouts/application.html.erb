@@ -33,7 +33,7 @@
 
     <%= yield %>
 
-    <%= render "shared/bottom_navbar" if user_signed_in? && @dog.present? %>
+    <%= render "shared/bottom_navbar" if user_signed_in? && @dog&.persisted? %>
 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 

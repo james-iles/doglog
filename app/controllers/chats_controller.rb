@@ -19,6 +19,7 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find(params[:id])
+    @dog = @chat.dog
     @message = Message.new
   end
 
