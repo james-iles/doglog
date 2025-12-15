@@ -20,8 +20,6 @@ class ChatsController < ApplicationController
   def show
     @chat = Chat.find(params[:id])
     @message = Message.new
-    # Do we need to be checking user/household_id at this point to show only relevant chats?
-    # I think not as we don't have a history of hats to show...
   end
 
   def save_summary
@@ -33,7 +31,7 @@ class ChatsController < ApplicationController
       "#{msg.role.capitalize}: #{msg.content}"
     end.join("\n\n")
 
-    summary_prompt = "Save a summary of the key points of this chat, capturing the main advice, tips and actions for the user to remember. The summary should be no more than 300 words."
+    summary_prompt = "Save a summary of the key points of this chat, capturing the main advice, tips and actions for the user to remember. The summary should be no more than 300 words and should be in Markdown format, with approriate spacing between blocks of text, for easy reading."
 
     ruby_llm_chat = RubyLLM.chat
     response = ruby_llm_chat.with_instructions(summary_prompt).ask(conversation)

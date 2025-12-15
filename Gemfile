@@ -60,7 +60,7 @@ gem "ruby_llm", "~> 1.2.0"
 
 gem 'rqrcode', '~> 2.2'
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'redcarpet'
 
 
 group :development, :test do
