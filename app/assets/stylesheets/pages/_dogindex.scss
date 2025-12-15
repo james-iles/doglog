@@ -1,7 +1,9 @@
 
-h1.text-center {
+.dogs-index-logo {
   margin-top: 40px;
   margin-bottom: 30px;
+  max-width: 200px;
+  height: auto;
 }
 
 .dogs-gallery {
@@ -77,6 +79,13 @@ h1.text-center {
   font-size: 2rem;
   text-decoration: none;
 }
+
+.dashboard-button {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
 /* ===== Mobile: permanent overlay and dark image ===== */
 @media (max-width: 768px) {
   .dog-photo-wrapper img {
