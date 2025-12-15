@@ -26,9 +26,7 @@
 
   <body>
 
-    <div class="<%= 'hide-navbar-mobile' if @dog.present? %>">
-      <%= render "shared/navbar" unless @hide_navbar %>
-    </div>
+    <%= render "shared/navbar" unless @hide_navbar %>
     <%= render "shared/flashes" %>
 
     <%= yield %>
