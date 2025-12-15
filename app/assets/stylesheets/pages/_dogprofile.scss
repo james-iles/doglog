@@ -80,3 +80,54 @@
   font-size: 1.2rem;
   color: #d32f2f;
 }
+
+// Dog Info Tabs
+.dog-info-tabs {
+  margin-top: 20px;
+  text-align: left;
+
+  .nav-tabs {
+    border-bottom: 2px solid #dee2e6;
+    justify-content: center;
+
+    .nav-item {
+      .nav-link {
+        color: #555;
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: $orange;
+          border-bottom-color: lighten($orange, 20%);
+        }
+
+        &.active {
+          color: $orange;
+          background-color: transparent;
+          border-bottom: 2px solid $orange;
+          font-weight: 500;
+        }
+
+        i {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    padding: 20px 10px;
+    min-height: 150px;
+
+    .dog-info {
+      margin-bottom: 0;
+
+      p {
+        margin: 8px 0;
+      }
+    }
+  }
+}
