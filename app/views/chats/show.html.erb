@@ -1,12 +1,12 @@
 <div class="container">
-  <%= button_to chat_path(@chat), method: :delete, class: "btn btn-link p-0 mt-3",
+  <%= button_to chat_path(@chat), method: :delete, class: "btn btn-link p-0 mt-2",
       data: { turbo_confirm: "End chat without saving?" } do %>
     <i class="fa-solid fa-xmark fa-lg text-danger"></i>
   <% end %>
 
   <h1 class="my-3" id="chat_title"><%= @chat.title %></h1>
 
-  <div id="messages">
+  <div id="messages" data-controller="scroll-bottom" style="max-height: 50vh; overflow-y: auto;">
     <% @chat.messages.each do |message| %>
       <% if message.role == "user" %>
         <div class="d-flex justify-content-end mb-2">
@@ -24,15 +24,17 @@
     <% end %>
   </div>
 
-  <div id="new_message_container">
+  <div id="new_message_container" class="mt-3">
     <%= simple_form_for [@chat, @message] do |f| %>
-      <%= f.input :content, label: "Let's talk about #{@chat.dog.name}!", required: true, placeholder: "What's up?" %>
-      <div class="d-flex justify-content-between">
-        <%= button_to save_summary_chat_path(@chat), method: :post, class: "btn btn-primary" do %>
-          <i class="fa-solid fa-file-arrow-down"></i> Save Summary
-        <% end %>
+      <%= f.input :content, label: false, required: true, placeholder: "Let's chat about #{@chat.dog.name}..." %>
+      <div class="d-flex justify-content-end">
         <%= f.button :submit, "Ask", class: 'btn btn-primary' %>
       </div>
     <% end %>
+    <div class="d-flex justify-content-start mt-2">
+      <%= button_to save_summary_chat_path(@chat), method: :post, class: "btn btn-primary" do %>
+        <i class="fa-solid fa-file-arrow-down"></i> Save Summary
+      <% end %>
+    </div>
   </div>
 </div>
