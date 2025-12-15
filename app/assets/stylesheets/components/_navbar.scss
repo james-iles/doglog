@@ -10,3 +10,10 @@
 .navbar-lewagon .navbar-brand img {
   width: 120px;
 }
+
+// Hide top navbar on mobile when bottom navbar is present
+@media (max-width: 767.98px) {
+  .hide-navbar-mobile {
+    display: none;
+  }
+}

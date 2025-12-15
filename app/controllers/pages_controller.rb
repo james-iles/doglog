@@ -12,5 +12,6 @@ class PagesController < ApplicationController
     @household = current_user.household
     @dogs = @household.dogs.with_attached_photo
     @chat_summaries = Document.where(dog: @dogs, category: "Chat").order(created_at: :desc)
+    @hide_navbar = true
   end
 end

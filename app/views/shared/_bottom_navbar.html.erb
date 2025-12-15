@@ -1,0 +1,18 @@
+<nav class="bottom-navbar d-md-none">
+  <%= link_to dog_path(@dog), class: "bottom-nav-item" do %>
+    <i class="fa-solid fa-paw"></i>
+  <% end %>
+
+  <%= link_to dog_documents_path(@dog), class: "bottom-nav-item" do %>
+    <i class="fa-regular fa-file"></i>
+  <% end %>
+
+  <%= link_to dog_appointments_path(@dog), class: "bottom-nav-item" do %>
+    <i class="fa-regular fa-calendar"></i>
+  <% end %>
+
+  <%= button_to dog_chats_path(@dog), method: :post, class: "bottom-nav-item" do %>
+    <i class="fa-regular fa-comment"></i>
+  <% end %>
+
+</nav>

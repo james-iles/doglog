@@ -1,4 +1,12 @@
-<h1 class="text-center" >Dogs</h1>
+<div class="d-flex p-3 justify-content-end">
+  <%= link_to dashboard_path, class: "text-dark fs-4" do %>
+    <i class="fa-solid fa-gear"></i>
+  <% end %>
+</div>
+
+<div class="text-center">
+  <%= image_tag "doglog-text.png", class: "dogs-index-logo" %>
+</div>
 
 <div class="dogs-gallery">
   <% @dogs.each do |dog| %>
