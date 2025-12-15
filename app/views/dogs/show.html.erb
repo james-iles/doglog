@@ -23,51 +23,101 @@
     <% end %>
   </div>
 
-  <div class="dog-info">
-    <p><strong>Breed:</strong> <%= @dog.breed %></p>
-    <p><strong>Gender:</strong> <%= @dog.gender %></p>
-    <p><strong>Weight:</strong> <%= @dog.weight %></p>
-    <p><strong>Date of birth:</strong> <%= @dog.dob.strftime("%d %b %Y") if @dog.dob %></p>
 
-    <% if @dog.vet_name.present? %>
-      <p><strong>Vet Name:</strong> <%= @dog.vet_name %></p>
-    <% end %>
 
-    <% if @dog.vet_clinic.present? %>
-      <p><strong>Vet Clinic:</strong> <%= @dog.vet_clinic %></p>
-    <% end %>
+  <div class="dog-info-tabs">
+    <ul class="nav nav-tabs" id="dogInfoTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab" aria-controls="info" aria-selected="true">
+          <i class="fa-solid fa-circle-info me-1"></i> Info
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="medical-tab" data-bs-toggle="tab" data-bs-target="#medical" type="button" role="tab" aria-controls="medical" aria-selected="false">
+          <i class="fa-solid fa-stethoscope me-1"></i> Medical
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="insurance-tab" data-bs-toggle="tab" data-bs-target="#insurance" type="button" role="tab" aria-controls="insurance" aria-selected="false">
+          <i class="fa-solid fa-shield-halved me-1"></i> Insurance
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">
+          <i class="fa-solid fa-note-sticky me-1"></i> Notes
+        </button>
+      </li>
+    </ul>
 
-    <% if @dog.vet_phone.present? %>
-      <p><strong>Vet Phone:</strong> <%= @dog.vet_phone %></p>
-    <% end %>
+    <div class="tab-content" id="dogInfoTabsContent">
+      <!-- Info Tab -->
+      <div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+        <div class="dog-info">
+          <p><strong>Breed:</strong> <%= @dog.breed.present? ? @dog.breed : "Not specified" %></p>
+          <p><strong>Gender:</strong> <%= @dog.gender.present? ? @dog.gender : "Not specified" %></p>
+          <p><strong>Weight:</strong> <%= @dog.weight.present? ? "#{@dog.weight} kg" : "Not specified" %></p>
+          <p><strong>Date of birth:</strong> <%= @dog.dob.present? ? @dog.dob.strftime("%d %b %Y") : "Not specified" %></p>
+          <% if @dog.microchip_number.present? %>
+            <p><strong>Microchip #:</strong> <%= @dog.microchip_number %></p>
+          <% end %>
+        </div>
+      </div>
 
-    <% if @dog.vet_address.present? %>
-      <p><strong>Vet Address:</strong> <%= @dog.vet_address %></p>
-    <% end %>
+      <!-- Medical Tab -->
+      <div class="tab-pane fade" id="medical" role="tabpanel" aria-labelledby="medical-tab">
+        <div class="dog-info">
+          <% if @dog.vet_name.present? || @dog.vet_clinic.present? || @dog.vet_phone.present? || @dog.vet_address.present? || @dog.allergies.present? || @dog.medications.present? %>
+            <% if @dog.vet_name.present? %>
+              <p><strong>Vet Name:</strong> <%= @dog.vet_name %></p>
+            <% end %>
+            <% if @dog.vet_clinic.present? %>
+              <p><strong>Vet Clinic:</strong> <%= @dog.vet_clinic %></p>
+            <% end %>
+            <% if @dog.vet_phone.present? %>
+              <p><strong>Vet Phone:</strong> <%= @dog.vet_phone %></p>
+            <% end %>
+            <% if @dog.vet_address.present? %>
+              <p><strong>Vet Address:</strong> <%= @dog.vet_address %></p>
+            <% end %>
+            <% if @dog.allergies.present? %>
+              <p><strong>Allergies:</strong> <%= @dog.allergies %></p>
+            <% end %>
+            <% if @dog.medications.present? %>
+              <p><strong>Medications:</strong> <%= @dog.medications %></p>
+            <% end %>
+          <% else %>
+            <p class="text-muted">No medical information added yet.</p>
+          <% end %>
+        </div>
+      </div>
 
-    <% if @dog.insurance_provider.present? %>
-      <p><strong>Insurance Provider:</strong> <%= @dog.insurance_provider %></p>
-    <% end %>
+      <!-- Insurance Tab -->
+      <div class="tab-pane fade" id="insurance" role="tabpanel" aria-labelledby="insurance-tab">
+        <div class="dog-info">
+          <% if @dog.insurance_provider.present? || @dog.insurance_policy_number.present? %>
+            <% if @dog.insurance_provider.present? %>
+              <p><strong>Insurance Provider:</strong> <%= @dog.insurance_provider %></p>
+            <% end %>
+            <% if @dog.insurance_policy_number.present? %>
+              <p><strong>Policy #:</strong> <%= @dog.insurance_policy_number %></p>
+            <% end %>
+          <% else %>
+            <p class="text-muted">No insurance information added yet.</p>
+          <% end %>
+        </div>
+      </div>
 
-    <% if @dog.insurance_policy_number.present? %>
-      <p><strong>Insurance Policy #:</strong> <%= @dog.insurance_policy_number %></p>
-    <% end %>
-
-    <% if @dog.microchip_number.present? %>
-      <p><strong>Microchip #:</strong> <%= @dog.microchip_number %></p>
-    <% end %>
-
-    <% if @dog.allergies.present? %>
-      <p><strong>Allergies:</strong> <%= @dog.allergies %></p>
-    <% end %>
-
-    <% if @dog.medications.present? %>
-      <p><strong>Medications:</strong> <%= @dog.medications %></p>
-    <% end %>
-
-    <% if @dog.special_notes.present? %>
-      <p><strong>Special Notes:</strong> <%= @dog.special_notes %></p>
-    <% end %>
+      <!-- Notes Tab -->
+      <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+        <div class="dog-info">
+          <% if @dog.special_notes.present? %>
+            <p><%= @dog.special_notes %></p>
+          <% else %>
+            <p class="text-muted">No special notes added yet.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="share-btn mt-5">
