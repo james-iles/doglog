@@ -3,27 +3,21 @@
   <div class="row align-items-center">
     <div class="col-12">
       <div class="banner my-5 py-5">
-        <% if user_signed_in? %>
-          <h1 class="display-6 fw-bold">Hi <%= @user.email %></h1>
-          <p class="lead text-muted">Welcome back!</p>
-        <% else %>
           <h1 class="display-4 fw-bold">Welcome!</h1>
           <p class="lead text-muted">Smart care for modern dog owners.</p>
-        <% end %>
         <%= image_tag "dogoutline.png", class: "img-fluid banner-image my-5", alt: "Outline of a playful Puppy" %>
         <div class="cta">
-          <% if user_signed_in? %>
-            <%= link_to "My Dogs", household_dogs_path(@household), class: "btn btn-primary btn-lg" %>
-          <% else %>
             <%= link_to "Start your journey", new_household_path, class: "btn btn-success btn-lg" %>
-          <% end %>
+        </div>
+        <div class="my-3">
+        <%= link_to "Login", new_user_session_path, class: "btn btn-outline-success btn-lg" %>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Feature Cards Section -->
   <div class="row g-4 my-5">
+      <h3> Why choose DogLog? </h3>
     <div class="col-md-4">
       <div class="card h-100 shadow-sm">
         <div class="card-body">
@@ -55,11 +49,7 @@
     <div class="col-12">
       <div class="py-5">
         <h2 class="mb-4">Ready to give your dog the best care?</h2>
-        <% if user_signed_in? %>
-          <%= link_to "Go to Dashboard", dashboard_path, class: "btn btn-primary btn-lg" %>
-        <% else %>
           <%= link_to "Get Started", new_household_path, class: "btn btn-success btn-lg px-5" %>
-        <% end %>
       </div>
     </div>
   </div>
