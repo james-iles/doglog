@@ -65,9 +65,9 @@
         <h1>Puppointments</h1>
         <p>Tap a time slot to create an appointment</p>
       </div>
-      <div class="d-flex align-items-center gap-3">
-        <%= link_to new_dog_appointment_path(@dog) do %>
-          <i class="fa-solid fa-plus"></i>
+        <div class="d-flex gap-3 align-items-center">
+        <%= link_to new_dog_appointment_path(@dog), class: "text-dark" do %>
+          <i class="fa-solid fa-plus icon"></i>
         <% end %>
       </div>
       </div>
@@ -77,6 +77,14 @@
     <div id='calendar'></div>
   </div>
 </div>
+
+
+<div class="d-flex justify-content-between align-items-center my-4 px-3">
+    <h1 class="mb-0 fw-bold" style="font-size: 1.75rem;">All Doguments</h1>
+
+
+  </div>
+
 
 <!-- Modal for creating new appointment -->
 <div class="modal fade" id="appointmentModal" tabindex="-1">

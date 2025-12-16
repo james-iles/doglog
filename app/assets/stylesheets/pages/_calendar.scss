@@ -53,7 +53,6 @@ html, body {
 }
 
 .appointments-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 1.5rem;
   border-radius: 12px;
@@ -64,19 +63,6 @@ html, body {
   margin-bottom: 1rem;
 }
 
-.appointments-header a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 6px !important;
-  font-weight: 500 !important;
-  background-color: #e74c3c; /* or your preferred color */
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-}
 
 .appointments-header h1 {
   font-size: 1.5rem;
