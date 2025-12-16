@@ -168,16 +168,23 @@
       }
     }
 
+    // Detect if device is touch-capable
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
     // Add click event to each thumbnail
     allThumbnails.forEach(function(thumbnail, idx) {
-      thumbnail.addEventListener('click', function() {
-        showItem(idx);
-      });
-
-      thumbnail.addEventListener('touchend', function(e) {
-        // Don't prevent default on touchend, just on touchstart if needed
-        showItem(idx);
-      }, { passive: true });
+      if (isTouchDevice) {
+        // For touch devices, use touchend with preventDefault to avoid ghost clicks
+        thumbnail.addEventListener('touchend', function(e) {
+          e.preventDefault(); // Prevent the ghost click
+          showItem(idx);
+        });
+      } else {
+        // For non-touch devices, use regular click
+        thumbnail.addEventListener('click', function() {
+          showItem(idx);
+        });
+      }
     });
 
     // Navigation button events
