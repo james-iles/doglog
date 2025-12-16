@@ -1,0 +1,138 @@
+/* Container centers the form vertically and horizontally */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding-top: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Card for form */
+.form-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 80px 40px 30px 40px; /* increased padding for spacing */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* for absolute buttons */
+  box-sizing: border-box;
+}
+
+/* Back button inside card */
+.editbar {
+  position: absolute;
+  top: 25px;    /* moved down from 15px */
+  left: 25px;   /* moved right from 15px */
+  font-size: 20px;
+
+
+  z-index: 10;
+}
+
+/* Delete account dropdown (top-right) */
+.delete-account-wrapper {
+  position: absolute;
+  top: 25px;    /* moved down from 15px */
+  right: 25px;  /* moved left from 15px */
+}
+
+.delete-account-wrapper .btn {
+  background-color: #000; /* black button */
+  color: #fff;
+  border: none;
+}
+
+.delete-account-wrapper .btn:hover {
+  background-color: #222; /* slightly lighter black on hover */
+}
+
+.delete-account-wrapper .dropdown-menu {
+  background-color: #000; /* black menu */
+}
+
+.delete-account-wrapper .dropdown-item {
+  color: #fff; /* white text */
+}
+
+.delete-account-wrapper .dropdown-item.text-danger {
+  color: #dc3545; /* red for delete */
+}
+
+.delete-account-wrapper .dropdown-item:hover {
+  background-color: #111; /* hover effect */
+  color: #fff;
+}
+
+/* Form heading centered */
+.form-box h2,
+.form-box h3 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Optional icon in heading */
+.form-box h2 img {
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin: 10px auto 0;
+}
+
+/* Form inputs left-aligned */
+.form-inputs {
+  text-align: left;
+  margin-top: 15px;
+}
+
+/* Form actions centered */
+.form-actions {
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* Buttons */
+.btn-success {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.btn-link {
+  background: none;
+  color: #007bff;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  color: #0056b3;
+}
+
+/* Divider */
+.form-box hr {
+  margin: 20px 0;
+}
