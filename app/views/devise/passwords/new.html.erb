@@ -1,18 +1,29 @@
-<h2>Forgot your password?</h2>
+<div class="login-container" style="display: flex; justify-content: center; align-items: center; height: 70vh; margin-top: 30px;">
+  <div class="login-form-box" style="width: 100%; max-width: 400px; padding: 30px; background-color: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: relative;">
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+    <h2 class="text-center" style="margin-bottom: 30px;">
+      Forgot your password?
+      <%= image_tag "pawprint.png", alt: "Paw Print", style: "width: 60px; height: 60px" %>
+    </h2>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs" style="text-align: left;">
+        <%= f.input :email,
+                    required: true,
+                    autofocus: true,
+                    label: "Email:",
+                    input_html: { autocomplete: "email" } %>
+      </div>
+
+      <div class="form-actions text-center" style="margin-top: 20px;">
+        <%= f.button :submit, "Reset password", class: "btn btn-success text-light" %>
+      </div>
+    <% end %>
+
+    <div class="text-center mt-3">
+      <%= link_to "Log in", new_session_path(resource_name) %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
