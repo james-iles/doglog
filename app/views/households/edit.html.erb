@@ -1,12 +1,10 @@
 <div class="container py-4">
-  <!-- Page Header -->
   <div class="row mb-4">
     <div class="col-12">
       <h1 class="h3 mb-0"><i class="fa-solid fa-house-user me-2"></i>Edit Household</h1>
     </div>
   </div>
 
-  <!-- Edit Household Name -->
   <div class="row mb-4">
     <div class="col-12">
       <div class="card shadow-sm">
@@ -23,49 +21,6 @@
     </div>
   </div>
 
-  <!-- Manage Dogs -->
-  <div class="row mb-4">
-    <div class="col-12">
-      <div class="card shadow-sm">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <h5 class="mb-0"><i class="fa-solid fa-dog me-2"></i>Manage Dogs</h5>
-          <%= link_to new_household_dog_path(@household), class: "btn btn-sm btn-outline-primary" do %>
-            <i class="fa-solid fa-plus me-1"></i>Add Dog
-          <% end %>
-        </div>
-        <% if @dogs.any? %>
-          <ul class="list-group list-group-flush">
-            <% @dogs.each do |dog| %>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center">
-                  <div class="me-3">
-                    <% if dog.photo.attached? %>
-                      <%= image_tag dog.photo, class: "rounded-circle", style: "width: 48px; height: 48px; object-fit: cover;" %>
-                    <% else %>
-                      <%= image_tag "pawprint.jpg", class: "rounded-circle", style: "width: 48px; height: 48px; object-fit: cover;" %>
-                    <% end %>
-                  </div>
-                  <div>
-                    <h6 class="mb-0"><%= dog.name %></h6>
-                    <small class="text-muted"><%= dog.breed %></small>
-                  </div>
-                </div>
-                <%= link_to dog_path(dog), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{dog.name} from this household? This action cannot be undone." }, class: "text-danger" do %>
-                  <i class="fa-regular fa-trash-can"></i>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        <% else %>
-          <div class="card-body text-center text-muted py-4">
-            <i class="fa-solid fa-dog fa-2x mb-2"></i>
-            <p class="mb-0">No dogs in this household yet.</p>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
   <!-- Invite User (Placeholder) -->
   <div class="row mb-4">
     <div class="col-12">
@@ -75,10 +30,9 @@
         </div>
         <div class="card-body">
           <p class="text-muted mb-3">Invite others to join your household and help manage your dogs.</p>
-          <a href="#" class="btn btn-outline-primary disabled" aria-disabled="true">
+          <a href="#" class="btn btn-outline-primary" aria-disabled="true">
             <i class="fa-solid fa-envelope me-1"></i>Invite User
           </a>
-          <small class="text-muted d-block mt-2">Coming soon!</small>
         </div>
       </div>
     </div>

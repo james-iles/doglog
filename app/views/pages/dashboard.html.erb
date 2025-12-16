@@ -1,9 +1,9 @@
 <div class="container py-3">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <%= link_to household_dogs_path(current_user.household) do %>
-      <i class="fa-solid fa-house"></i>
-    <% end %>
-    <%= link_to destroy_user_session_path, data: {turbo_method: :delete} do %>
+    <%= link_to household_dogs_path(current_user.household), class: "text-decoration-none text-muted" do %>
+        <i class="fa-solid fa-arrow-left me-1"></i> All Dogs
+      <% end %>
+    <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "text-decoration-none" do %>
       <i class="fa-solid fa-right-from-bracket"></i> Log out
     <% end %>
   </div>
@@ -26,6 +26,7 @@
     </div>
   </div>
 
+<!-- Users section below -->
   <div class="row mb-4">
     <div class="col-12">
       <h2 class="h5 mb-3"><i class="fa-solid fa-user me-2"></i>User Account</h2>
@@ -50,9 +51,6 @@
   <div class="row mb-4">
     <div class="col-12 d-flex justify-content-between align-items-center mb-3">
       <h2 class="h5 mb-0"><i class="fa-solid fa-dog me-2"></i>Your Dogs</h2>
-      <%= link_to edit_household_path(@household), class: "text-decoration-none" do %>
-        <i class="fa-solid fa-pen-to-square me-1"></i>Edit Household
-      <% end %>
     </div>
     <% @dogs.each do |dog| %>
       <div class="col-md-6 col-lg-4 mb-3">
@@ -74,43 +72,14 @@
                 <% end %>
               </p>
             </div>
+            <div class="ms-auto">
+              <%= link_to dog_path(dog), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{dog.name} from this household? This action cannot be undone." }, class: "text-danger" do %>
+                <i class="fa-regular fa-trash-can"></i>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
-  </div>
-
-  <div class="row">
-    <div class="col-12">
-      <h2 class="h5 mb-3"><i class="fa-solid fa-comments me-2"></i>Recent Chat Summaries</h2>
-      <% if @chat_summaries.any? %>
-        <div class="card shadow-sm">
-          <ul class="list-group list-group-flush">
-            <% @chat_summaries.each do |summary| %>
-              <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold"><%= summary.title %></div>
-                  <small class="text-muted">
-                    <i class="fa-solid fa-paw me-1"></i><%= summary.dog.name %>
-                    <span class="mx-2">|</span>
-                    <i class="fa-regular fa-calendar me-1"></i><%= summary.created_at.strftime("%d %b %Y") %>
-                  </small>
-                </div>
-                <%= link_to document_path(summary), class: "text-muted" do %>
-                  <i class="fa-solid fa-chevron-right"></i>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% else %>
-        <div class="card shadow-sm">
-          <div class="card-body text-center text-muted py-4">
-            <i class="fa-regular fa-comment-dots fa-2x mb-2"></i>
-            <p class="mb-0">No chat summaries yet. Start a chat with your dog to get AI-powered advice!</p>
-          </div>
-        </div>
-      <% end %>
-    </div>
   </div>
 </div>
