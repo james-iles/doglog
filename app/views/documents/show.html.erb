@@ -16,11 +16,7 @@
         <div class="card-body">
           <div class="mb-3">
             <h5 class="text-muted">Content</h5>
-            <% if @document.category == "Chat" %>
-              <%= raw(render_markdown(@document.content)) %>
-            <% else %>
-              <p><%= @document.content %></p>
-            <% end %>
+            <p><%= @document.content %></p>
           </div>
 
           <div class="mb-3">
@@ -33,21 +29,73 @@
       <% if @document.photos.attached? %>
         <div class="card mb-4">
           <div class="card-body">
-            <h5 class="card-title mb-3">Photos</h5>
+            <h5 class="card-title mb-3">Photos & Documents</h5>
             <div class="row g-3">
-              <% @document.photos.each do |photo| %>
-                <div class="col-md-6">
-                  <%= cl_image_tag photo.key,
-                                   height: 300,
-                                   width: 400,
-                                   crop: :fill,
-                                   class: "img-fluid rounded" %>
+              <% @document.photos.each_with_index do |photo, index| %>
+                <div class="col-md-6 col-6">
+                  <% if photo.content_type.start_with?('image/') %>
+                    <!-- Add data attributes for popup -->
+                    <div class="image-thumbnail"
+                         data-index="<%= index %>"
+                         data-image="<%= cl_image_path(photo.key) %>"
+                         data-title="<%= photo.filename %>"
+                         data-type="image">
+                      <%= cl_image_tag photo.key,
+                                      height: 300,
+                                      width: 400,
+                                      crop: :fill,
+                                      class: "img-fluid rounded clickable-image" %>
+                    </div>
+                  <% elsif photo.content_type == 'application/pdf' %>
+                    <div class="pdf-thumbnail"
+                         data-index="<%= index %>"
+                         data-image="<%= cl_image_path(photo.key, format: 'jpg', page: 1) %>"
+                         <%# pdf_url = "https://res.cloudinary.com/#{cloud_name}/raw/upload/#{photo.key}.pdf" %>
+                         data-pdf-url="<%= cl_image_path(photo.key, format: 'pdf') %>"
+                         data-title="<%= photo.filename %>"
+                         data-type="pdf">
+                      <div class="position-relative">
+                        <%= cl_image_tag photo.key,
+                                        format: 'jpg',
+                                        page: 1,
+                                        height: 300,
+                                        width: 400,
+                                        crop: :fill,
+                                        class: "img-fluid rounded clickable-image" %>
+                        <div class="position-absolute top-0 end-0 m-2">
+                          <span class="badge bg-danger">PDF</span>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
             </div>
           </div>
         </div>
       <% end %>
+
+      <!-- Image Modal -->
+      <div id="imageModal" class="image-modal">
+        <span class="modal-close">&times;</span>
+
+        <!-- Navigation arrows -->
+        <a class="modal-nav modal-prev">&#10094;</a>
+        <a class="modal-nav modal-next">&#10095;</a>
+
+        <!-- PDF indicator and button (hidden by default) -->
+        <div class="modal-pdf-badge" style="display: none;">
+          <span class="badge bg-danger fs-5">PDF Document</span>
+        </div>
+        <div class="modal-pdf-button" style="display: none;">
+          <a id="modalPdfLink" href="#" target="_blank" class="btn btn-primary btn-lg">
+            <i class="fa-regular fa-file-pdf me-2"></i>Open Full PDF
+          </a>
+        </div>
+
+        <img class="modal-content-image" id="modalImage">
+        <div id="imageCaption"></div>
+      </div>
 
       <div class="document-actions mt-5">
         <%= link_to edit_document_path(@document),
@@ -63,8 +111,139 @@
           <i class="fa-regular fa-trash-can"></i>
         <% end %>
       </div>
-
-
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get modal elements
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const captionText = document.getElementById('imageCaption');
+    const closeBtn = document.querySelector('.modal-close');
+    const prevBtn = document.querySelector('.modal-prev');
+    const nextBtn = document.querySelector('.modal-next');
+    const pdfBadge = document.querySelector('.modal-pdf-badge');
+    const pdfButton = document.querySelector('.modal-pdf-button');
+    const pdfLink = document.getElementById('modalPdfLink');
+
+    // Get all clickable items (images and PDFs)
+    const allThumbnails = document.querySelectorAll('.image-thumbnail, .pdf-thumbnail');
+    let currentIndex = 0;
+    let allItems = [];
+
+    // Build array of all items
+    allThumbnails.forEach(function(thumbnail, idx) {
+      allItems.push({
+        index: idx,
+        imageUrl: thumbnail.dataset.image,
+        title: thumbnail.dataset.title,
+        type: thumbnail.dataset.type,
+        pdfUrl: thumbnail.dataset.pdfUrl || null
+      });
+    });
+
+    // Function to show image/PDF at specific index
+    function showItem(index) {
+      if (index < 0) index = allItems.length - 1;
+      if (index >= allItems.length) index = 0;
+
+      currentIndex = index;
+      const item = allItems[index];
+
+      modal.style.display = 'block';
+      modalImg.src = item.imageUrl;
+      captionText.textContent = item.title;
+      document.body.classList.add('modal-open');
+
+      // Show/hide PDF controls
+      if (item.type === 'pdf') {
+        pdfBadge.style.display = 'block';
+        pdfButton.style.display = 'block';
+        pdfLink.href = item.pdfUrl;
+      } else {
+        pdfBadge.style.display = 'none';
+        pdfButton.style.display = 'none';
+      }
+    }
+
+    // Add click event to each thumbnail
+    allThumbnails.forEach(function(thumbnail, idx) {
+      thumbnail.addEventListener('click', function() {
+        showItem(idx);
+      });
+
+      // Also add touch event for better mobile support
+      thumbnail.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        showItem(idx);
+      });
+    });
+
+    // Navigation button events
+    prevBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showItem(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showItem(currentIndex + 1);
+    });
+
+    // Close modal when clicking the X
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+      document.body.classList.remove('modal-open');
+    });
+
+    // Close modal when clicking outside the image
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+      if (modal.style.display === 'block') {
+        if (event.key === 'Escape') {
+          modal.style.display = 'none';
+          document.body.classList.remove('modal-open');
+        } else if (event.key === 'ArrowLeft') {
+          showItem(currentIndex - 1);
+        } else if (event.key === 'ArrowRight') {
+          showItem(currentIndex + 1);
+        }
+      }
+    });
+
+    // Pinch-to-zoom on mobile (optional enhancement)
+    let initialDistance = 0;
+
+    modalImg.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        initialDistance = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+      }
+    });
+
+    modalImg.addEventListener('touchmove', function(e) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const currentDistance = Math.hypot(
+          e.touches[0].pageX - e.touches[1].pageX,
+          e.touches[0].pageY - e.touches[1].pageY
+        );
+
+        const scale = currentDistance / initialDistance;
+        this.style.transform = `scale(${scale})`;
+      }
+    });
+  });
+</script>
