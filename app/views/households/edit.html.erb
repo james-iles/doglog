@@ -1,8 +1,9 @@
 <div class="container py-4">
-  <div class="row mb-4">
-    <div class="col-12">
-      <h1 class="h3 mb-0"><i class="fa-solid fa-house-user me-2"></i>Edit Household</h1>
-    </div>
+
+  <div class="d-flex align-items-center mb-3">
+    <%= link_to dashboard_path, class: "text-decoration-none text-muted" do %>
+        <i class="fa-solid fa-arrow-left me-1"></i> Household
+      <% end %>
   </div>
 
   <div class="row mb-4">
@@ -21,7 +22,7 @@
     </div>
   </div>
 
-  <!-- Invite User (Placeholder) -->
+
   <div class="row mb-4">
     <div class="col-12">
       <div class="card shadow-sm">
@@ -29,6 +30,11 @@
           <h5 class="mb-0"><i class="fa-solid fa-user-plus me-2"></i>Household Members</h5>
         </div>
         <div class="card-body">
+          <ul class="list-group mb-2">
+          <% @household.users.each do |user| %>
+            <li class="list-group-item"><%= user.email %></li>
+          <% end %>
+          </ul>
           <p class="text-muted mb-3">Invite others to join your household and help manage your dogs.</p>
           <a href="#" class="btn btn-outline-primary" aria-disabled="true">
             <i class="fa-solid fa-envelope me-1"></i>Invite User
@@ -36,12 +42,5 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Back Link -->
-  <div class="back-link">
-    <%= link_to dashboard_path do %>
-      <i class="fa-solid fa-chevron-left"></i>
-    <% end %>
   </div>
 </div>

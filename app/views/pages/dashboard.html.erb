@@ -1,10 +1,10 @@
 <div class="container py-3">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <%= link_to household_dogs_path(current_user.household), class: "text-decoration-none text-muted" do %>
-        <i class="fa-solid fa-arrow-left me-1"></i> All Dogs
+        <i class="fa-solid fa-arrow-left me-1"></i> Your Dogs
       <% end %>
     <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "text-decoration-none" do %>
-      <i class="fa-solid fa-right-from-bracket"></i> Log out
+      <i class="fa-solid fa-right-from-bracket"></i> Log Out
     <% end %>
   </div>
   <div class="row mb-4">

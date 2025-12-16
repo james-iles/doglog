@@ -39,7 +39,7 @@ class ChatsController < ApplicationController
 
     dog = @chat.dog
     dog.documents.create!(
-      title: "Chat Summary: #{@chat.title}",
+      title: @chat.title,
       content: response.content,
       category: "Chat"
     )
