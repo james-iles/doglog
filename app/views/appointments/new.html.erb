@@ -1,48 +1,42 @@
 <div class="container">
   <h1>Create an appointment</h1>
   <%= simple_form_for [@dog, @appointment] do |f| %>
-    <div>
     <%= f.input :title,
                 label: "Title",
                 placeholder: "e.g. Vaccination" %>
-    </div>
-    <div>
+
     <%= f.input :location,
                 as: :text,
                 label: "Location" %>
+
+    <div class="mb-3">
+      <%= label_tag :appointment_start_time, "Start Date and Time", class: "form-label" %>
+      <%= datetime_local_field_tag "appointment[start_time]",
+          @appointment.start_time&.strftime("%Y-%m-%dT%H:%M"),
+          class: "form-control",
+          required: true %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :start_time, "Start Date and Time" %>
-      <%= f.text_field :start_time,
-                       class: "form-control datepicker",
-                       placeholder: "Select start date and time",
-                       readonly: true %>
+    <div class="mb-3">
+      <%= label_tag :appointment_end_time, "End Date and Time", class: "form-label" %>
+      <%= datetime_local_field_tag "appointment[end_time]",
+          @appointment.end_time&.strftime("%Y-%m-%dT%H:%M"),
+          class: "form-control",
+          required: true %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :end_time, "End Date and Time" %>
-      <%= f.text_field :end_time,
-                       class: "form-control datepicker",
-                       placeholder: "Select end date and time",
-                       readonly: true %>
-    </div>
-
-    <div>
     <%= f.input :host,
                 label: "Host",
                 placeholder: "Doctor Miller" %>
-    </div>
 
     <%= f.input :appointment_type,
-            collection: Appointment::TYPES,
-            prompt: "Select type" %>
+                collection: Appointment::TYPES,
+                prompt: "Select type" %>
 
-  <div>
     <%= f.input :appointment_notes,
                 label: "Notes",
+                as: :text,
                 placeholder: "Do not forget the Vaccination Passport" %>
-    </div>
 
     <%= f.submit "Save", class: "btn btn-warning btn-lg my-5" %>
   <% end %>

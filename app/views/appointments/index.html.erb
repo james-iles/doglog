@@ -1,62 +1,72 @@
 <div class="container-fluid p-0">
-  <div class="row justify-content-center">
-    <div class="col-sm-10 my-3">
-      <%= form_with url: dog_appointments_path,
-                    method: :get,
-                    data: {
-                      turbo_frame: "appointments_list",
-                      turbo_action: "advance",
-                      controller: "search-form"
-                    },
-                    class: "row g-2 align-items-end" do %>
+ <!-- Search Section - Collapsible on Mobile -->
+<div class="row justify-content-center">
+  <div class="col-12 my-2">
+    <!-- Toggle button for mobile -->
+    <button class="btn btn-outline-secondary w-100 d-md-none mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#searchCollapse">
+      <i class="bi bi-search"></i> Search & Filter
+    </button>
 
-        <div class="col-md-5">
-           <%= text_field_tag :query,
-                params[:query],
-                class: "form-control",
-                placeholder: "Search with keywords...",
-                data: { action: "input->search-form#submit" }
-            %>
-        </div>
+    <!-- Collapsible search form -->
+    <div class="collapse d-md-block" id="searchCollapse">
+      <div class="appointments-search">
+        <%= form_with url: dog_appointments_path,
+                      method: :get,
+                      data: {
+                        turbo_frame: "appointments_list",
+                        turbo_action: "advance",
+                        controller: "search-form"
+                      },
+                      class: "row g-2" do %>
 
-        <div class="col-md-4">
-          <%= select_tag :appointment_type,
-              options_for_select([
-                ['All Categories', 'all'],
-                ['Treeming', 'Treeming'],
-                ['Veterinarian', 'Veterinarian'],
-                ['Dogwalker', 'Dogwalker'],
-                ['Playdate', 'Playdate'],
-                ['Other', 'Other']
-              ], params[:appointment_type] || 'all'),
-              class: "form-select",
-              data: { action: "change->search-form#submit" } %>
-        </div>
+          <div class="col-12 col-md-5">
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Search keywords...",
+                  data: { action: "input->search-form#submit" }
+              %>
+          </div>
 
-        <div class="col-md-2">
-          <%= submit_tag "Search", name: "", class: "btn btn-primary w-100" %>
-        </div>
+          <div class="col-12 col-md-4">
+            <%= select_tag :appointment_type,
+                options_for_select([
+                  ['All Categories', 'all'],
+                  ['Grooming', 'Grooming'],
+                  ['Veterinarian', 'Veterinarian'],
+                  ['Dogwalker', 'Dogwalker'],
+                  ['Playdate', 'Playdate'],
+                  ['Other', 'Other']
+                ], params[:appointment_type] || 'all'),
+                class: "form-select",
+                data: { action: "change->search-form#submit" } %>
+          </div>
 
-        <div class="col-md-1">
-          <%= link_to "Clear",
-              dog_appointments_path,
-              class: "btn btn-secondary w-100",
-              data: { turbo_frame: "appointments_list" },
-              title: "Clear all filters" %>
-        </div>
-      <% end %>
+          <div class="col-6 col-md-2">
+            <%= submit_tag "Search", name: "", class: "btn btn-primary w-100" %>
+          </div>
+
+          <div class="col-6 col-md-1">
+            <%= link_to "Clear",
+                dog_appointments_path,
+                class: "btn btn-secondary w-100",
+                data: { turbo_frame: "appointments_list" } %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
+</div>
 
-  <div class="px-2 py-3">
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3">
+  <!-- Header and Calendar Section -->
+  <div class="px-2 py-2">
+    <div class="appointments-header">
       <div>
-        <h1 class="h4 mb-0">Appointments</h1>
-        <p class="text-muted small mb-0">Click on a time slot to create a new appointment</p>
+        <h1>Appointments</h1>
+        <p>Tap a time slot to create an appointment</p>
       </div>
-      <%= link_to "New Appointment", new_dog_appointment_path, class: "btn btn-primary" %>
+      <%= link_to "New Appointment", new_dog_appointment_path, class: "btn-new-appointment d-none d-md-inline-block" %>
     </div>
-
     <div id='calendar'></div>
   </div>
 </div>
@@ -82,7 +92,7 @@
 
           <div class="mb-3">
             <%= f.label :title, class: "form-label" %>
-            <%= f.text_field :title, class: "form-control", placeholder: "Appointment title" %>
+            <%= f.text_field :title, class: "form-control", placeholder: "Appointment title", required: true %>
           </div>
 
           <div class="mb-3">
@@ -94,7 +104,7 @@
             <%= f.label :appointment_type, "Type", class: "form-label" %>
             <%= f.select :appointment_type,
                 options_for_select([
-                  ['Treeming', 'Treeming'],
+                  ['Grooming', 'Grooming'],
                   ['Veterinarian', 'Veterinarian'],
                   ['Dogwalker', 'Dogwalker'],
                   ['Playdate', 'Playdate'],
@@ -106,7 +116,7 @@
 
           <div class="mb-3">
             <%= f.label :location, "Location", class: "form-label" %>
-            <%= f.text_area :location, class: "form-control", rows: 2 %>
+            <%= f.text_area :location, class: "form-control", rows: 2, required: true %>
           </div>
 
           <div class="mb-3">
@@ -117,7 +127,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <%= f.submit "Create Appointment", class: "btn btn-primary" %>
+          <%= f.submit "Create", class: "btn btn-warning", style: "min-width: 120px;" %>
         </div>
       <% end %>
     </div>
@@ -127,10 +137,8 @@
 <script>
   document.addEventListener('turbo:load', function() {
     var calendarEl = document.getElementById('calendar');
-
     if (!calendarEl) return;
 
-    // Initialize Bootstrap modal
     var modalEl = document.getElementById('appointmentModal');
     var modal = modalEl ? new bootstrap.Modal(modalEl) : null;
 
@@ -138,62 +146,82 @@
       initialView: 'listWeek',
 
       headerToolbar: {
-        left: 'prev,next',
+        left: 'prev,next',           // Just navigation arrows
         center: 'title',
-        right: 'today,timeGridWeek,listWeek'
+        right: 'timeGridWeek,listWeek'  // Just Week and List
       },
 
       buttonText: {
-        today: 'Today',
         week: 'Week',
         list: 'List'
       },
 
-      height: 'auto',
-      contentHeight: 'auto',
-
-      // ENABLE CLICK TO CREATE
       selectable: true,
       selectMirror: true,
 
-      // When user clicks on a time slot
+      dateClick: function(info) {
+        if (!modal) return;
+
+        var startTime = new Date(info.date);
+        var endTime = new Date(startTime.getTime() + 3600000);
+
+        document.getElementById('start_time_field').value = startTime.toISOString();
+        document.getElementById('end_time_field').value = endTime.toISOString();
+
+        var displayText = startTime.toLocaleString('en-GB', {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }) + ' - ' + endTime.toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        document.getElementById('selected_time_display').value = displayText;
+
+        var inputs = document.querySelectorAll('#appointment-form input:not([type="hidden"]), #appointment-form textarea, #appointment-form select');
+        inputs.forEach(function(input) {
+          if (input.id !== 'selected_time_display') {
+            input.value = '';
+          }
+        });
+
+        modal.show();
+      },
+
       select: function(info) {
-        if (modal) {
-          // Set the hidden fields with selected times
-          document.getElementById('start_time_field').value = info.startStr;
-          document.getElementById('end_time_field').value = info.endStr;
+        if (!modal) return;
 
-          // Format and display the selected time nicely
-          var startTime = new Date(info.start);
-          var endTime = new Date(info.end);
-          var displayText = startTime.toLocaleString('en-GB', {
-            weekday: 'short',
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          }) + ' - ' + endTime.toLocaleTimeString('en-GB', {
-            hour: '2-digit',
-            minute: '2-digit'
-          });
+        document.getElementById('start_time_field').value = info.startStr;
+        document.getElementById('end_time_field').value = info.endStr;
 
-          document.getElementById('selected_time_display').value = displayText;
+        var startTime = new Date(info.start);
+        var endTime = new Date(info.end);
+        var displayText = startTime.toLocaleString('en-GB', {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }) + ' - ' + endTime.toLocaleTimeString('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
 
-          // Clear other form fields but keep the times
-          var form = document.getElementById('appointment-form');
-          var inputs = form.querySelectorAll('input:not([type="hidden"]), textarea, select');
-          inputs.forEach(input => {
-            if (input.id !== 'selected_time_display') {
-              input.value = '';
-            }
-          });
+        document.getElementById('selected_time_display').value = displayText;
 
-          // Show the modal
-          modal.show();
-        }
+        var inputs = document.querySelectorAll('#appointment-form input:not([type="hidden"]), #appointment-form textarea, #appointment-form select');
+        inputs.forEach(function(input) {
+          if (input.id !== 'selected_time_display') {
+            input.value = '';
+          }
+        });
 
-        // Unselect the calendar
+        modal.show();
         calendar.unselect();
       },
 
@@ -212,35 +240,18 @@
         }
       },
 
-      eventTimeFormat: {
-        hour: 'numeric',
-        minute: '2-digit',
-        meridiem: 'short'
-      },
-
-      views: {
-        listWeek: {
-          listDayFormat: { weekday: 'short', month: 'short', day: 'numeric' },
-          noEventsContent: 'No appointments this week'
-        }
-      },
-
-      eventColor: '#4A90E2',
-      handleWindowResize: true,
-
-      // Time settings for week view
       slotMinTime: '08:00:00',
       slotMaxTime: '20:00:00',
-      allDaySlot: false
+      allDaySlot: false,
+      slotDuration: '00:30:00',
+
+      eventColor: '#4A90E2',
+      height: 'auto',
+
+      nowIndicator: true,
+      scrollTime: '08:00:00'
     });
 
     calendar.render();
-
-    // Force proper sizing
-    setTimeout(() => {
-      calendar.updateSize();
-      calendarEl.style.maxWidth = '100%';
-      calendarEl.style.width = '100%';
-    }, 100);
   });
 </script>
