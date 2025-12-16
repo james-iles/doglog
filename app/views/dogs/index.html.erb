@@ -4,31 +4,32 @@
   <% end %>
 </div>
 
-<div class="text-center">
-  <%= image_tag "doglog-text.png", class: "dogs-index-logo" %>
-</div>
-
-<div class="dogs-gallery">
-  <% @dogs.each do |dog| %>
-    <div class="dog-photo-card">
-      <%= link_to dog_path(dog) do %>
-        <div class="dog-photo-wrapper">
-          <% if dog.photo.attached? %>
-            <%= image_tag dog.photo, alt: dog.name %>
-          <% else %>
-            <%= image_tag "pawprint.jpg", alt: "No photo available" %>
+  <div class="d-flex flex-column align-items-center gap-4">
+    <%= image_tag "doglog-text.png", class: "dogs-index-logo" %>
+      <% @dogs.each do |dog| %>
+        <div class="dog-photo-card">
+          <%= link_to dog_path(dog) do %>
+            <div class="dog-photo-wrapper">
+              <% if dog.photo.attached? %>
+                <%= image_tag dog.photo, alt: dog.name %>
+              <% else %>
+                <%= image_tag "pawprint.jpg", alt: "No photo available" %>
+              <% end %>
+              <div class="overlay">
+                <div class="dog-name-overlay">
+                  <%= dog.name %>
+                </div>
+              </div>
+            </div>
           <% end %>
-          <div class="overlay">
-            <div class="dog-name-overlay"><%= dog.name %></div>
-          </div>
         </div>
       <% end %>
-    </div>
-  <% end %>
-</div>
+  </div>
+
 
 <div class="add-link">
     <%= link_to new_household_dog_path(@household) do %>
       <i class="fa-solid fa-plus"></i>
     <% end %>
   </div>
+</div>

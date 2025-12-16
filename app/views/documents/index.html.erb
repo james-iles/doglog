@@ -1,88 +1,108 @@
 <div class="container my-4">
- <div class="row justify-content-center">
-  <div class="col-sm-10 my-3">
-    <!-- Toggle button for mobile -->
-    <button class="btn btn-outline-secondary w-100 d-md-none mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#documentsSearchCollapse">
-      <i class="bi bi-search"></i> Search & Filter
-    </button>
+  <div class="row justify-content-center">
+    <div class="col-sm-10 my-3">
+      <!-- Toggle button for mobile -->
+      <button class="btn btn-outline-secondary w-100 d-md-none mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#documentsSearchCollapse">
+        <i class="bi bi-search"></i> Search & Filter
+      </button>
 
-    <!-- Collapsible search form -->
-    <div class="collapse d-md-block" id="documentsSearchCollapse">
-      <%= form_with url: dog_documents_path,
-                    method: :get,
-                    data: {
-                      turbo_frame: "documents_list",
-                      turbo_action: "advance",
-                      controller: "search-form"
-                    },
-                    class: "row g-2 align-items-end" do %>
+      <!-- Collapsible search form -->
+      <div class="collapse d-md-block" id="documentsSearchCollapse">
+        <%= form_with url: dog_documents_path,
+                      method: :get,
+                      data: {
+                        turbo_frame: "documents_list",
+                        turbo_action: "advance",
+                        controller: "search-form"
+                      },
+                      class: "row g-2 align-items-end" do %>
 
-        <div class="col-12 col-md-5">
-           <%= text_field_tag :query,
-                params[:query],
-                class: "form-control",
-                placeholder: "Search with keywords...",
-                data: { action: "input->search-form#submit" }
-            %>
-        </div>
+          <div class="col-12 col-md-5">
+             <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Search with keywords...",
+                  data: { action: "input->search-form#submit" }
+              %>
+          </div>
 
-        <div class="col-12 col-md-4">
-          <%= select_tag :category,
-              options_for_select([
-                ['All Categories', 'all'],
-                ['Medical', 'Medical'],
-                ['Training', 'Training'],
-                ['Grooming', 'Grooming'],
-                ['Nutrition', 'Nutrition'],
-                ['Behavior', 'Behavior'],
-                ['Chat', 'Chat'],
-                ['Other', 'Other']
-              ], params[:category] || 'all'),
-              class: "form-select",
-              data: { action: "change->search-form#submit" } %>
-        </div>
+          <div class="col-12 col-md-4">
+            <%= select_tag :category,
+                options_for_select([
+                  ['All Categories', 'all'],
+                  ['Medical', 'Medical'],
+                  ['Training', 'Training'],
+                  ['Grooming', 'Grooming'],
+                  ['Nutrition', 'Nutrition'],
+                  ['Behavior', 'Behavior'],
+                  ['Chat', 'Chat'],
+                  ['Other', 'Other']
+                ], params[:category] || 'all'),
+                class: "form-select",
+                data: { action: "change->search-form#submit" } %>
+          </div>
 
-        <div class="col-6 col-md-2">
-          <%= submit_tag "Search", name: "", class: "btn btn-primary w-100" %>
-        </div>
+          <div class="col-6 col-md-2">
+            <%= submit_tag "Search", name: "", class: "btn btn-primary w-100" %>
+          </div>
 
-        <div class="col-6 col-md-1">
-          <%= link_to "Close",
-              dog_documents_path,
-              class: "btn btn-secondary w-100",
-              data: { turbo_frame: "documents_list" },
-              title: "Clear all filters" %>
-        </div>
+          <div class="col-6 col-md-1">
+            <%= link_to "Close",
+                dog_documents_path,
+                class: "btn btn-secondary w-100",
+                data: { turbo_frame: "documents_list" },
+                title: "Clear all filters" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header with navigation -->
+  <div class="d-flex justify-content-between align-items-center my-4 px-3">
+    <h1 class="mb-0 fw-bold" style="font-size: 1.75rem;">All Doguments</h1>
+
+    <div class="d-flex gap-3 align-items-center">
+      <%= link_to new_dog_document_path(@dog), class: "text-dark" do %>
+        <i class="fa-solid fa-plus"></i>
       <% end %>
     </div>
   </div>
-</div>
 
-  <div class="d-flex justify-content-between align-items-center my-4">
-    <%= link_to "New", new_dog_document_path(@dog), class: "btn btn-warning ms-auto" %>
-  </div>
-
-  <h1>All Doguments</h1>
-
-  <% @documents.each do |document| %>
-    <div class="col-md-5 mb-3">
-      <div class="d-flex align-items-center justify-content-between">
-        <h5><%= document.title %></h5>
-        <div class="d-flex gap-3 align-items-center">
-          <%= link_to document_path(document), title: "View document" do %>
-            <i class="fa-regular fa-eye"></i>
-          <% end %>
-          <%= link_to edit_document_path(document) do %>
-            <i class="fa-regular fa-pen-to-square"></i>
-          <% end %>
-          <%= link_to document_path(document), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-danger" do %>
-            <i class="fa-regular fa-trash-can"></i>
-          <% end %>
+  <!-- Documents List -->
+  <div class="row">
+    <% @documents.each do |document| %>
+      <div class="col-12 mb-3">
+        <div class="card border-0 shadow-sm hover-shadow" style="transition: all 0.3s ease;">
+          <div class="card-body d-flex align-items-center justify-content-between py-3 px-4">
+            <div class="flex-grow-1">
+              <h5 class="mb-2 fw-semibold" style="font-size: 1.1rem; color: #2c3e50;">
+                <%= document.title %>
+              </h5>
+              <span class="badge rounded-pill" style="background-color: #ff8c69; font-weight: 500; font-size: 0.75rem; padding: 0.35rem 0.75rem;">
+                <%= document.category %>
+              </span>
+            </div>
+            <!-- Action icons - visible on hover -->
+            <div class="text-muted me-4 document-actions-hover"
+                style="font-size: 0.9rem;">
+              <div class="d-flex gap-3 align-items-center">
+                <%= link_to document_path(document), title: "View document", class: "text-secondary action-icon" do %>
+                  <i class="fa-regular fa-eye" style="font-size: 1.1rem;"></i>
+                <% end %>
+                <%= link_to edit_document_path(document), class: "text-secondary action-icon" do %>
+                  <i class="fa-regular fa-pen-to-square" style="font-size: 1.1rem;"></i>
+                <% end %>
+                <%= link_to document_path(document),
+                            data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+                            class: "text-danger action-icon" do %>
+                  <i class="fa-regular fa-trash-can" style="font-size: 1.1rem;"></i>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <p>
-        <span class="badge bg-primary"><%= document.category %></span>
-      </p>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
