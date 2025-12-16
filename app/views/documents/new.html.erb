@@ -16,6 +16,19 @@
 
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
+    <% other_dogs = @dog.household.dogs.where.not(id: @dog.id) %>
+    <% if other_dogs.any? %>
+      <fieldset class="mb-3">
+        <legend>Also add to other dogs?</legend>
+        <% other_dogs.each do |dog| %>
+          <div class="form-check">
+            <%= check_box_tag "copy_to_dog_ids[]", dog.id, false, class: "form-check-input", id: "dog_#{dog.id}" %>
+            <%= label_tag "dog_#{dog.id}", dog.name, class: "form-check-label" %>
+          </div>
+        <% end %>
+      </fieldset>
+    <% end %>
+
     <%= f.submit "Save", class: "btn btn-warning btn-lg my-5" %>
     <%= link_to "Cancel", dog_documents_path(@dog), class: "btn btn-warning btn-lg my-5" %>
    <% end %>
