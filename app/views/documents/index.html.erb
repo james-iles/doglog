@@ -47,7 +47,7 @@
         </div>
 
         <div class="col-6 col-md-1">
-          <%= link_to "Clear",
+          <%= link_to "Close",
               dog_documents_path,
               class: "btn btn-secondary w-100",
               data: { turbo_frame: "documents_list" },
@@ -59,14 +59,9 @@
 </div>
 
   <div class="d-flex justify-content-between align-items-center my-4">
-    <div>
-      <%= link_to dog_path(@dog) do %>
-        <i class="fa-solid fa-chevron-left"></i>
-      <% end %>
-    </div>
-    <%= link_to "New", new_dog_document_path(@dog), class: "btn btn-warning" %>
+    <%= link_to "New", new_dog_document_path(@dog), class: "btn btn-warning ms-auto" %>
   </div>
-    
+
   <h1>All Doguments</h1>
 
   <% @documents.each do |document| %>
