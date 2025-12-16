@@ -1,9 +1,73 @@
 <div class="container my-4">
-  <div class="d-flex justify-content-end my-4">
+ <div class="row justify-content-center">
+  <div class="col-sm-10 my-3">
+    <!-- Toggle button for mobile -->
+    <button class="btn btn-outline-secondary w-100 d-md-none mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#documentsSearchCollapse">
+      <i class="bi bi-search"></i> Search & Filter
+    </button>
+
+    <!-- Collapsible search form -->
+    <div class="collapse d-md-block" id="documentsSearchCollapse">
+      <%= form_with url: dog_documents_path,
+                    method: :get,
+                    data: {
+                      turbo_frame: "documents_list",
+                      turbo_action: "advance",
+                      controller: "search-form"
+                    },
+                    class: "row g-2 align-items-end" do %>
+
+        <div class="col-12 col-md-5">
+           <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                placeholder: "Search with keywords...",
+                data: { action: "input->search-form#submit" }
+            %>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <%= select_tag :category,
+              options_for_select([
+                ['All Categories', 'all'],
+                ['Medical', 'Medical'],
+                ['Training', 'Training'],
+                ['Grooming', 'Grooming'],
+                ['Nutrition', 'Nutrition'],
+                ['Behavior', 'Behavior'],
+                ['Chat', 'Chat'],
+                ['Other', 'Other']
+              ], params[:category] || 'all'),
+              class: "form-select",
+              data: { action: "change->search-form#submit" } %>
+        </div>
+
+        <div class="col-6 col-md-2">
+          <%= submit_tag "Search", name: "", class: "btn btn-primary w-100" %>
+        </div>
+
+        <div class="col-6 col-md-1">
+          <%= link_to "Clear",
+              dog_documents_path,
+              class: "btn btn-secondary w-100",
+              data: { turbo_frame: "documents_list" },
+              title: "Clear all filters" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+  <div class="d-flex justify-content-between align-items-center my-4">
+    <div>
+      <%= link_to dog_path(@dog) do %>
+        <i class="fa-solid fa-chevron-left"></i>
+      <% end %>
+    </div>
     <%= link_to "New", new_dog_document_path(@dog), class: "btn btn-warning" %>
   </div>
-
-  <h1>All Documents</h1>
+    
+  <h1>All Doguments</h1>
 
   <% @documents.each do |document| %>
     <div class="col-md-5 mb-3">

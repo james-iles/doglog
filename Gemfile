@@ -28,8 +28,6 @@ gem "jbuilder"
 
 gem 'ostruct'
 
-gem 'flatpickr', '~> 2.3', '>= 2.3.5.0'
-
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

@@ -1,0 +1,356 @@
+/* Calendar Appointments Styling - Consolidated */
+
+/* Prevent horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
+}
+
+.container-fluid {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+
+/* Calendar Base Styles */
+#calendar {
+  max-width: 100%;
+  min-height: 500px;
+  background: white;
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fc {
+  max-width: 100%;
+}
+
+.fc-view-harness {
+  max-width: 100%;
+  height: auto !important;
+  min-height: 400px;
+}
+
+/* Appointments Header */
+
+.appointments-header a:hover {
+  opacity: 0.9;
+}
+.appointments-search {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+.appointments-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.appointments-header a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  background-color: #e74c3c; /* or your preferred color */
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.appointments-header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.appointments-header p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.btn-new-appointment {
+  background: #E07B39;
+  color: white;
+  border: none;
+  padding: 0.875rem 1.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn-new-appointment:hover {
+  background: #d66d2a;
+}
+
+/* Calendar Buttons - Orange Theme with Spacing */
+.fc-button {
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  margin: 0 0.25rem !important;  /* Spacing between buttons */
+}
+
+.fc-button-primary {
+  background-color: #E07B39 !important;
+  border-color: #E07B39 !important;
+}
+
+.fc-button-primary:hover {
+  background-color: #d66d2a !important;
+  border-color: #d66d2a !important;
+}
+
+.fc-button-primary:focus,
+.fc-button-primary:active {
+  background-color: #c55e21 !important;
+  border-color: #c55e21 !important;
+  box-shadow: none !important;
+}
+
+.fc-button-active {
+  background-color: #c55e21 !important;
+  border-color: #c55e21 !important;
+}
+
+/* Navigation arrows */
+.fc-prev-button,
+.fc-next-button {
+  background-color: #E07B39 !important;
+  border-color: #E07B39 !important;
+}
+
+.fc-prev-button:hover,
+.fc-next-button:hover {
+  background-color: #d66d2a !important;
+  border-color: #d66d2a !important;
+}
+
+/* Space between button groups */
+.fc-toolbar-chunk {
+  gap: 0.5rem;
+}
+
+/* Calendar Events */
+.fc-event {
+  border-radius: 4px !important;
+  border: none !important;
+  padding: 2px 4px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease;
+}
+
+.fc-event:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Modal Styling */
+#appointmentModal .modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+#appointmentModal .modal-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px 12px 0 0;
+  padding: 1.25rem;
+  border: none;
+}
+
+#appointmentModal .modal-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+#appointmentModal .btn-close {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+
+#appointmentModal .btn-close:hover {
+  opacity: 1;
+}
+
+#appointmentModal .modal-body {
+  padding: 1.5rem;
+}
+
+#appointmentModal .form-label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+#appointmentModal .form-control,
+#appointmentModal .form-select {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  font-size: 16px;
+}
+
+#appointmentModal .form-control:focus,
+#appointmentModal .form-select:focus {
+  border-color: #E07B39;
+  box-shadow: 0 0 0 3px rgba(224, 123, 57, 0.1);
+}
+
+#appointmentModal #selected_time_display {
+  background: #fff5f0;
+  border: 2px solid #E07B39;
+  color: #E07B39;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.875rem;
+}
+
+#appointmentModal .modal-footer {
+  padding: 1.25rem;
+  border-top: 1px solid #e2e8f0;
+  gap: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#appointmentModal .modal-footer .btn {
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  flex: 1;
+  border: none;
+}
+
+#appointmentModal .modal-footer .btn-secondary {
+  background: #718096;
+}
+
+#appointmentModal .modal-footer .btn-secondary:hover {
+  background: #5a6774;
+}
+
+#appointmentModal .modal-footer .btn-warning {
+  background: #E07B39;
+  color: white;
+}
+
+#appointmentModal .modal-footer .btn-warning:hover {
+  background: #d66d2a;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 767px) {
+  .appointments-search {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .appointments-header {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+
+  .appointments-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .appointments-header p {
+    font-size: 0.8rem;
+  }
+
+  .btn-new-appointment {
+    width: 100%;
+    margin: 0 0.5rem 0.5rem 0.5rem;
+  }
+
+  #calendar {
+    border-radius: 8px;
+    padding: 0.25rem;
+    margin: 0.5rem;
+  }
+
+  .fc-toolbar {
+    padding: 0.5rem !important;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .fc-toolbar-title {
+    font-size: 0.95rem !important;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .fc-button {
+    padding: 0.4rem 0.7rem !important;
+    font-size: 0.75rem !important;
+    margin: 0.15rem !important;
+  }
+
+  .fc-col-header-cell {
+    padding: 0.3rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  .fc-timegrid-slot {
+    height: 2.5rem !important;
+  }
+
+  .fc-timegrid-slot-label {
+    font-size: 0.7rem !important;
+  }
+
+  .fc-event {
+    font-size: 0.7rem !important;
+  }
+
+  #appointmentModal .modal-dialog {
+    margin: 0.5rem;
+  }
+
+  #appointmentModal .modal-body {
+    padding: 1rem;
+  }
+}
+
+/* Desktop Optimizations */
+@media (min-width: 768px) {
+  .appointments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .btn-new-appointment {
+    width: auto;
+  }
+
+  .fc-toolbar {
+    gap: 1rem;
+  }
+}
