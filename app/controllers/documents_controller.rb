@@ -2,7 +2,22 @@ class DocumentsController < ApplicationController
   def index
     @dog = Dog.find(params[:dog_id])
     @documents = @dog.documents.order(created_at: :desc)
-  end
+      if params[:query].present?
+      sql_subquery = "title ILIKE :query OR content ILIKE :query"
+      @documents = @documents.where(sql_subquery, query: "%#{params[:query]}%")
+      end
+
+      if params[:category].present? && params[:category] != "all"
+      @documents = @documents.where(category: params[:category])
+      end
+
+      #@documents = @documents.order(created_at: :desc)
+    end
+
+
+
+
+
 
   def show
     @document = Document.find(params[:id])
