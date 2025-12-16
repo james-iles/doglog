@@ -70,7 +70,8 @@ html, body {
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
   background-color: #e74c3c; /* or your preferred color */
   color: white;
   text-decoration: none;
