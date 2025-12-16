@@ -81,13 +81,7 @@
           </div>
 
           <!-- Share Buttons -->
-          <div class="d-grid gap-2 mb-3">
-            <%= link_to "mailto:?subject=#{CGI.escape("#{@dog.name}'s Profile")}&body=#{CGI.escape(@share_url)}",
-                        class: "btn btn-danger btn-lg" do %>
-              <i class="bi bi-envelope"></i> Share via Email
-            <% end %>
-
-            <%= link_to "https://wa.me/?text=#{CGI.escape(@share_url)}",
+          <%= link_to "https://wa.me/?text=#{CGI.escape(@share_url)}",
                         class: "btn btn-success btn-lg",
                         target: "_blank" do %>
               <i class="bi bi-whatsapp"></i> Share via WhatsApp
