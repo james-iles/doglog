@@ -78,7 +78,7 @@
         <h5 class="modal-title">New Appointment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
-      <%= form_with model: [@dog, Appointment.new], id: "appointment-form" do |f| %>
+      <%= form_with model: [@dog, Appointment.new], id: "appointment-form", data: { turbo: false } do |f| %>
         <div class="modal-body">
           <%= f.hidden_field :start_time, id: "start_time_field" %>
           <%= f.hidden_field :end_time, id: "end_time_field" %>
@@ -257,4 +257,13 @@
 
   document.addEventListener('DOMContentLoaded', initCalendar);
   document.addEventListener('turbo:load', initCalendar);
+
+  // Clear initialized flag before Turbo caches the page so calendar re-renders with fresh data
+  document.addEventListener('turbo:before-cache', function() {
+    var calendarEl = document.getElementById('calendar');
+    if (calendarEl) {
+      calendarEl.removeAttribute('data-initialized');
+      calendarEl.innerHTML = '';
+    }
+  });
 </script>

@@ -186,7 +186,7 @@ Appointment.create!(
 )
 
 puts "Creating documents..."
-# Medical documents
+# Documents for Thor (3 max)
 Document.create!(
   title: "Vaccination Certificate",
   content: "Core vaccines completed. DHPP, Lepto 4, and Kennel Cough all up to date.\n\nVaccination Schedule:\n- DHPP: 14 Apr 2024 (next due: 14 Apr 2025)\n- Leptospirosis: 14 Apr 2024 (next due: 14 Apr 2025)\n- Kennel Cough: 14 Oct 2024 (next due: 14 Oct 2025)\n\nAdministered by: Dr. Sarah Mitchell, Vets4Pets Bath",
@@ -195,12 +195,20 @@ Document.create!(
 )
 
 Document.create!(
-  title: "Routine Checkup Notes - September 2024",
-  content: "Weight: 24.3kg (healthy range)\n\nExamination findings:\n- Heart and lungs: Normal\n- Teeth: Minor tartar buildup, recommend dental chews\n- Ears: Slight irritation in left ear, advised regular cleaning with Epi-Otic solution\n- Joints: Good mobility, no concerns\n\nRecommendations:\n- Continue current diet\n- Daily ear cleaning for 2 weeks\n- Schedule dental cleaning in next 6 months",
-  category: "Medical",
+  title: "Grooming Schedule & Notes",
+  content: "Regular grooming routine:\n\n- Brushing: Daily (5-10 mins) - using slicker brush\n- Baths: Every 4-6 weeks or as needed\n- Nail trim: Every 3-4 weeks\n- Ear cleaning: Weekly (use Epi-Otic)\n- Teeth brushing: Daily with enzymatic toothpaste\n\nGroomer: Pampered Paws, Widcombe\nAppointment frequency: Every 6 weeks\nCost: 45 per session\n\nNotes: Doesn't like having back feet handled - go slowly. Loves the dryer!",
+  category: "Grooming",
   dog: dog1
 )
 
+Document.create!(
+  title: "Emergency Contact Information",
+  content: "Primary Emergency Vet:\nBath Veterinary Emergency Clinic\n24 Hour Line: 01225 999888\nAddress: 78 Lower Bristol Road, Bath BA2 3BQ\n\nPoison Control:\nAnimal PoisonLine: 01202 509 000\nAvailable 24/7 - charge applies\n\nBackup Care Contacts:\n1. Sarah Thompson - 07700 123456 (neighbour, has key)\n2. Mum and Dad - 01225 456789 (can collect within 1 hour)\n\nInsurance Emergency Line:\nPetSure Premium: 0800 123 4567\nPolicy: PS-3948221",
+  category: "Other",
+  dog: dog1
+)
+
+# Documents for Karen (3 max)
 Document.create!(
   title: "Hip Dysplasia Diagnosis",
   content: "Date: 15 November 2024\n\nDiagnosis: Mild bilateral hip dysplasia\n\nX-ray findings show early signs of hip joint looseness. Currently Grade 1 (mild).\n\nTreatment Plan:\n- Daily glucosamine/chondroitin supplement (started)\n- Maintain healthy weight (current: 32.5kg, ideal: 30-33kg)\n- Avoid high-impact activities (no excessive jumping)\n- Swimming recommended for low-impact exercise\n- Follow-up x-ray in 6 months\n\nPrognosis: Good with proper management. Many dogs live comfortably with mild dysplasia.",
@@ -208,65 +216,10 @@ Document.create!(
   dog: dog2
 )
 
-# Training documents
-Document.create!(
-  title: "Puppy Training Class Certificate",
-  content: "Certificate of Completion\n\nBenson has successfully completed the 6-week Puppy Foundation Course at Bath Dog Training Club.\n\nSkills achieved:\n- Sit, down, stay (30+ seconds)\n- Loose lead walking\n- Recall in low-distraction environments\n- Crate training fundamentals\n- Polite greetings\n\nTrainer: Mark Williams\nDate: 15 June 2023\n\nRecommendation: Progress to Intermediate Obedience class",
-  category: "Training",
-  dog: dog1
-)
-
-Document.create!(
-  title: "Reactivity Training Notes",
-  content: "Working with behaviourist Emma Scott on lead reactivity.\n\nTriggers identified:\n- Other dogs approaching head-on\n- Cyclists moving quickly\n- People with hats/hoods\n\nTechniques being used:\n- Look At That (LAT) game\n- Emergency U-turns\n- Threshold management\n- High-value treats (cheese, chicken)\n\nProgress after 4 sessions:\n- Threshold distance reduced from 20m to 10m for dogs\n- Successfully ignored 3 cyclists last week\n- Still reactive to hooded figures\n\nNext session: Focus on counter-conditioning with strangers",
-  category: "Behavior",
-  dog: dog2
-)
-
-# Grooming document
-Document.create!(
-  title: "Grooming Schedule & Notes",
-  content: "Regular grooming routine:\n\n- Brushing: Daily (5-10 mins) - using slicker brush\n- Baths: Every 4-6 weeks or as needed\n- Nail trim: Every 3-4 weeks\n- Ear cleaning: Weekly (use Epi-Otic)\n- Teeth brushing: Daily with enzymatic toothpaste\n\nGroomer: Pampered Paws, Widcombe\nAppointment frequency: Every 6 weeks\nCost: 45 per session\n\nNotes: Doesn't like having back feet handled - go slowly. Loves the dryer!",
-  category: "Grooming",
-  dog: dog1
-)
-
-# Nutrition document
 Document.create!(
   title: "Diet & Feeding Guide",
   content: "Current Food: Orijen Original Adult\n\nDaily Amount: 350g (split into 2 meals)\n- Morning: 175g at 7:30am\n- Evening: 175g at 6:00pm\n\nSupplements:\n- Salmon oil: 1 pump daily (for coat health)\n- Glucosamine: 1 tablet daily (for joints)\n\nTreats (max 10% of daily calories):\n- Training: Small pieces of cheese or chicken\n- Dental chews: 1 Whimzee per day\n\nFoods to avoid:\n- Chicken (allergy)\n- Grapes, raisins, chocolate, onions, garlic\n\nWater: Fresh water always available, drinks approx 1L daily",
   category: "Nutrition",
-  dog: dog2
-)
-
-# Appointment-related document
-Document.create!(
-  title: "Vet Appointment Preparation Checklist",
-  content: "Things to bring to vet appointments:\n\n- Vaccination card/pet passport\n- List of current medications and supplements\n- Any recent symptom notes\n- Favourite treats for positive association\n- Muzzle (if needed - Rex only)\n- Poo bag in case of nervous accidents\n\nQuestions to ask:\n- Weight check and body condition score\n- Any concerns about diet or behaviour\n- Parasite prevention up to date?\n- Microchip details still correct?",
-  category: "Appointment",
-  dog: dog1
-)
-
-# Additional documents for Thor
-Document.create!(
-  title: "Emergency Contact Information",
-  content: "Primary Emergency Vet:\nBath Veterinary Emergency Clinic\n24 Hour Line: 01225 999888\nAddress: 78 Lower Bristol Road, Bath BA2 3BQ\n\nPoison Control:\nAnimal PoisonLine: 01onal 202 509 000\nAvailable 24/7 - charge applies\n\nBackup Care Contacts:\n1. Sarah Thompson - 07700 123456 (neighbour, has key)\n2. Mum and Dad - 01225 456789 (can collect within 1 hour)\n\nInsurance Emergency Line:\nPetSure Premium: 0800 123 4567\nPolicy: PS-3948221",
-  category: "Other",
-  dog: dog1
-)
-
-Document.create!(
-  title: "Flea & Worm Treatment Schedule",
-  content: "Current Products:\n- Flea/Tick: NexGard Spectra (monthly chewable)\n- Wormer: Included in NexGard Spectra\n\nTreatment Log:\n- Nov 2024: Given 1st of month\n- Dec 2024: Given 1st of month\n- Jan 2025: Due 1st of month\n\nWeight-based dosage: 12.3kg = Medium dog size\n\nNotes:\n- Give with food for best absorption\n- Watch for any vomiting in first 24 hours\n- Purchased from Vets4Pets (prescription required)",
-  category: "Medical",
-  dog: dog1
-)
-
-# Additional documents for Karen
-Document.create!(
-  title: "Joint Care Management Plan",
-  content: "Following hip dysplasia diagnosis - November 2024\n\nDaily Routine:\n- Morning: 20-30 min gentle walk on flat terrain\n- Afternoon: Rest period, avoid stairs where possible\n- Evening: 20-30 min walk, swimming if available\n\nSupplements (daily):\n- Glucosamine: 1500mg\n- Chondroitin: 1200mg\n- Fish oil: 1000mg (omega-3 for inflammation)\n\nWeight Management:\n- Target weight: 30-32kg\n- Current: 32.5kg - maintain or slight reduction\n- Measured feeding only, no free feeding\n\nWarning Signs to Watch:\n- Increased stiffness\n- Reluctance to climb/jump\n- Bunny hopping gait\n- Muscle wasting in hind legs",
-  category: "Medical",
   dog: dog2
 )
 
@@ -339,4 +292,4 @@ Message.create!(
 )
 
 puts "Seeding complete!"
-puts "Created: 1 household, 2 users, 2 dogs, 10 appointments, 12 documents, 2 chats"
+puts "Created: 1 household, 2 users, 2 dogs, 10 appointments, 6 documents, 2 chats"
