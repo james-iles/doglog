@@ -3,7 +3,7 @@
 // For example:
 $red: #FD1015;
 $blue: #0D6EFD;
-$primary-two: #FFC65A;
+// $primary-two: #FFC65A;
 $bright-orange: #E67E22;
 $green: #1EDD88;
 $gray: #1f1f1f;
@@ -16,10 +16,12 @@ $gray: #1f1f1f;
 // $tertiary: #260C1A;
 // $dark-brown: #432E36;
 
-// $primary-one: #e9d66a;
-$primary-one: #feaa47;
-$primary-two: #7875F8;
-$secondary-one: #7875F8;
+
+// $primary-one: #feaa47;
+$primary-one: #667eea;
+$primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$primary-two: #f58255;
+$secondary-one: #f8d864;
 $tertiary: #40434E;
 $highlight: #f370ea;
 

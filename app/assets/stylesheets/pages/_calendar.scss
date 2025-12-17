@@ -1,5 +1,22 @@
 /* Calendar Appointments Styling - Consolidated */
 
+/* Decorative dog image above bottom navbar */
+body:has(#calendar)::after {
+  content: '';
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  width: 250px;
+  height: 250px;
+  background-image: image-url('dog-walk.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+}
+
 /* Prevent horizontal overflow */
 html, body {
   overflow-x: hidden;

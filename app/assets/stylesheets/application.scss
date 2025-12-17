@@ -11,3 +11,9 @@
 @import "components/index";
 @import "pages/index";
 
+body {
+  background: $primary-gradient;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+
