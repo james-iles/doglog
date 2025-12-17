@@ -14,9 +14,9 @@ Household.destroy_all
 puts "Adding new seed data..."
 puts "Creating 1 household..."
 household = Household.create!(
-  name: "Castelo Dias",
+  name: "The Poodle Palace",
   owner_name: "James Iles",
-  email: "james@casteloidas.com",
+  email: "james@email.com",
   phone: "07700 900123"
 )
 
@@ -28,25 +28,19 @@ user1 = User.create!(
 )
 
 user2 = User.create!(
-  email: "feri@email.com",
-  household: household,
-  password: "password"
-)
-
-user3 = User.create!(
-  email: "joao@email.com",
+  email: "joao@fastmail.com",
   household: household,
   password: "password"
 )
 
 puts "Creating 2 dogs..."
 dog1 = Dog.create!(
-  name: "Benson",
-  breed: "Labrador Retriever",
-  dob: Date.new(2023, 4, 14),
+  name: "Thor",
+  breed: "Miniature Poodle",
+  dob: Date.new(2024, 4, 14),
   household: household,
   gender: "Male",
-  weight: 24.3,
+  weight: 12.3,
   vet_name: "Dr. Sarah Mitchell",
   vet_clinic: "Vets4Pets Bath",
   vet_phone: "01225 234567",
@@ -54,37 +48,36 @@ dog1 = Dog.create!(
   insurance_provider: "PetSure Premium",
   insurance_policy_number: "PS-3948221",
   microchip_number: "941000024681357",
-  allergies: "Chicken",
+  allergies: "Chicken, Grass, Cats",
   medications: nil,
-  special_notes: "Loves squeaky toys. Gets anxious during thunderstorms."
+  special_notes: "Loves squeaky toys. Gets anxious during thunderstorms and is super reactive to the uncle Steve's Rottweiler"
 )
 
 dog2 = Dog.create!(
-  name: "Rex",
+  name: "Karen",
   breed: "German Shepherd",
   dob: Date.new(2021, 8, 22),
   household: household,
-  gender: "Male",
+  gender: "Female",
   weight: 32.5,
   vet_name: "Dr. Michael Chen",
   vet_clinic: "Oldfield Veterinary Practice",
   vet_phone: "01225 876543",
-  vet_address: "45 Oldfield Park, Bath, BA2 3NR",
+  vet_address: "45 Oldfield Park, Bristol, BS1 3NR",
   insurance_provider: "Petplan",
   insurance_policy_number: "PP-8827364",
   microchip_number: "941000098765432",
   allergies: nil,
-  medications: "Glucosamine supplement daily for joint health",
+  medications: "Glucosamine supplement daily",
   special_notes: "Very protective. Needs slow introductions to new people."
 )
 
 puts "Creating appointments..."
-# Future appointments (will pass validation)
 Appointment.create!(
   title: "Annual Vaccination Booster",
   appointment_type: "Veterinarian",
   location: "Vets4Pets Bath, 12 High Street, Bath",
-  appointment_notes: "Bring vaccination card. Due for DHPP and Lepto 4 boosters.",
+  appointment_notes: "Bring vaccination card. Due for DHPP and Lepto 4.",
   host: "Dr. Sarah Mitchell",
   dog: dog1,
   start_time: 3.days.from_now.change(hour: 10, min: 30),
@@ -139,11 +132,57 @@ Appointment.create!(
   title: "Pet Sitting at Parents",
   appointment_type: "Other",
   location: "Mum and Dad's House, Bristol",
-  appointment_notes: "Drop off on Friday evening, pick up Sunday afternoon. Bring his bed and favourite blanket.",
+  appointment_notes: "Drop off on Friday evening, pick up Sunday afternoon. Bring his bed and blanket.",
   host: "Mum and Dad",
   dog: dog2,
   start_time: 2.weeks.from_now.change(hour: 18, min: 0),
   end_time: (2.weeks.from_now + 2.days).change(hour: 15, min: 0)
+)
+
+# Additional appointments for Thor
+Appointment.create!(
+  title: "Puppy Socialisation Class",
+  appointment_type: "Other",
+  location: "Bath Dog Training Club, Claverton Down",
+  appointment_notes: "Week 4 of 6. Working on greeting other dogs calmly. Bring high-value treats.",
+  host: "Mark Williams",
+  dog: dog1,
+  start_time: 6.days.from_now.change(hour: 18, min: 30),
+  end_time: 6.days.from_now.change(hour: 19, min: 30)
+)
+
+Appointment.create!(
+  title: "Dental Check",
+  appointment_type: "Veterinarian",
+  location: "Vets4Pets Bath, 12 High Street, Bath",
+  appointment_notes: "Routine dental examination. Vet nurse mentioned possible tartar buildup at last visit.",
+  host: "Nurse Jenny",
+  dog: dog1,
+  start_time: 10.days.from_now.change(hour: 11, min: 0),
+  end_time: 10.days.from_now.change(hour: 11, min: 30)
+)
+
+# Additional appointments for Karen
+Appointment.create!(
+  title: "Hydrotherapy Session",
+  appointment_type: "Other",
+  location: "Canine Aqua Centre, Keynsham",
+  appointment_notes: "First hydrotherapy session for joint support. Bring towels and treats. No food 2 hours before.",
+  host: "Lisa at Canine Aqua",
+  dog: dog2,
+  start_time: 8.days.from_now.change(hour: 14, min: 0),
+  end_time: 8.days.from_now.change(hour: 15, min: 0)
+)
+
+Appointment.create!(
+  title: "Evening Walk with Pack",
+  appointment_type: "Dogwalker",
+  location: "Prior Park, Bath",
+  appointment_notes: "Group walk with 3 other dogs. Karen knows them all. Muzzle not required.",
+  host: "Tom's Dog Walking",
+  dog: dog2,
+  start_time: 3.days.from_now.change(hour: 17, min: 0),
+  end_time: 3.days.from_now.change(hour: 18, min: 30)
 )
 
 puts "Creating documents..."
@@ -208,6 +247,36 @@ Document.create!(
   dog: dog1
 )
 
+# Additional documents for Thor
+Document.create!(
+  title: "Emergency Contact Information",
+  content: "Primary Emergency Vet:\nBath Veterinary Emergency Clinic\n24 Hour Line: 01225 999888\nAddress: 78 Lower Bristol Road, Bath BA2 3BQ\n\nPoison Control:\nAnimal PoisonLine: 01onal 202 509 000\nAvailable 24/7 - charge applies\n\nBackup Care Contacts:\n1. Sarah Thompson - 07700 123456 (neighbour, has key)\n2. Mum and Dad - 01225 456789 (can collect within 1 hour)\n\nInsurance Emergency Line:\nPetSure Premium: 0800 123 4567\nPolicy: PS-3948221",
+  category: "Other",
+  dog: dog1
+)
+
+Document.create!(
+  title: "Flea & Worm Treatment Schedule",
+  content: "Current Products:\n- Flea/Tick: NexGard Spectra (monthly chewable)\n- Wormer: Included in NexGard Spectra\n\nTreatment Log:\n- Nov 2024: Given 1st of month\n- Dec 2024: Given 1st of month\n- Jan 2025: Due 1st of month\n\nWeight-based dosage: 12.3kg = Medium dog size\n\nNotes:\n- Give with food for best absorption\n- Watch for any vomiting in first 24 hours\n- Purchased from Vets4Pets (prescription required)",
+  category: "Medical",
+  dog: dog1
+)
+
+# Additional documents for Karen
+Document.create!(
+  title: "Joint Care Management Plan",
+  content: "Following hip dysplasia diagnosis - November 2024\n\nDaily Routine:\n- Morning: 20-30 min gentle walk on flat terrain\n- Afternoon: Rest period, avoid stairs where possible\n- Evening: 20-30 min walk, swimming if available\n\nSupplements (daily):\n- Glucosamine: 1500mg\n- Chondroitin: 1200mg\n- Fish oil: 1000mg (omega-3 for inflammation)\n\nWeight Management:\n- Target weight: 30-32kg\n- Current: 32.5kg - maintain or slight reduction\n- Measured feeding only, no free feeding\n\nWarning Signs to Watch:\n- Increased stiffness\n- Reluctance to climb/jump\n- Bunny hopping gait\n- Muscle wasting in hind legs",
+  category: "Medical",
+  dog: dog2
+)
+
+Document.create!(
+  title: "Introduction Protocol for New People",
+  content: "Karen requires careful introductions due to her protective nature.\n\nStep 1: Initial Meeting\n- Meet outdoors in neutral territory\n- Handler should remain calm and relaxed\n- New person should avoid direct eye contact initially\n- No sudden movements or loud voices\n\nStep 2: Treat Association\n- New person tosses treats (don't hand feed yet)\n- Let Karen approach at her own pace\n- Sessions should be short (5-10 mins)\n\nStep 3: Building Trust\n- Multiple short sessions over several days\n- Progress to hand feeding treats\n- Avoid reaching over her head\n- Let her initiate contact\n\nRed Flags (end session immediately):\n- Hackles raised\n- Stiff body posture\n- Hard stare\n- Low growling\n\nNotes: Usually takes 2-3 meetings before she's comfortable. Once bonded, she's extremely loyal and affectionate.",
+  category: "Behavior",
+  dog: dog2
+)
+
 puts "Creating chat summaries..."
 # Chat 1 for dog1
 chat1 = Chat.create!(
@@ -270,4 +339,4 @@ Message.create!(
 )
 
 puts "Seeding complete!"
-puts "Created: 1 household, 3 users, 2 dogs, 6 appointments, 8 documents, 2 chats"
+puts "Created: 1 household, 2 users, 2 dogs, 10 appointments, 12 documents, 2 chats"

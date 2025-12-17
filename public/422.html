@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The change you wanted was rejected (422)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Change Rejected (422)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    /* Full viewport */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    /* Flexbox centering */
+    body {
+      display: flex;
+      justify-content: center; /* horizontal centering */
+      align-items: center;     /* vertical centering */
+      background-color: #EFEFEF;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    /* Card style */
+    .error-card {
+      width: 400px;          /* fixed width */
+      max-width: 90%;        /* responsive shrink on small screens */
+      margin: 0 20px;        /* horizontal space from edges */
+      padding: 25px;
+      border-radius: 12px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    /* Heading */
+    .error-card h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    /* Paragraph text */
+    .error-card p {
+      color: #555555;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    /* Button */
+    .error-card a {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      background-color: teal;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .error-card a:hover {
+      filter: brightness(90%);
+    }
+
+    /* Responsive adjustments for small screens */
+    @media (max-width: 480px) {
+      .error-card {
+        width: 95%;
+        margin: 0 10px;
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/422.html -->
-  <div class="dialog">
-    <div>
-      <h1>The change you wanted was rejected.</h1>
-      <p>Maybe you tried to change something you didn't have access to.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+<body>
+  <div class="error-card">
+    <h1>The change you wanted was rejected.</h1>
+    <p>Maybe you tried to change something you didn't have access to.</p>
+    <p>If you are the application owner, check the logs for more information.</p>
+    <a href="javascript:history.back()">Go back</a>
   </div>
 </body>
 </html>

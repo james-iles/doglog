@@ -32,7 +32,11 @@ class ChatsController < ApplicationController
       "#{msg.role.capitalize}: #{msg.content}"
     end.join("\n\n")
 
-    summary_prompt = "Save a summary of the key points of this chat, capturing the main advice, tips and actions for the user to remember. The summary should be no more than 300 words and should be in Markdown format, with approriate spacing between blocks of text, for easy reading."
+    summary_prompt = "Save a summary of key points, capturing the main advice, tips and actions for the
+                      user to remember. The summary should be no more than 300 words and should be in Markdown format, with
+                      approriate spacing between blocks of text for easy reading. The summary should have no main heading
+                      and should use sub-headings, bullets, bold text, paragraph text, and other useful formatting to make
+                      the content easy to read."
 
     ruby_llm_chat = RubyLLM.chat
     response = ruby_llm_chat.with_instructions(summary_prompt).ask(conversation)

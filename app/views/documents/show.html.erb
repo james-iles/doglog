@@ -33,7 +33,7 @@
         <div class="d-flex justify-content-between">
           <h5 class="text-muted">Content</h5>
         </div>
-        <p><%= @document.content %></p>
+          <div class="markdown-content"><%= render_markdown(@document.content) %></div>
       </div>
     </div>
 
