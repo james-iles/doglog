@@ -13,9 +13,11 @@
     <i class="fa-solid fa-ellipsis"></i>
   </a>
   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-    <%= link_to user_registration_path,
-                data: { turbo_method: :delete, turbo_confirm: "Are you sure? This action cannot be undone." },
-                class: "dropdown-item text-danger" do %>
+    <%= button_to user_registration_path,
+                 method: :delete,
+                 data: { turbo_confirm: "Are you sure? This action cannot be undone." },
+                 class: "dropdown-item text-danger",
+                 style: "border: none; background: none; width: 100%; text-align: left;" do %>
       <i class="fa-solid fa-trash"></i> Delete Account
     <% end %>
   </div>

@@ -13,9 +13,11 @@
         <%= link_to edit_document_path(@document), class: "text-secondary action-icon" do %>
           <i class="fa-regular fa-pen-to-square icon" style="font-size: 1.1rem;"></i>
         <% end %>
-        <%= link_to document_path(@document),
-                    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-                    class: "text-danger action-icon" do %>
+        <%= button_to document_path(@document),
+                     method: :delete,
+                     data: {turbo_confirm: "Are you sure?"},
+                     class: "btn btn-link p-0 text-danger action-icon",
+                     style: "border: none; background: none;" do %>
           <i class="fa-regular fa-trash-can" style="font-size: 1.1rem;"></i>
         <% end %>
       </div>
@@ -30,9 +32,6 @@
 
     <div class="card mb-4">
       <div class="card-body">
-        <div class="d-flex justify-content-between">
-          <h5 class="text-muted">Content</h5>
-        </div>
           <div class="markdown-content"><%= render_markdown(@document.content) %></div>
       </div>
     </div>

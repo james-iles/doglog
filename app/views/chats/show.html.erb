@@ -17,11 +17,11 @@
     </div>
       </div>
 
-  <div class="flex-grow-1 overflow-auto container" id="messages" data-controller="scroll-bottom">
+  <div class="flex-grow-1 overflow-auto container pt-3" id="messages" data-controller="scroll-bottom">
     <% @chat.messages.each do |message| %>
       <% if message.role == "user" %>
         <div class="d-flex justify-content-end mb-2">
-          <div class="bg-white px-3 pb-1 pt-1 rounded-pill">
+          <div class="bg-white px-3 py-2 rounded-pill">
             <%= message.content %>
           </div>
         </div>
