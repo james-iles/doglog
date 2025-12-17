@@ -1,6 +1,11 @@
 <div class="container">
   <h1>Create an appointment</h1>
-  <%= simple_form_for [@dog, @appointment] do |f| %>
+  <%= simple_form_for [@dog, @appointment],
+    html: {
+      data: {
+        controller: 'flatpickr'
+      }
+    } do |f| %>
     <%= f.input :title,
                 label: "Title",
                 placeholder: "e.g. Vaccination" %>
@@ -9,21 +14,27 @@
                 as: :text,
                 label: "Location" %>
 
-    <div class="mb-3">
-      <%= label_tag :appointment_start_time, "Start Date and Time", class: "form-label" %>
-      <%= datetime_local_field_tag "appointment[start_time]",
-          @appointment.start_time&.strftime("%Y-%m-%dT%H:%M"),
-          class: "form-control",
-          required: true %>
-    </div>
+    <%= f.input :start_time,
+    as: :string,
+    label: "Start Date and Time",
+    input_html: {
+      class: "form-control",
+      data: {
+        flatpickr_target: 'startDateInput'
+      },
+      required: true
+    } %>
 
-    <div class="mb-3">
-      <%= label_tag :appointment_end_time, "End Date and Time", class: "form-label" %>
-      <%= datetime_local_field_tag "appointment[end_time]",
-          @appointment.end_time&.strftime("%Y-%m-%dT%H:%M"),
-          class: "form-control",
-          required: true %>
-    </div>
+    <%= f.input :end_time,
+    as: :string,
+    label: "End Date and Time",
+    input_html: {
+      class: "form-control",
+      data: {
+        flatpickr_target: 'endDateInput'
+      },
+      required: true
+    } %>
 
     <%= f.input :host,
                 label: "Host",
