@@ -142,9 +142,10 @@
 </div>
 
 <script>
-  document.addEventListener('turbo:load', function() {
+  function initCalendar() {
     var calendarEl = document.getElementById('calendar');
-    if (!calendarEl) return;
+    if (!calendarEl || calendarEl.dataset.initialized) return;
+    calendarEl.dataset.initialized = 'true';
 
     var modalEl = document.getElementById('appointmentModal');
     var modal = modalEl ? new bootstrap.Modal(modalEl) : null;
@@ -260,5 +261,8 @@
     });
 
     calendar.render();
-  });
+  }
+
+  document.addEventListener('DOMContentLoaded', initCalendar);
+  document.addEventListener('turbo:load', initCalendar);
 </script>
