@@ -1,21 +1,21 @@
-<div class="container mt-5">
+<div class="container">
   <div class="row">
     <div class="col-md-8 mx-auto">
       <div class="d-flex justify-content-between align-items-start mb-4">
-        <div>
+        <div class="my-4">
           <%= link_to dog_appointments_path(@appointment.dog) do %>
             <i class="fa-solid fa-chevron-left icon"></i>
           <% end %>
         </div>
 
-        <div class="d-flex gap-3">
+        <div class="my-4 d-flex gap-3">
           <%= link_to edit_appointment_path(@appointment), class: "text-secondary action-icon" do %>
             <i class="fa-regular fa-pen-to-square icon" style="font-size: 1.1rem;"></i>
           <% end %>
           <%= link_to appointment_path(@appointment),
                       data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
                       class: "text-danger action-icon" do %>
-            <i class="fa-regular fa-trash-can icon" style="font-size: 1.1rem;"></i>
+            <i class="fa-regular fa-trash-can" style="font-size: 1.1rem;"></i>
           <% end %>
         </div>
       </div>
