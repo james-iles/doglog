@@ -1,54 +1,62 @@
-<div class="container">
-  <h1>Create an appointment</h1>
+<div class="container my-5">
+  <h1 class="mb-4">Create an appointment</h1>
+
   <%= simple_form_for [@dog, @appointment],
     html: {
-      data: {
-        controller: 'flatpickr'
-      }
+      data: { controller: "flatpickr" }
     } do |f| %>
+
+    <!-- Title -->
     <%= f.input :title,
-                label: "Title",
-                placeholder: "e.g. Vaccination" %>
+      label: "Title",
+      placeholder: "e.g. Vaccination" %>
 
+    <!-- Location -->
     <%= f.input :location,
-                as: :text,
-                label: "Location" %>
+      as: :text,
+      label: "Location" %>
 
+    <!-- Start Date & Time -->
     <%= f.input :start_time,
-    as: :string,
-    label: "Start Date and Time",
-    input_html: {
-      class: "form-control",
-      data: {
-        flatpickr_target: 'startDateInput'
-      },
-      required: true
-    } %>
+      as: :string,
+      label: "Start Date and Time",
+      input_html: {
+        class: "form-control",
+        data: { flatpickr_target: "startDateInput" },
+        required: true
+      } %>
 
+    <!-- End Date & Time -->
     <%= f.input :end_time,
-    as: :string,
-    label: "End Date and Time",
-    input_html: {
-      class: "form-control",
-      data: {
-        flatpickr_target: 'endDateInput'
-      },
-      required: true
-    } %>
+      as: :string,
+      label: "End Date and Time",
+      input_html: {
+        class: "form-control",
+        data: { flatpickr_target: "endDateInput" },
+        required: true
+      } %>
 
+    <!-- Host -->
     <%= f.input :host,
-                label: "Host",
-                placeholder: "Doctor Miller" %>
+      label: "Host",
+      placeholder: "Doctor Miller" %>
 
+    <!-- Appointment Type -->
     <%= f.input :appointment_type,
-                collection: Appointment::TYPES,
-                prompt: "Select type" %>
+      collection: Appointment::TYPES,
+      prompt: "Select type" %>
 
+    <!-- Notes -->
     <%= f.input :appointment_notes,
-                label: "Notes",
-                as: :text,
-                placeholder: "Do not forget the Vaccination Passport" %>
+      label: "Notes",
+      as: :text,
+      placeholder: "Do not forget the Vaccination Passport" %>
 
-    <%= f.submit "Save", class: "btn btn-warning btn-lg my-5" %>
-  <% end %>
+    <!-- Submit -->
+    <div class="mt-4">
+      <%= f.submit "Save", class: "btn btn-warning btn-lg" %>
+    </div>
+
+  <% end %>  <!-- ✅ THIS WAS MISSING -->
+
 </div>
