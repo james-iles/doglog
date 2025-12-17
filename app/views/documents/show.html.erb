@@ -33,11 +33,7 @@
         <div class="d-flex justify-content-between">
           <h5 class="text-muted">Content</h5>
         </div>
-        <% if @document.category == "Chat" %>
           <div class="markdown-content"><%= render_markdown(@document.content) %></div>
-        <% else %>
-          <p><%= @document.content %></p>
-        <% end %>
       </div>
     </div>
 
