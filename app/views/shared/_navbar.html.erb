@@ -44,7 +44,7 @@
               <%= link_to edit_household_path(current_user.household), class: "dropdown-item" do %>
                 <i class="fa-solid fa-house-user"></i> Edit Household
               <% end %>
-              <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
+              <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
                 <i class="fa-solid fa-right-from-bracket"></i> Log out
               <% end %>
             </div>
