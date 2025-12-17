@@ -79,7 +79,7 @@
               <h5 class="mb-2 fw-semibold" style="font-size: 1.1rem; color: #2c3e50;">
                 <%= document.title %>
               </h5>
-              <span class="badge rounded-pill" style="background-color: #ff8c69; font-weight: 500; font-size: 0.75rem; padding: 0.35rem 0.75rem;">
+              <span class="badge rounded-pill badge-highlight" style="font-weight: 500; font-size: 0.75rem; padding: 0.35rem 0.75rem;">
                 <%= document.category %>
               </span>
             </div>
@@ -87,10 +87,10 @@
             <div class="text-muted me-4 document-actions-hover"
                 style="font-size: 0.9rem;">
               <div class="d-flex gap-3 align-items-center">
-                <%= link_to document_path(document), title: "View document", class: "text-secondary action-icon" do %>
+                <%= link_to document_path(document), title: "View document", class: "text-tertiary action-icon" do %>
                   <i class="fa-regular fa-eye" style="font-size: 1.1rem;"></i>
                 <% end %>
-                <%= link_to edit_document_path(document), class: "text-secondary action-icon" do %>
+                <%= link_to edit_document_path(document), class: "text-tertiary action-icon" do %>
                   <i class="fa-regular fa-pen-to-square" style="font-size: 1.1rem;"></i>
                 <% end %>
                 <%= link_to document_path(document),

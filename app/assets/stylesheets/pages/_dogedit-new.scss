@@ -93,8 +93,8 @@
 /* ===== Upload Button ===== */
 .upload-btn {
   padding: 10px 10px;
-  color: $teal;
-  border: 2px solid $teal;
+  color: $secondary-one;
+  border: 2px solid $secondary-one;
   background-color: white;
   font-weight: bold;
   border-radius: 6px;
@@ -108,8 +108,8 @@
 /* No hover effect */
 .upload-btn:hover {
   background-color: white;
-  color: $teal;
-  border-color: $teal;
+  color: $secondary-one;
+  border-color: $secondary-one;
 }
 
 /* Center upload button inside form-group */
@@ -124,7 +124,7 @@
 .save-btn {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: $teal;
+  background-color: $secondary-one;
   color: white;
   border: none;
   border-radius: 6px;
@@ -132,7 +132,7 @@
 }
 
 .save-btn:hover {
-  background-color: $teal;
+  background-color: $secondary-one;
   color: white;
   filter: brightness(85%);
 }
