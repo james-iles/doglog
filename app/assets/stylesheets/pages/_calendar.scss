@@ -22,7 +22,7 @@ html, body {
 #calendar {
   max-width: 100%;
   min-height: 500px;
-  background: white;
+  background: $light-blue;
   overflow: hidden;
   border-radius: 12px;
   padding: 0.5rem;
@@ -53,7 +53,7 @@ html, body {
 }
 
 .appointments-header {
-  background: $teal;
+  background: $secondary-one;
   color: white;
   padding: 1.5rem;
   border-radius: 12px;
@@ -99,38 +99,38 @@ html, body {
 }
 
 .fc-button-primary {
-  background-color: #E07B39 !important;
-  border-color: #E07B39 !important;
+  background-color: $primary-two !important;
+  border-color: $primary-two !important;
 }
 
 .fc-button-primary:hover {
-  background-color: #d66d2a !important;
-  border-color: #d66d2a !important;
+  background-color: $primary-two !important;
+  border-color: $primary-two !important;
 }
 
 .fc-button-primary:focus,
 .fc-button-primary:active {
-  background-color: #c55e21 !important;
-  border-color: #c55e21 !important;
+  background-color: $primary-two !important;
+  border-color: $primary-two !important;
   box-shadow: none !important;
 }
 
 .fc-button-active {
-  background-color: #c55e21 !important;
-  border-color: #c55e21 !important;
+  background-color: $primary-two !important;
+  border-color: $primary-two !important;
 }
 
 /* Navigation arrows */
 .fc-prev-button,
 .fc-next-button {
-  background-color: #E07B39 !important;
-  border-color: #E07B39 !important;
+  background-color: $primary-two !important;
+  border-color: $primary-two !important;
 }
 
 .fc-prev-button:hover,
 .fc-next-button:hover {
-  background-color: #d66d2a !important;
-  border-color: #d66d2a !important;
+  background-color: $primary-two !important;
+  border-color: $primary-two !important;
 }
 
 /* Space between button groups */
