@@ -14,9 +14,9 @@ Household.destroy_all
 puts "Adding new seed data..."
 puts "Creating 1 household..."
 household = Household.create!(
-  name: "Castelo Dias",
+  name: "The Poodle Palace",
   owner_name: "James Iles",
-  email: "james@casteloidas.com",
+  email: "james@email.com",
   phone: "07700 900123"
 )
 
@@ -28,25 +28,19 @@ user1 = User.create!(
 )
 
 user2 = User.create!(
-  email: "feri@email.com",
-  household: household,
-  password: "password"
-)
-
-user3 = User.create!(
-  email: "joao@email.com",
+  email: "joao@fastmail.com",
   household: household,
   password: "password"
 )
 
 puts "Creating 2 dogs..."
 dog1 = Dog.create!(
-  name: "Benson",
-  breed: "Labrador Retriever",
+  name: "Thor",
+  breed: "Miniature Poodle",
   dob: Date.new(2023, 4, 14),
   household: household,
   gender: "Male",
-  weight: 24.3,
+  weight: 12.3,
   vet_name: "Dr. Sarah Mitchell",
   vet_clinic: "Vets4Pets Bath",
   vet_phone: "01225 234567",
@@ -54,7 +48,7 @@ dog1 = Dog.create!(
   insurance_provider: "PetSure Premium",
   insurance_policy_number: "PS-3948221",
   microchip_number: "941000024681357",
-  allergies: "Chicken",
+  allergies: "Chicken, Grass, Cats",
   medications: nil,
   special_notes: "Loves squeaky toys. Gets anxious during thunderstorms."
 )
