@@ -13,3 +13,7 @@ pin "@fullcalendar/core", to: "https://cdn.skypack.dev/@fullcalendar/core@6.1.10
 pin "@fullcalendar/daygrid", to: "https://cdn.skypack.dev/@fullcalendar/daygrid@6.1.10"
 pin "@fullcalendar/timegrid", to: "https://cdn.skypack.dev/@fullcalendar/timegrid@6.1.10"
 pin "@fullcalendar/interaction", to: "https://cdn.skypack.dev/@fullcalendar/interaction@6.1.10"
+
+
+pin "flatpickr" # @4.6.13
+pin "flatpickrRangePlugin", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/plugins/rangePlugin.js"
