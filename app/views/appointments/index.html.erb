@@ -9,7 +9,6 @@
 
     <!-- Collapsible search form -->
     <div class="collapse d-md-block" id="searchCollapse">
-      <div class="appointments-search">
         <%= form_with url: dog_appointments_path,
                       method: :get,
                       data: {
@@ -22,7 +21,7 @@
           <div class="col-12 col-md-5">
             <%= text_field_tag :query,
                   params[:query],
-                  class: "form-control",
+                  class: "form-control bg-white",
                   placeholder: "Search keywords...",
                   data: { action: "input->search-form#submit" }
               %>
@@ -38,7 +37,7 @@
                   ['Playdate', 'Playdate'],
                   ['Other', 'Other']
                 ], params[:appointment_type] || 'all'),
-                class: "form-select",
+                class: "form-select bg-white",
                 data: { action: "change->search-form#submit" } %>
           </div>
 
@@ -53,29 +52,22 @@
                 data: { turbo_frame: "appointments_list" } %>
           </div>
         <% end %>
-      </div>
     </div>
   </div>
 </div>
 
-  <!-- Header and Calendar Section -->
-  <div class="px-2 py-2">
-    <div class="appointments-header">
-      <div>
-        <h1>Puppointments</h1>
-        <p>Tap a time slot to create an appointment</p>
-      </div>
-        <div class="d-flex gap-3 align-items-center">
-        <%= link_to new_dog_appointment_path(@dog), class: "text-dark" do %>
-          <i class="fa-solid fa-plus icon"></i>
-        <% end %>
-      </div>
-      </div>
-      </div>
+  <!-- Header with navigation -->
+  <div class="d-flex justify-content-between align-items-center my-4 px-3">
+    <h1 class="mb-0 fw-bold" style="font-size: 1.75rem;">Puppointments</h1>
 
+    <div class="d-flex gap-3 align-items-center">
+      <%= link_to new_dog_appointment_path(@dog), class: "text-dark" do %>
+        <i class="fa-solid fa-plus icon"></i>
+      <% end %>
     </div>
-    <div id='calendar'></div>
   </div>
+
+  <div id='calendar'></div>
 </div>
 
 <!-- Modal for creating new appointment -->

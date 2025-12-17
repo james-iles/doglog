@@ -20,7 +20,7 @@
           <div class="col-12 col-md-5">
              <%= text_field_tag :query,
                   params[:query],
-                  class: "form-control",
+                  class: "form-control bg-white",
                   placeholder: "Search with keywords...",
                   data: { action: "input->search-form#submit" }
               %>
@@ -38,7 +38,7 @@
                   ['Chat', 'Chat'],
                   ['Other', 'Other']
                 ], params[:category] || 'all'),
-                class: "form-select",
+                class: "form-select bg-white",
                 data: { action: "change->search-form#submit" } %>
           </div>
 

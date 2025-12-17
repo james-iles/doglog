@@ -49,6 +49,9 @@
                 as: :text,
                 placeholder: "Do not forget the Vaccination Passport" %>
 
-    <%= f.submit "Save", class: "btn btn-warning btn-lg my-5" %>
+    <div class="d-flex gap-2 my-5">
+      <%= f.submit "Save", class: "btn btn-warning btn-lg" %>
+      <%= link_to "Cancel", dog_appointments_path(@dog), class: "btn btn-secondary btn-lg" %>
+    </div>
   <% end %>
 </div>

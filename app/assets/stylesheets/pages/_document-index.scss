@@ -5,6 +5,10 @@
   pointer-events: none;
 }
 
+.card {
+  background-color: $light-blue;
+}
+
 .card:hover .document-actions-hover {
   opacity: 1;
   transform: translateX(0);
