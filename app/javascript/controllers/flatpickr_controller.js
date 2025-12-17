@@ -1,16 +1,30 @@
 import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
-import rangePlugin from "flatpickrRangePlugin";
 
 export default class extends Controller {
   static targets = [ 'startDateInput', 'endDateInput' ]
 
   connect() {
-    flatpickr(this.startDateInputTarget, {
-      enableTime: true,        // Enable time selection
-      dateFormat: "Y-m-d H:i", // Format: 2024-12-16 14:30
-      time_24hr: true,         // Use 24-hour format
-      "plugins": [new rangePlugin({ input: this.endDateInputTarget})]
+    this.startPicker = flatpickr(this.startDateInputTarget, {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      time_24hr: true,
+      onChange: (selectedDates) => {
+        if (selectedDates[0] && this.endPicker) {
+          this.endPicker.set('minDate', selectedDates[0])
+        }
+      }
     })
+
+    this.endPicker = flatpickr(this.endDateInputTarget, {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      time_24hr: true
+    })
+  }
+
+  disconnect() {
+    if (this.startPicker) this.startPicker.destroy()
+    if (this.endPicker) this.endPicker.destroy()
   }
 }

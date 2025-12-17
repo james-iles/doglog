@@ -16,4 +16,3 @@ pin "@fullcalendar/interaction", to: "https://cdn.skypack.dev/@fullcalendar/inte
 
 
 pin "flatpickr" # @4.6.13
-pin "flatpickrRangePlugin", to: "https://ga.jspm.io/npm:flatpickr@4.6.13/dist/esm/plugins/rangePlugin.js"

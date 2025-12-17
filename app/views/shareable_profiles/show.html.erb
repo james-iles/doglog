@@ -111,7 +111,6 @@
             <%= button_to dog_shareable_profile_path(@dog, @shareable_profile),
                           method: :delete,
                           data: {
-                            turbo_method: :delete,
                             turbo_confirm: "Are you sure you want to delete this share link?"
                           },
                           class: "btn btn-sm btn-outline-danger" do %>

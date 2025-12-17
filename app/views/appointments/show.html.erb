@@ -12,9 +12,11 @@
           <%= link_to edit_appointment_path(@appointment), class: "text-secondary action-icon" do %>
             <i class="fa-regular fa-pen-to-square icon" style="font-size: 1.1rem;"></i>
           <% end %>
-          <%= link_to appointment_path(@appointment),
-                      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-                      class: "text-danger action-icon" do %>
+          <%= button_to appointment_path(@appointment),
+                       method: :delete,
+                       data: {turbo_confirm: "Are you sure?"},
+                       class: "btn btn-link p-0 text-danger action-icon",
+                       style: "border: none; background: none;" do %>
             <i class="fa-regular fa-trash-can" style="font-size: 1.1rem;"></i>
           <% end %>
         </div>
