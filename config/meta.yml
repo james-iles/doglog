@@ -1,0 +1,6 @@
+# config/meta.yml
+meta_product_name: "DogLog"
+meta_title: "DogLog - Your Dog's Digital Companion"
+meta_description: "Easy-to-use pet care app with on-demand AI support. Manage appointments, health records, and reminders with a simple interface designed for busy pet owners on the go."
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@doglog" # required for Twitter Cards
