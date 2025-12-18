@@ -58,7 +58,7 @@ body:has(#documentsindex)::after {
   &:hover {
     background: lighten($primary-one, 30%);
     color: $primary-one;
-    transform: translateY(-2px);
+    // transform: translateY(-2px);
   }
 
   &.active {
