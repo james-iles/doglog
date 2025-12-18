@@ -1,8 +1,8 @@
-<div class="container py-5">
+<div class="container py-2">
   <div class="row justify-content-center">
     <div class="col-lg-6">
       <div class="card shadow-lg">
-        <div class="card-header bg-success text-white text-center">
+        <div class="card-header text-white text-center">
           <h2 class="mb-0">
             <i class="bi bi-check-circle"></i>
             Share Link Created!
@@ -51,7 +51,7 @@
           </div>
 
           <!-- Additional Info -->
-          <div class="alert alert-info">
+          <div >
             <div class="row">
               <div class="col-12 mb-2">
                 <i class="bi bi-calendar-event"></i>
@@ -71,27 +71,30 @@
           <!-- Share URL -->
           <div class="input-group mb-4">
             <input type="text"
-                   class="form-control"
+                   class="form-control bg-white"
                    value="<%= @share_url %>"
                    readonly
                    id="share-url-input">
-            <button class="btn btn-outline-secondary" type="button" onclick="copyURL()">
+            <button class="btn btn-outline-secondary text-dark" type="button" onclick="copyURL()">
               <i class="bi bi-clipboard"></i> Copy
             </button>
           </div>
 
           <!-- Share Buttons -->
+          <div class="m-3">
           <%= link_to "https://wa.me/?text=#{CGI.escape(@share_url)}",
                         class: "btn btn-success btn-lg",
                         target: "_blank" do %>
               <i class="bi bi-whatsapp"></i> Share via WhatsApp
             <% end %>
-
+          </div>
+          <div class="m-3">
             <%= link_to @share_url,
-                        class: "btn btn-primary btn-lg",
+                        class: "btn btn-primary search-btn btn-lg",
                         target: "_blank" do %>
               <i class="bi bi-box-arrow-up-right"></i> Open Profile
             <% end %>
+            </div>
           </div>
         </div>
 

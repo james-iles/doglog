@@ -1,14 +1,16 @@
-<div class="d-flex flex-column" style="height: calc(100dvh - 80px);">
-  <div class="container bg-white border-bottom">
+<div id="chat" class="d-flex flex-column" style="height: calc(100dvh - 80px);">
+  <div class="container chat-head border-bottom">
     <div class="d-flex align-items-center gap-2 py-2 mb-2">
+      <div class="d-flex justify-content-between align-items-center gap-3 p-2 chat-card">
       <% if @chat.dog.photo.attached? %>
-        <%= image_tag @chat.dog.photo, class: "rounded-circle", style: "width: 40px; height: 40px; object-fit: cover;", alt: @chat.dog.name %>
+        <%= image_tag @chat.dog.photo, class: "rounded-circle flex-shrink-0", style: "width: 56px; height: 56px; object-fit: cover;", alt: @chat.dog.name %>
       <% end %>
       <h1 class="mb-0" id="chat_title"><%= @chat.title %></h1>
     </div>
+    </div>
     <div class="d-flex justify-content-between align-items-center gap-3 pb-2">
       <%= button_to save_summary_chat_path(@chat), method: :post, class: "btn p-0" do %>
-        <i class="fa-solid fa-file-arrow-down text-success me-1"></i> Save Summary
+        <i class="fa-solid fa-file-arrow-down me-1"></i> Save Summary
       <% end %>
       <%= button_to chat_path(@chat), method: :delete, class: "btn p-0",
           data: { turbo_confirm: "End chat without saving?" } do %>
@@ -21,13 +23,13 @@
     <% @chat.messages.each do |message| %>
       <% if message.role == "user" %>
         <div class="d-flex justify-content-end mb-2">
-          <div class="bg-white px-3 py-2 rounded-pill">
+          <div class="px-3 py-2 rounded-pill">
             <%= message.content %>
           </div>
         </div>
       <% elsif message.role == "assistant" %>
         <div class="d-flex justify-content-start mb-3">
-          <div class="px-3 pb-0 pt-3">
+          <div class="px-3 py-2 response-pill">
             <%= message.content %>
           </div>
         </div>
@@ -40,7 +42,7 @@
       <div class="flex-grow-1 mb-0">
         <%= f.input :content, label: false, required: true, placeholder: "Let's chat about #{@chat.dog.name}...", wrapper: false, input_html: { class: "form-control h-100 bg-white" } %>
       </div>
-      <%= f.button :submit, "Ask", class: 'btn btn-primary border border-dark' %>
+      <%= f.button :submit, "Ask", class: 'btn btn-primary ask-button border border-dark' %>
     <% end %>
   </div>
 </div>

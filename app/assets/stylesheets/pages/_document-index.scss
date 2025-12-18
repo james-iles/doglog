@@ -20,7 +20,7 @@
   justify-content: center;
   width: 72px;
   height: 72px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
   text-decoration: none;
   color: $tertiary;
@@ -59,7 +59,7 @@
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
 }
 
@@ -67,4 +67,10 @@
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
+}
+
+.search-btn {
+  background-color: $dark-purple;
+  border: none;
+  color: white;
 }
