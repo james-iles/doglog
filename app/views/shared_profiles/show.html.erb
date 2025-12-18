@@ -1,5 +1,5 @@
 <!-- app/views/shared_profiles/show.html.erb -->
-<div class="min-vh-100" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+<div class="min-vh-100" style="background: #F6A623;">
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-8">
@@ -7,7 +7,7 @@
 
           <!-- Header -->
           <div class="card-header text-white text-center py-4"
-               style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+               style="background: #5C3A5E;">
             <div class="mb-3">
               <i class="bi bi-heart-fill display-1"></i>
             </div>
@@ -148,11 +148,11 @@
                   <i class="bi bi-heart-pulse text-danger"></i>
                   Medical Information
                 </h4>
-
+                
                 <div class="row g-3 mb-3">
                   <% if @profile_data[:medical][:microchip].present? %>
                     <div class="col-md-4">
-                      <div class="alert alert-info mb-0">
+                      <div class=" mb-0">
                         <h6 class="alert-heading">
                           <i class="bi bi-cpu"></i> Microchip
                         </h6>
@@ -165,7 +165,7 @@
 
                   <% if @profile_data[:medical][:allergies].present? %>
                     <div class="col-md-8">
-                      <div class="alert alert-warning mb-0">
+                      <div class="mb-0">
                         <h6 class="alert-heading">
                           <i class="bi bi-exclamation-triangle"></i> Allergies
                         </h6>
@@ -209,7 +209,7 @@
                         <div id="medical<%= index %>"
                              class="accordion-collapse collapse <%= 'show' if index == 0 %>"
                              data-bs-parent="#medicalAccordion">
-                          <div class="accordion-body">
+                          <div class="accordion-body" style="background: white;">
                             <%= simple_format(content) %>
                           </div>
                         </div>

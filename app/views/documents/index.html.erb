@@ -43,7 +43,7 @@
           </div>
 
           <div class="col-6 col-md-2">
-            <%= submit_tag "Search", name: "", class: "btn btn-primary w-100" %>
+            <%= submit_tag "Search", name: "", class: "btn btn-primary search-btn w-100" %>
           </div>
 
           <div class="col-6 col-md-1">
@@ -60,11 +60,36 @@
 
   <!-- Header with navigation -->
   <div class="d-flex justify-content-between align-items-center my-4 px-3">
-    <h1 class="mb-0 fw-bold" style="font-size: 1.75rem;">All Doguments</h1>
+    <h1 class="mb-0 fw-bold" style="color: white;  -webkit-text-stroke: 0.1px #5C3A5E;">All Doguments</h1>
 
     <div class="d-flex gap-3 align-items-center">
       <%= link_to new_dog_document_path(@dog), class: "text-dark" do %>
-        <i class="fa-solid fa-plus icon"></i>
+        <i class="fa-solid fa-plus icon text-white"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Category Filter Bar -->
+  <div class="category-filter-wrapper mb-4">
+    <div class="category-filter-scroll d-flex gap-3 px-3 pb-2">
+      <%= link_to dog_documents_path(@dog),
+          class: "category-filter-item #{'active' if params[:category].blank? || params[:category] == 'all'}",
+          data: { turbo_frame: "_top" } do %>
+        <div class="category-icon">
+          <i class="fa-solid fa-border-all"></i>
+        </div>
+        <span>All</span>
+      <% end %>
+
+      <% Document::CATEGORIES.each do |category| %>
+        <%= link_to dog_documents_path(@dog, category: category),
+            class: "category-filter-item #{'active' if params[:category] == category}",
+            data: { turbo_frame: "_top" } do %>
+          <div class="category-icon">
+            <i class="<%= category_icon(category) %>"></i>
+          </div>
+          <span><%= category %></span>
+        <% end %>
       <% end %>
     </div>
   </div>

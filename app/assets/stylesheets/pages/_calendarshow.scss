@@ -1,0 +1,21 @@
+body:has(#calendarshow)::after {
+  content: '';
+  position: fixed;
+  bottom: 30px;
+  right: 60px;
+  width: 300px;
+  height: 300px;
+  background-image: image-url('dog-sit.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.card-header {
+  background-color: $dark-purple;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+}

@@ -8,7 +8,7 @@ body:has(#calendar)::after {
   right: 20px;
   width: 250px;
   height: 250px;
-  background-image: image-url('dog-walk.svg');
+  background-image: image-url('dog-walking.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -39,7 +39,7 @@ html, body {
 #calendar {
   max-width: 100%;
   min-height: 500px;
-  background: $light-blue;
+  background: rgba(255, 255, 255, 0.8);
   overflow: hidden;
   border-radius: 12px;
   padding: 0.5rem;
@@ -66,18 +66,6 @@ html, body {
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-bottom: 1rem;
-}
-
-.appointments-header {
-  background: $secondary-one;
-  color: white;
-  padding: 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 1rem;
 }
 
@@ -110,44 +98,48 @@ html, body {
 
 /* Calendar Buttons - Orange Theme with Spacing */
 .fc-button {
-  border-radius: 6px !important;
+  border-radius: 12px !important;
   font-weight: 500 !important;
   margin: 0 0.25rem !important;  /* Spacing between buttons */
 }
 
 .fc-button-primary {
-  background-color: $primary-two !important;
-  border-color: $primary-two !important;
+  background-color: $dark-purple !important;
 }
 
 .fc-button-primary:hover {
-  background-color: $primary-two !important;
-  border-color: $primary-two !important;
+  background-color: $dark-purple !important;
 }
 
 .fc-button-primary:focus,
 .fc-button-primary:active {
-  background-color: $primary-two !important;
-  border-color: $primary-two !important;
+  background-color: $buttons-one !important;
   box-shadow: none !important;
+  border: none !important;
 }
 
 .fc-button-active {
-  background-color: $primary-two !important;
-  border-color: $primary-two !important;
+  background-color: $buttons-one !important;
+  border: none !important;
 }
 
 /* Navigation arrows */
 .fc-prev-button,
 .fc-next-button {
-  background-color: $primary-two !important;
-  border-color: $primary-two !important;
+  background-color: $dark-purple !important;
 }
 
 .fc-prev-button:hover,
 .fc-next-button:hover {
-  background-color: $primary-two !important;
-  border-color: $primary-two !important;
+  background-color: $dark-purple !important;
+}
+
+.fc-list-day-text {
+  color: #5c3a5e
+}
+
+.fc-list-day-side-text {
+  color: #5c3a5e
 }
 
 /* Space between button groups */

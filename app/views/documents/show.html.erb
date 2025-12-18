@@ -1,17 +1,17 @@
-<div class="container">
+<div>
   <div class="row">
     <div class="col-md-8 mx-auto">
 
     <div class="d-flex justify-content-between align-items-between mb-4">
       <div class="my-4">
         <%= link_to dog_documents_path(@dog) do %>
-          <i class="fa-solid fa-chevron-left icon"></i>
+          <i class="fa-solid fa-chevron-left icon text-white"></i>
         <% end %>
       </div>
 
       <div class="my-4 d-flex gap-3">
-        <%= link_to edit_document_path(@document), class: "text-secondary action-icon" do %>
-          <i class="fa-regular fa-pen-to-square icon" style="font-size: 1.1rem;"></i>
+        <%= link_to edit_document_path(@document), class: "action-icon" do %>
+          <i class="fa-regular fa-pen-to-square icon text-white" style="font-size: 1.1rem;"></i>
         <% end %>
         <%= button_to document_path(@document),
                      method: :delete,
@@ -24,8 +24,8 @@
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h1 class="mb-0"><%= @document.title %></h1>
-      <span class="badge rounded-pill" style="background-color: #ff8c69; font-weight: 500; font-size: 0.85rem; padding: 0.5rem 1rem; white-space: nowrap;">
+      <h1 class="mb-0 fw-bold" style="color: white;  -webkit-text-stroke: 0.1px #5C3A5E;"><%= @document.title %></h1>
+      <span class="badge rounded-pill" style="background-color: #FF5722; font-weight: 500; font-size: 0.85rem; padding: 0.5rem 1rem; white-space: nowrap;">
         <%= @document.category %>
       </span>
     </div>
