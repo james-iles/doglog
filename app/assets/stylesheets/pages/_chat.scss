@@ -21,14 +21,25 @@ body:has(#chat)::after {
 .ask-button {
   background-color: $dark-purple;
   color: white;
+  border-radius: 12px;
 }
 
-.rounded-pill {
+// .rounded-pill {
+//   background-color: $dark-purple;
+//   color: white;
+// }
+
+.user-bubble {
+  border-radius: 12px;
   background-color: $dark-purple;
   color: white;
 }
 
 .response-pill {
   background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+}
+
+.input-radius {
   border-radius: 12px;
 }

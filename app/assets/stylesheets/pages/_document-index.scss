@@ -1,4 +1,21 @@
 // Horizontal scrolling category filter bar
+
+body:has(#documentsindex)::after {
+  content: '';
+  position: fixed;
+  bottom: 70px;
+  right: 20px;
+  width: 200px;
+  height: 200px;
+  background-image: image-url('dog-page-eaten.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.8;
+}
+
 .category-filter-wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -73,4 +90,10 @@
   background-color: $dark-purple;
   border: none;
   color: white;
+}
+
+.cancel-btn {
+  background-color: none;
+  border: 1px solid $dark-purple;
+  color: $dark-purple;
 }
