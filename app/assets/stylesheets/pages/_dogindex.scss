@@ -22,6 +22,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  box-shadow: 0 0px 12px #5c3a5e;
 }
 
 
@@ -78,6 +79,14 @@
   margin-top: 70px;
   font-size: 2rem;
   text-decoration: none;
+
+  a {
+    color: #5c3a5e;
+  }
+}
+
+.cog-color a {
+  color: #5c3a5e;
 }
 
 .dashboard-button {

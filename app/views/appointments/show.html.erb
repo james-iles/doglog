@@ -1,16 +1,16 @@
-<div class="container">
+<div class="container" id="calendarshow">
   <div class="row">
     <div class="col-md-8 mx-auto">
       <div class="d-flex justify-content-between align-items-start mb-4">
         <div class="my-4">
           <%= link_to dog_appointments_path(@appointment.dog) do %>
-            <i class="fa-solid fa-chevron-left icon"></i>
+            <i class="fa-solid fa-chevron-left icon text-white"></i>
           <% end %>
         </div>
 
         <div class="my-4 d-flex gap-3">
           <%= link_to edit_appointment_path(@appointment), class: "text-secondary action-icon" do %>
-            <i class="fa-regular fa-pen-to-square icon" style="font-size: 1.1rem;"></i>
+            <i class="fa-regular fa-pen-to-square icon text-white" style="font-size: 1.1rem;"></i>
           <% end %>
           <%= button_to appointment_path(@appointment),
                        method: :delete,
@@ -27,13 +27,13 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header text-white">
           <h3 class="mb-0"><%= @appointment.title %></h3>
         </div>
         <div class="card-body">
           <div class="row mb-3">
             <div class="col-sm-4">
-              <strong>Start Date & Time:</strong>
+              <strong>Start Time:</strong>
             </div>
             <div class="col-sm-8">
               <%= @appointment.start_time.strftime("%B %d, %Y at %H:%M") %>
@@ -42,7 +42,7 @@
 
           <div class="row mb-3">
             <div class="col-sm-4">
-              <strong>End Date & Time:</strong>
+              <strong>End Time:</strong>
             </div>
             <div class="col-sm-8">
               <%= @appointment.end_time.strftime("%B %d, %Y at %H:%M") %>
