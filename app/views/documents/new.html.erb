@@ -1,16 +1,19 @@
-<div class="container">
-  <h1>Create notes or upload an existing document</h1>
+<div class="container my-3">
+  <h1>Create notes or upload a file</h1>
   <%= simple_form_for [@dog, @document] do |f| %>
     <%= f.input :title,
                 label: "Title",
+                input_html: { class: 'bg-white' },
                 placeholder: "e.g. Vaccination Record" %>
 
     <%= f.input :content,
                 as: :text,
                 label: "Content/Notes",
+                input_html: { class: 'bg-white' },
                 placeholder: "Add your notes here..." %>
 
     <%= f.input :category,
+            input_html: { class: 'bg-white' },
             collection: Document::CATEGORIES,
             prompt: "Select a category" %>
 
@@ -29,7 +32,7 @@
       </fieldset>
     <% end %>
 
-    <%= f.submit "Save", class: "btn btn-warning btn-lg my-5" %>
-    <%= link_to "Cancel", dog_documents_path(@dog), class: "btn btn-warning btn-lg my-5" %>
+    <%= f.submit "Save", class: "btn btn-warning search-btn btn-lg my-5" %>
+    <%= link_to "Cancel", dog_documents_path(@dog), class: "btn cancel-btn btn-lg my-5" %>
    <% end %>
 </div>

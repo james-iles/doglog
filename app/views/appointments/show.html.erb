@@ -1,14 +1,14 @@
 <div class="container" id="calendarshow">
   <div class="row">
     <div class="col-md-8 mx-auto">
-      <div class="d-flex justify-content-between align-items-start mb-4">
+      <div class="d-flex justify-content-between align-items-start mb-1">
         <div class="my-4">
           <%= link_to dog_appointments_path(@appointment.dog) do %>
             <i class="fa-solid fa-chevron-left icon text-white"></i>
           <% end %>
         </div>
 
-        <div class="my-4 d-flex gap-3">
+        <div class="my-4 d-flex gap-3 align-items-center">
           <%= link_to edit_appointment_path(@appointment), class: "text-secondary action-icon" do %>
             <i class="fa-regular fa-pen-to-square icon text-white" style="font-size: 1.1rem;"></i>
           <% end %>

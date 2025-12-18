@@ -11,7 +11,7 @@ class ChatsController < ApplicationController
     @chat.dog = @dog
 
     if @chat.save
-      redirect_to chat_path(@chat), notice: "Chat created successfully"
+      redirect_to chat_path(@chat)
     else
       redirect_to dog_path(@dog), alert: "Could not create chat"
     end

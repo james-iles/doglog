@@ -1,46 +1,51 @@
-<div class="container">
+<div class="container my-3">
   <h1>Create an appointment</h1>
   <%= simple_form_for [@dog, @appointment], html: { data: { turbo: false } } do |f| %>
     <%= f.input :title,
                 label: "Title",
+                input_html: { class: 'bg-white' },
                 placeholder: "e.g. Vaccination" %>
 
     <%= f.input :location,
                 as: :text,
+                input_html: { class: 'bg-white' },
                 label: "Location" %>
 
     <div class="mb-3">
-      <%= label_tag :appointment_start_time, "Start Date and Time", class: "form-label" %>
+      <%= label_tag :appointment_start_time, "Start Time", class: "form-label" %>
       <%= datetime_local_field_tag "appointment[start_time]",
           @appointment.start_time&.strftime("%Y-%m-%dT%H:%M"),
-          class: "form-control",
+          class: "form-control bg-white",
           required: true %>
     </div>
 
     <div class="mb-3">
-      <%= label_tag :appointment_end_time, "End Date and Time", class: "form-label" %>
+      <%= label_tag :appointment_end_time, "End Time", class: "form-label" %>
       <%= datetime_local_field_tag "appointment[end_time]",
           @appointment.end_time&.strftime("%Y-%m-%dT%H:%M"),
-          class: "form-control",
+          class: "form-control bg-white",
           required: true %>
     </div>
 
     <%= f.input :host,
                 label: "Host",
+                input_html: { class: 'bg-white' },
                 placeholder: "Doctor Miller" %>
 
     <%= f.input :appointment_type,
+                input_html: { class: 'bg-white' },
                 collection: Appointment::TYPES,
                 prompt: "Select type" %>
 
     <%= f.input :appointment_notes,
                 label: "Notes",
+                input_html: { class: 'bg-white' },
                 as: :text,
                 placeholder: "Do not forget the Vaccination Passport" %>
 
     <div class="d-flex gap-2 my-5">
-      <%= f.submit "Save", class: "btn btn-warning btn-lg" %>
-      <%= link_to "Cancel", dog_appointments_path(@dog), class: "btn btn-secondary btn-lg" %>
+      <%= f.submit "Save", class: "btn btn-warning search-btn btn-lg" %>
+      <%= link_to "Cancel", dog_appointments_path(@dog), class: "btn cancel-btn btn-lg" %>
     </div>
   <% end %>
 </div>
