@@ -17,7 +17,7 @@
             collection: Document::CATEGORIES,
             prompt: "Select a category" %>
 
-    <%= f.input :files, as: :file, input_html: { multiple: true } %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
 
     <% other_dogs = @dog.household.dogs.where.not(id: @dog.id) %>
     <% if other_dogs.any? %>
