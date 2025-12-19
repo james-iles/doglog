@@ -1,6 +1,10 @@
-<div class="container">
+<div class="container" style="max-width: 600px; margin-top: 50px; py: -3px; margin-bottom: 50px;">
   <%= simple_form_for @household do |f| %>
     <%= f.input :name, label: "Please give a name for the household", placeholder: "e.g. Happy Family of huskies" %>
-    <%= f.submit "Create Household & Continue", class: "btn btn-warning btn-lg my-5" %>
+    <%= f.submit "Create Household & Continue", class: "btn search-btn btn-lg my-5" %>
   <% end %>
+</div>
+
+<div style="position: fixed; bottom: 70px; right: 20px; height: 500px; pointer-events: none; z-index: -1; opacity: 0.8;">
+  <%= image_tag "dog-walking.svg", style: "width: 100%; height: 100%; object-fit: contain;" %>
 </div>

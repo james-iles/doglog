@@ -108,7 +108,7 @@
 /* No hover effect */
 .upload-btn:hover {
   background-color: white;
-  color: $secondary-one;
+  color: #5C3A5E;
 }
 
 /* Center upload button inside form-group */
@@ -131,9 +131,8 @@
 }
 
 .save-btn:hover {
-  background-color: $secondary-one;
-  color: white;
-  filter: brightness(85%);
+  background-color: white;
+  color: #5C3A5E;
 }
 
 /* ===== Browser Reset for Select ===== */
