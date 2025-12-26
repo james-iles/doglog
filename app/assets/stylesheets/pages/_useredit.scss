@@ -95,7 +95,7 @@
 
 /* Buttons */
 .btn-success {
-  background-color: #28a745;
+  background-color: #5C3A5E;
   color: white;
   border: none;
   padding: 8px 20px;
@@ -104,7 +104,8 @@
 }
 
 .btn-success:hover {
-  background-color: #218838;
+  background-color: rgba($dark-purple, 0.9);
+  color: white;
 }
 
 .btn-danger {
@@ -122,14 +123,15 @@
 
 .btn-link {
   background: none;
-  color: #007bff;
+  color: #5C3A5E;
   border: none;
   text-decoration: underline;
   cursor: pointer;
 }
 
 .btn-link:hover {
-  color: #0056b3;
+  background-color: rgba($dark-purple, 0.9);
+  color: white;
 }
 
 /* Divider */

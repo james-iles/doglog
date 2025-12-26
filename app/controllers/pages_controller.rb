@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     if user_signed_in?
       @household = current_user.household
       @user = current_user
+      redirect_to household_dogs_path(@household)
     end
   end
 
