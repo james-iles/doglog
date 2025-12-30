@@ -24,7 +24,7 @@ html, body {
   position: relative;
 }
 
-.container-fluid {
+.container-fluid:has(#calendar) {
   overflow-x: hidden;
   max-width: 100vw;
 }

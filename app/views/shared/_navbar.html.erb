@@ -13,10 +13,15 @@
         <% if user_signed_in? %>
           <li class="nav-item active">
             <%= link_to household_dogs_path(current_user.household), class: "nav-link" do %>
-              <i class="fa-solid fa-paw"></i> Home
+              <i class="fa-solid fa-paw"></i> All Dogs
             <% end %>
           </li>
           <% if @dog&.persisted? %>
+          <li class="nav-item">
+            <%= link_to dog_path(@dog), class: "nav-link" do %>
+            <i class="fa-solid fa-bone"></i> <%= @dog.name %>
+            <% end %>
+          </li>
           <li class="nav-item">
             <%= link_to dog_documents_path(@dog), class: "nav-link" do %>
             <i class="fa-regular fa-file"></i> Doguments
@@ -38,11 +43,8 @@
             <%= image_tag "user_icon.png", class: "avatar", alt: "dropdown menu" %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
-                <i class="fa-solid fa-user-pen"></i> Edit account
-              <% end %>
-              <%= link_to edit_household_path(current_user.household), class: "dropdown-item" do %>
-                <i class="fa-solid fa-house-user"></i> Edit Household
+              <%= link_to dashboard_path, class: "dropdown-item" do %>
+                <i class="fa-solid fa-user-pen"></i> Your Dashboard
               <% end %>
               <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
                 <i class="fa-solid fa-right-from-bracket"></i> Log out
