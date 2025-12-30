@@ -11,6 +11,10 @@
   width: 120px;
 }
 
+.navbar-lewagon .nav-item {
+  margin-left: 0.5rem;
+}
+
 // Hide top navbar on mobile when bottom navbar is present
 @media (max-width: 767.98px) {
   .hide-navbar-mobile {

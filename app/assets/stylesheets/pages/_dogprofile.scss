@@ -7,6 +7,10 @@
   background-color: $dark-purple;
   text-align: center;
   color: white;
+
+  @media (min-width: 768px) {
+    max-width: 600px;
+  }
 }
 .dog-profile-card2 {
   max-width: 400px;
@@ -17,6 +21,10 @@
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   color: #333;
+
+  @media (min-width: 768px) {
+    max-width: 600px;
+  }
 }
 //---------------FISRST LINKS
 .first-links {

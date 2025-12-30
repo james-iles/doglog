@@ -93,7 +93,15 @@ body:has(#documentsindex)::after {
 }
 
 .cancel-btn {
-  background-color: none;
+  background-color: transparent;
   border: 1px solid $dark-purple;
   color: $dark-purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: $dark-purple;
+    color: white;
+  }
 }
