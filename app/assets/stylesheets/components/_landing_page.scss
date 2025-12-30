@@ -15,7 +15,7 @@ body {
 
 /* Hero Section */
 .hero {
-        margin-top: 5rem;
+        margin-top: 1rem;
         display: flex;
         align-items: center;
         gap: 2rem;
@@ -61,6 +61,7 @@ h1 .highlight::after {
 
 .cta-group {
     display: flex;
+    justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
     animation: fadeIn 1s ease-out 0.8s both;
@@ -90,6 +91,8 @@ h1 .highlight::after {
     background: var(--plum-dark);
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgba(92, 58, 94, 0.4);
+        border: 2px solid var(--deep-plum);
+
 }
 
 .btn-secondary {
@@ -335,15 +338,16 @@ h2 {
     opacity: 0.95;
 }
 
-.cta-section .btn-primary {
-    background: white;
-    color: var(--deep-plum);
+.login-btn-hover {
+    transition: all 0.3s ease;
 }
 
-.cta-section .btn-primary:hover {
-    background: var(--bright-orange);
-    color: white;
+.login-btn-hover:hover {
+    background-color: #F6A623 !important;
+    color: white !important;
+    border-color: #5C3A5E !important;
 }
+
 
 /* Footer */
 footer {
@@ -406,7 +410,7 @@ footer {
     .hero {
         flex-direction: column;
         text-align: center;
-        padding-top: 6rem;
+        padding-top: 1rem !important;
     }
 
     .hero-content {
@@ -417,10 +421,6 @@ footer {
         justify-content: center;
     }
 
-    .phone-mockup {
-        width: 300px;
-        height: 600px;
-    }
 
     nav {
         flex-wrap: wrap;

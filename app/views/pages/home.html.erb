@@ -1,4 +1,5 @@
 <div class="container text-center">
+
     <!-- Hero Section -->
     <section class="hero fade-in-up" id="hero">
         <div class="section-header">
@@ -9,7 +10,7 @@
             <p>
                 Track appointments, manage documents, get instant AI-powered advice, and share your dog's profile with vets and trainers—all in one delightful place.
             </p>
-            <div class="cta-group">
+            <div class="cta-group" d-flex justify-content-center gap-3>
                 <a href="#cta" class="btn search-btn">
                     Start Your Journey
                     <span>→</span>
@@ -90,9 +91,11 @@
         <div class="cta-content">
             <h2>Ready to give your dog the best care?</h2>
             <p>Join thousands of happy dog owners who trust DogLog for their pet care management.</p>
-            <a href="<%= new_household_path %>" class="btn btn-lg" style="background-color: #F6A623; font-size: 1.2rem; padding: 1.2rem 3rem;">
+            <a href="<%= new_household_path %>" class="btn btn-primary" style="background-color: #F6A623; font-size: 1.2rem; padding: 1.2rem 3rem;">
                 Get Started Free
-                <span>→</span>
+            </a>
+            <a href="<%= new_user_session_path %>" class="btn btn-secondary login-btn-hover my-3" style="background-color: #5C3A5E; color: #F6A623; border: 2px solid #F6A623; font-size: 1.2rem; padding: 1.2rem 3rem;">
+                Login
             </a>
         </div>
     </section>
